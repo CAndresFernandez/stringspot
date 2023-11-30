@@ -21,12 +21,12 @@ class Zone
     #[ORM\Column(length: 64)]
     private ?string $post_code = null;
 
-    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Court::class)]
-    private Collection $courts;
+    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Center::class)]
+    private Collection $centers;
 
     public function __construct()
     {
-        $this->courts = new ArrayCollection();
+        $this->centers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,29 +59,29 @@ class Zone
     }
 
     /**
-     * @return Collection<int, Court>
+     * @return Collection<int, Center>
      */
-    public function getCourts(): Collection
+    public function getCenters(): Collection
     {
-        return $this->courts;
+        return $this->centers;
     }
 
-    public function addCourt(Court $court): static
+    public function addCenter(Center $center): static
     {
-        if (!$this->courts->contains($court)) {
-            $this->courts->add($court);
-            $court->setZone($this);
+        if (!$this->centers->contains($center)) {
+            $this->centers->add($center);
+            $center->setZone($this);
         }
 
         return $this;
     }
 
-    public function removeCourt(Court $court): static
+    public function removeCenter(Center $center): static
     {
-        if ($this->courts->removeElement($court)) {
+        if ($this->centers->removeElement($center)) {
             // set the owning side to null (unless already changed)
-            if ($court->getZone() === $this) {
-                $court->setZone(null);
+            if ($center->getZone() === $this) {
+                $center->setZone(null);
             }
         }
 

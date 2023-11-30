@@ -33,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 64)]
     private ?string $last_name = null;
 
+    #[ORM\OneToOne(mappedBy: 'user_id', cascade: ['persist', 'remove'])]
+    private ?Reservation $reservation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +126,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(string $last_name): static
     {
         $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(Reservation $reservation): static
+    {
+        // set the owning side of the relation if necessary
+        if ($reservation->getUser() !== $this) {
+            $reservation->setUser($this);
+        }
+
+        $this->reservation = $reservation;
 
         return $this;
     }

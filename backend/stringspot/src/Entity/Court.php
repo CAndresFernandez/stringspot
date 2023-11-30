@@ -16,23 +16,17 @@ class Court
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    private ?string $name = null;
-
-    #[ORM\Column(length: 64)]
     private ?string $number = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $address = null;
 
     #[ORM\Column(length: 64)]
     private ?string $type = null;
 
-    #[ORM\ManyToOne(inversedBy: 'courts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Zone $zone = null;
-
     #[ORM\OneToMany(mappedBy: 'court', targetEntity: Reservation::class)]
     private Collection $reservations;
+
+    #[ORM\ManyToOne(inversedBy: 'courts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Center $center = null;
 
     public function __construct()
     {
@@ -42,18 +36,6 @@ class Court
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getNumber(): ?string
@@ -68,18 +50,6 @@ class Court
         return $this;
     }
 
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): static
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     public function getType(): ?string
     {
         return $this->type;
@@ -88,18 +58,6 @@ class Court
     public function setType(string $type): static
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getZone(): ?Zone
-    {
-        return $this->zone;
-    }
-
-    public function setZone(?Zone $zone): static
-    {
-        $this->zone = $zone;
 
         return $this;
     }
@@ -130,6 +88,18 @@ class Court
                 $reservation->setCourt(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCenter(): ?Center
+    {
+        return $this->center;
+    }
+
+    public function setCenter(?Center $center): static
+    {
+        $this->center = $center;
 
         return $this;
     }
