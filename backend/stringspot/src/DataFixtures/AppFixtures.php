@@ -93,7 +93,7 @@ class AppFixtures extends Fixture
             for ($c = 1; $c <= $toCreate; $c++) {
                 $court = new Court();
                 $court->setNumber($c);
-                $court->setType($faker->randomElement(["tennis", "padel", "badminton"]));
+                $court->setType("tennis");
                 $center->addCourt($court);
                 $courtList[] = $court;
                 $manager->persist($court);
