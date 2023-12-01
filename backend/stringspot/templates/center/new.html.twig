@@ -1,13 +1,15 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  New Experience
+  New Center
 {% endblock %}
 
 {% block body %}
-  <div class="container-fluid">
-    <h1>Create new Experience</h1>
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Create new Center</h1>
 
-    {{ include('back/experience/_form.html.twig') }}
-  </div>
+      {{ include('center/_form.html.twig') }}
+    </div>
+  {% endblock %}
 {% endblock %}

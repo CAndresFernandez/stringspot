@@ -17,7 +17,7 @@ class CenterController extends AbstractController
     #[Route('/', name: 'app_admin_center_list', methods: ['GET'])]
     public function list(CenterRepository $centerRepository): Response
     {
-        return $this->render('admin/center/list.html.twig', [
+        return $this->render('center/list.html.twig', [
             'centers' => $centerRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class CenterController extends AbstractController
             return $this->redirectToRoute('app_admin_center_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/center/new.html.twig', [
+        return $this->render('center/new.html.twig', [
             'center' => $center,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class CenterController extends AbstractController
     #[Route('/{id}', name: 'app_admin_center_show', methods: ['GET'])]
     public function show(Center $center): Response
     {
-        return $this->render('admin/center/show.html.twig', [
+        return $this->render('center/show.html.twig', [
             'center' => $center,
         ]);
     }
@@ -62,7 +62,7 @@ class CenterController extends AbstractController
             return $this->redirectToRoute('app_admin_center_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/center/edit.html.twig', [
+        return $this->render('center/edit.html.twig', [
             'center' => $center,
             'form' => $form,
         ]);

@@ -84,6 +84,9 @@ class CourtProvider {
         return $this->courtList;
     }
 
+    public function zones() {
+        return array_keys($this->courtList);
+    }
 }
 
 

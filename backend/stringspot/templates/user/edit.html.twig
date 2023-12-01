@@ -1,17 +1,18 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  Edit Experience
+  Edit User
 {% endblock %}
 
 {% block body %}
-  <div class="container-fluid">
-    <h1>Edit Experience</h1>
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Edit User</h1>
 
-    {{ include('back/experience/_form.html.twig', { button_label: 'Update' }) }}
+      {{ include('user/_form.html.twig', { button_label: 'Update' }) }}
 
-    {{ include('back/experience/_delete_form.html.twig') }}
-    {#
-    <a href="{{ path('app_back_experience_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a> #}
-  </div>
+      {{ include('user/_delete_form.html.twig') }}
+      <a href="{{ path('app_admin_user_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
 {% endblock %}

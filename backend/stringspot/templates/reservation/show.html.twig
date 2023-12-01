@@ -1,32 +1,70 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  Technology
+  Reservation
 {% endblock %}
 
 {% block body %}
-  <div class="container-fluid">
-    <h1>Technology</h1>
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Reservation</h1>
 
-    <table class="table">
-      <tbody>
-        <tr>
-          <th>Name</th>
-          <td>{{ tech.name }}</td>
-        </tr>
-        {% if tech.version %}
+      <table class="table">
+        <tbody>
           <tr>
-            <th>Version</th>
-            <td>{{ tech.version }}</td>
+            <th>Res #</th>
+            <td>{{ reservation.id }}</td>
           </tr>
-        {% endif %}
-      </tbody>
-    </table>
+          <tr>
+            <th>User Name</th>
+            <td>{{ reservation.user.firstName ~ ' ' ~ reservation.user.lastName }}</td>
+          </tr>
+          <tr>
+            <th>Contact</th>
+            <td>{{ reservation.user.email }}</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>{{ reservation.startTime|date('Y:m:d') }}</td>
+          </tr>
+          <tr>
+            <th>Center</th>
+            <td>{{ reservation.court.center.name }}</td>
+          </tr>
+          <tr>
+            <th>Court</th>
+            <td>{{ reservation.court.number }}</td>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td>{{ reservation.startTime|date('H:i') }}</td>
+          </tr>
+          <tr>
+            <th>Created</th>
+            <td>{{ reservation.createdAt|date('Y:m:d H:i') }}</td>
+          </tr>
+          <tr>
+            <th>Type</th>
+            {% if reservation.resType == 'user' %}
+              <td>User</td>
+            {% else %}
+              <td>Admin</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th>Active</th>
+            {% if reservation.active %}
+              <td>Active</td>
+            {% else %}
+              <td>Past</td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
 
-    <a href="{{ path('app_back_tech_edit', { id: tech.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit</button></a>
+      {{ include('reservation/_delete_form.html.twig') }}
 
-    {{ include('back/tech/_delete_form.html.twig') }}
-
-    <a href="{{ path('app_back_tech_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
-  </div>
+      <a href="{{ path('app_admin_reservation_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
 {% endblock %}

@@ -14,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/court')]
 class CourtController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_court_index', methods: ['GET'])]
-    public function index(CourtRepository $courtRepository): Response
+    #[Route('/', name: 'app_admin_court_list', methods: ['GET'])]
+    public function list(CourtRepository $courtRepository): Response
     {
-        return $this->render('admin/court/index.html.twig', [
+        return $this->render('court/list.html.twig', [
             'courts' => $courtRepository->findAll(),
         ]);
     }
@@ -33,10 +33,10 @@ class CourtController extends AbstractController
             $entityManager->persist($court);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_court_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_court_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/court/new.html.twig', [
+        return $this->render('court/new.html.twig', [
             'court' => $court,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class CourtController extends AbstractController
     #[Route('/{id}', name: 'app_admin_court_show', methods: ['GET'])]
     public function show(Court $court): Response
     {
-        return $this->render('admin/court/show.html.twig', [
+        return $this->render('court/show.html.twig', [
             'court' => $court,
         ]);
     }
@@ -59,10 +59,10 @@ class CourtController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_court_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_court_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/court/edit.html.twig', [
+        return $this->render('court/edit.html.twig', [
             'court' => $court,
             'form' => $form,
         ]);
@@ -76,6 +76,6 @@ class CourtController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_admin_court_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_court_list', [], Response::HTTP_SEE_OTHER);
     }
 }

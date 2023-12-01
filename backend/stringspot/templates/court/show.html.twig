@@ -1,50 +1,36 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  Education
+  Court
 {% endblock %}
 
 {% block body %}
-  <div class="container-fluid">
-    <h1>Education</h1>
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Court</h1>
 
-    <table class="table">
-      <tbody>
-        <tr>
-          <th>School</th>
-          <td>{{ education.school }}</td>
-        </tr>
-        <tr>
-          <th>Start Year</th>
-          <td>{{ education.startYear }}</td>
-        </tr>
-        <tr>
-          <th>End Year</th>
-          <td>{{ education.endYear }}</td>
-        </tr>
-        <tr>
-          <th>Start Month</th>
-          <td>{{ education.startMonth }}</td>
-        </tr>
-        <tr>
-          <th>End Month</th>
-          <td>{{ education.endMonth }}</td>
-        </tr>
-        <tr>
-          <th>Field</th>
-          <td>{{ education.field }}</td>
-        </tr>
-        <tr>
-          <th>Icon</th>
-          <td>{{ education.icon }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Number</th>
+            <td>{{ court.number }}</td>
+          </tr>
+          <tr>
+            <th>Center</th>
+            <td>{{ court.center.name }}</td>
+          </tr>
+          <tr>
+            <th>Type</th>
+            <td>{{ court.type }}</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <a href="{{ path('app_back_education_edit', { id: education.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit</button></a>
+      <a href="{{ path('app_admin_court_edit', { id: court.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit</button></a>
 
-    {{ include('back/education/_delete_form.html.twig') }}
+      {{ include('court/_delete_form.html.twig') }}
 
-    <a href="{{ path('app_back_education_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
-  </div>
+      <a href="{{ path('app_admin_court_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
 {% endblock %}

@@ -14,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/zone')]
 class ZoneController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_zone_index', methods: ['GET'])]
-    public function index(ZoneRepository $zoneRepository): Response
+    #[Route('/', name: 'app_admin_zone_list', methods: ['GET'])]
+    public function list(ZoneRepository $zoneRepository): Response
     {
-        return $this->render('admin/zone/index.html.twig', [
+        return $this->render('zone/list.html.twig', [
             'zones' => $zoneRepository->findAll(),
         ]);
     }
@@ -33,10 +33,10 @@ class ZoneController extends AbstractController
             $entityManager->persist($zone);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_zone_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_zone_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/zone/new.html.twig', [
+        return $this->render('zone/new.html.twig', [
             'zone' => $zone,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class ZoneController extends AbstractController
     #[Route('/{id}', name: 'app_admin_zone_show', methods: ['GET'])]
     public function show(Zone $zone): Response
     {
-        return $this->render('admin/zone/show.html.twig', [
+        return $this->render('zone/show.html.twig', [
             'zone' => $zone,
         ]);
     }
@@ -59,10 +59,10 @@ class ZoneController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_zone_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_zone_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/zone/edit.html.twig', [
+        return $this->render('zone/edit.html.twig', [
             'zone' => $zone,
             'form' => $form,
         ]);
@@ -76,6 +76,6 @@ class ZoneController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_admin_zone_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_zone_list', [], Response::HTTP_SEE_OTHER);
     }
 }

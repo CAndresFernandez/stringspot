@@ -1,61 +1,59 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  Experience
+  Zone
 {% endblock %}
 
 {% block body %}
-  <div class="container-fluid">
-    <h1>Experience</h1>
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Zone</h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Postal Code</th>
+            <td>{{ zone.post_code }}</td>
+          </tr>
+          <tr>
+            <th>Country</th>
+            <td>{{ zone.country }}</td>
+          </tr>
+          <tr>
+            <th>Centers</th>
+            {% if zone.centers %}
+              <td class="p-0">
+                <table class="table table-hover table-striped m-0">
+                  <tbody>
+                    <tr>
+                      <td scope="col" class="col-1">Name</td>
+                      <td scope="col" class="col-1">Address</td>
+                      <td scope="col" class="col-1"># of Courts</td>
+                      <td scope="col" class="col-1">Actions</td>
+                    </tr>
+                    {% for center in zone.centers %}
+                      <tr>
+                        <td class="border-bottom-0">{{ center.name|e }}</td>
+                        <td class="border-bottom-0">{{ center.address|e }}</td>
+                        <td class="border-bottom-0">{{ center.number_courts|e }}</td>
+                        <td>
+                          <a href="{{ path('app_admin_center_show', { id: center.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+                          <a href="{{ path('app_admin_center_edit', { id: center.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
 
-    <table class="table">
-      <tbody>
-        <tr>
-          <th>Company</th>
-          <td>{{ experience.company }}</td>
-        </tr>
-        <tr>
-          <th>Start Year</th>
-          <td>{{ experience.startYear }}</td>
-        </tr>
-        <tr>
-          <th>End Year</th>
-          <td>{{ experience.endYear }}</td>
-        </tr>
-        <tr>
-          <th>Location</th>
-          <td>{{ experience.location }}</td>
-        </tr>
-        <tr>
-          <th>Job Title</th>
-          <td>{{ experience.jobTitle }}</td>
-        </tr>
-        <tr>
-          <th>Responsibilities</th>
-          <td class="p-0">
-            <table class="table table-hover m-0">
-              <tbody>
-                {% for resp in experience.responsibilities %}
-                  <tr>
-                    {% if loop.last %}
-                      <td class="border-bottom-0">{{ resp }}</td>
-                    {% else %}
-                      <td>{{ resp }}</td>
-                    {% endif %}
-                  </tr>
-                {% endfor %}
-                {# {{ experience.responsibilities|json_encode(constant('JSON_PRETTY_PRINT'))|nl2br|raw }} #}
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <a href="{{ path('app_admin_zone_edit', { id: zone.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit</button></a>
 
-    <a href="{{ path('app_back_experience_edit', { id: experience.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit</button></a>
+      {{ include('zone/_delete_form.html.twig') }}
 
-    {{ include('back/experience/_delete_form.html.twig') }}
-
-    <a href="{{ path('app_back_experience_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
-  </div>
+      <a href="{{ path('app_admin_zone_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
 {% endblock %}

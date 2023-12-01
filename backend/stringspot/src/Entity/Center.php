@@ -25,11 +25,11 @@ class Center
     #[ORM\JoinColumn(nullable: false)]
     private ?Zone $zone = null;
 
-    #[ORM\OneToMany(mappedBy: 'center_id', targetEntity: Court::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'center', targetEntity: Court::class, orphanRemoval: true)]
     private Collection $courts;
 
     #[ORM\Column]
-    private ?int $courts_number = null;
+    private ?int $number_courts = null;
 
     public function __construct()
     {
@@ -107,14 +107,14 @@ class Center
         return $this;
     }
 
-    public function getCourtsNumber(): ?int
+    public function getNumberCourts(): ?int
     {
-        return $this->courts_number;
+        return $this->number_courts;
     }
 
-    public function setCourtsNumber(int $courts_number): static
+    public function setNumberCourts(int $number_courts): static
     {
-        $this->courts_number = $courts_number;
+        $this->number_courts = $number_courts;
 
         return $this;
     }

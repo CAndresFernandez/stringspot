@@ -1,35 +1,42 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  Technology List
+  Reservation List
 {% endblock %}
-{% block techActive %}
+{% block resActive %}
   active
 {% endblock %}
-{% block body %}
+{% block subBody %}
   <div class="container-fluid">
-    <h1>Technology List</h1>
-    <a href="{{ path('app_back_tech_new') }}"><button type="button" class="btn btn-primary mb-3 bi bi-plus-lg"></button></a>
+    <h1>Reservation List</h1>
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Version</th>
-          <th>Level</th>
+          <th>Res #</th>
+          <th>User Name</th>
+          <th>Contact</th>
+          <th>Date</th>
+          <th>Center</th>
+          <th>Court</th>
+          <th>Time</th>
+          <th>Created</th>
         </tr>
       </thead>
       <tbody>
-        {% for tech in techs %}
+        {% for reservation in reservations %}
           <tr>
-            <td>{{ tech.name }}</td>
+            <td>{{ reservation.id }}</td>
+            <td>{{ reservation.user.firstName ~ ' ' ~ reservation.user.lastName }}</td>
+            <td>{{ reservation.user.email }}</td>
+            <td>{{ reservation.startTime|date('Y-m-d') }}</td>
+            <td>{{ reservation.court.center.name }}</td>
+            <td>{{ reservation.court.number }}</td>
+            <td>{{ reservation.startTime|date('H:i') }}</td>
+            <td>{{ reservation.createdAt|date('Y-m-d H:i') }}</td>
             <td>
-              {% if tech.version %}{{ tech.version }}{% endif %}
+              <a href="{{ path('app_admin_reservation_show', { id: reservation.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
             </td>
-            <td>{{ tech.level }}</td>
-            <td>
-              <a href="{{ path('app_back_tech_show', { id: tech.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
-              <a href="{{ path('app_back_tech_edit', { id: tech.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
-            </td>
+            <td>{{ include('reservation/_delete_form.html.twig') }}</td>
           </tr>
         {% else %}
           <tr>

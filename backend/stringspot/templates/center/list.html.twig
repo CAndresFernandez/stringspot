@@ -1,53 +1,34 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  Experience List
+  Center List
 {% endblock %}
-{% block expActive %}
+{% block centerActive %}
   active
 {% endblock %}
-{% block body %}
+{% block subBody %}
   <div class="container-fluid">
-    <h1>Experience List</h1>
-    <a href="{{ path('app_back_experience_new') }}"><button type="button" class="btn btn-primary mb-3 bi bi-plus-lg"></button></a>
+    <h1>Center List</h1>
+    <a href="{{ path('app_admin_center_new') }}"><button type="button" class="btn btn-primary mb-3 bi bi-plus-lg"></button></a>
     <table class="table">
       <thead>
         <tr>
-          <th>Company</th>
-          <th>Start Year</th>
-          <th>End Year</th>
-          <th>Location</th>
-          <th>Job Title</th>
-          <th>Responsibilities</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Zone</th>
+          <th># of Courts</th>
         </tr>
       </thead>
       <tbody>
-        {% for experience in experiences|sort((a, b) => a.startYear <=> b.startYear) %}
+        {% for center in centers %}
           <tr>
-            <td>{{ experience.company }}</td>
-            <td>{{ experience.startYear }}</td>
-            <td>{{ experience.endYear }}</td>
-            <td>{{ experience.location }}</td>
-            <td>{{ experience.jobTitle }}</td>
-            <td class="p-0">
-              <table class="table table-hover m-0">
-                <tbody>
-                  {% for resp in experience.responsibilities %}
-                    <tr>
-                      {% if loop.last %}
-                        <td class="border-bottom-0">{{ resp }}</td>
-                      {% else %}
-                        <td>{{ resp }}</td>
-                      {% endif %}
-                    </tr>
-                  {% endfor %}
-                  {# {{ experience.responsibilities|json_encode(constant('JSON_PRETTY_PRINT'))|nl2br|raw }} #}
-                </tbody>
-              </table>
-            </td>
+            <td>{{ center.name }}</td>
+            <td>{{ center.address }}</td>
+            <td>{{ center.zone.postCode }}</td>
+            <td>{{ center.numberCourts }}</td>
             <td>
-              <a href="{{ path('app_back_experience_show', { id: experience.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
-              <a href="{{ path('app_back_experience_edit', { id: experience.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+              <a href="{{ path('app_admin_center_show', { id: center.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+              <a href="{{ path('app_admin_center_edit', { id: center.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
             </td>
           </tr>
         {% else %}

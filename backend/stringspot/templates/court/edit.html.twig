@@ -1,17 +1,18 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  Edit Education
+  Edit Court
 {% endblock %}
 
 {% block body %}
-  <div class="container-fluid">
-    <h1>Edit Education</h1>
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Edit Court</h1>
 
-    {{ include('back/Education/_form.html.twig', { button_label: 'Update' }) }}
+      {{ include('court/_form.html.twig', { button_label: 'Update' }) }}
 
-    {{ include('back/Education/_delete_form.html.twig') }}
-
-    <a href="{{ path('app_back_education_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
-  </div>
+      {{ include('court/_delete_form.html.twig') }}
+      <a href="{{ path('app_admin_court_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
 {% endblock %}

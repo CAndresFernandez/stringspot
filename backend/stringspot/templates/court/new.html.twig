@@ -1,15 +1,15 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-  New Ex
+  New Court
 {% endblock %}
 
 {% block body %}
-  <div class="container-fluid">
-    <h1>Create new Education</h1>
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Create new Court</h1>
 
-    {{ include('back/education/_form.html.twig') }}
-
-    <a href="{{ path('app_back_education_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
-  </div>
+      {{ include('court/_form.html.twig') }}
+    </div>
+  {% endblock %}
 {% endblock %}

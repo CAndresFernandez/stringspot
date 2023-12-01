@@ -54,6 +54,7 @@ class AppFixtures extends Fixture
 
         // ! ZONE
         $zoneList = [];
+
         for ($z = 1; $z <= 9; $z++) {
             $zone = new Zone();
             $zone->setCountry("France");
@@ -66,45 +67,49 @@ class AppFixtures extends Fixture
             $zone->setPostCode("750" . $z);
             $zoneList[] = $zone;
         }
-        foreach ($zoneList as $zone) {
+
+        foreach($zoneList as $zone) {
             $manager->persist($zone);
         }
 
         // ! CENTER
+        $allCourts = $courtProvider->tennisCourts();
         $centerList = [];
-
-        foreach ($courtProvider->tennisCourts() as $postCode) {
-            $zoneKey = array_search($postCode, $zoneList);
-            foreach ($postCode as $tennisCenter => $address) {
-                $center = new Center();
-                $center->setName($tennisCenter);
-                $center->setAddress($address);
-                $center->setCourtsNumber($faker->numberBetween(1,12));
-                $center->setZone($zoneList[$zoneKey]);
-                $centerList[] = $center;
-                $manager->persist($center);
+        foreach ($allCourts as $postCode => $centersByZone) {
+            foreach($zoneList as $zone) {
+                if($zone->getPostCode() === strval($postCode)) {
+                $zoneToSet = $zone;
+                foreach($centersByZone as $centerName => $centerAddress) {
+                        $center = new Center();
+                        $center->setName($centerName);
+                        $center->setAddress($centerAddress);
+                        $center->setNumberCourts($faker->numberBetween(1,12));
+                        $center->setZone($zoneToSet);
+                        $centerList[] = $center;
+                        $manager->persist($center);
+                    }
+                }
             }
         }
 
         // ! COURT
         $courtList = [];
         foreach ($centerList as $center) {
-            $toCreate = $center->getCourtsNumber();
+            $toCreate = $center->getNumberCourts();
             for ($c = 1; $c <= $toCreate; $c++) {
                 $court = new Court();
                 $court->setNumber($c);
                 $court->setType("tennis");
-                $center->addCourt($court);
+                $court->setCenter($center);
                 $courtList[] = $court;
                 $manager->persist($court);
             }
         }
 
-
         // ! RESERVATION
         $reservationList = [];
 
-        for ($r = 1; $r <= 150; $r++) {
+        for ($r = 1; $r <= 100; $r++) {
             $startTime = $faker->dateTimeBetween('now', '+1 week', 'Europe/Paris');
             $endTime = (clone $startTime)->add(new DateInterval('PT59M'));
             $reservation = new Reservation();
@@ -117,7 +122,6 @@ class AppFixtures extends Fixture
             $reservationList[] = $reservation;
             $manager->persist($reservation);
         }
-
         $manager->flush();
     }
 }

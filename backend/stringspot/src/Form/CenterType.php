@@ -16,7 +16,7 @@ class CenterType extends AbstractType
         $builder
             ->add('name')
             ->add('address')
-            ->add('courts_number')
+            ->add('number_courts')
             ->add('zone', EntityType::class, [
                 'class' => Zone::class,
 'choice_label' => 'id',

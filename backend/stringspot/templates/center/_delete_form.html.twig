@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_back_experience_delete', { id: experience.id }) }}" onsubmit="return confirm('Are you sure you want to delete this experience?');">
-  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ experience.id) }}" />
+<form method="post" action="{{ path('app_admin_center_delete', { id: center.id }) }}" onsubmit="return confirm('Are you sure you want to delete this center?');">
+  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ center.id) }}" />
   <button class="btn btn-danger btn-sm mx-1 mb-2 bi bi-trash">Delete</button>
 </form>
