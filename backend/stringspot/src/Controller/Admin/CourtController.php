@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Court;
 use App\Form\CourtType;
+use App\Repository\CenterRepository;
 use App\Repository\CourtRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +24,16 @@ class CourtController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_court_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, CenterRepository $centerRepository): Response
     {
+        // get center id
+        $centerId = $request->query->get('centerId');
+        $center = $centerRepository->find($centerId);
+
         $court = new Court();
+
+        $court->setCenter($center);
+
         $form = $this->createForm(CourtType::class, $court);
         $form->handleRequest($request);
 
