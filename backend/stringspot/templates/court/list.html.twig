@@ -1,0 +1,49 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}
+  Education List
+{% endblock %}
+{% block eduActive %}
+  active
+{% endblock %}
+{% block body %}
+  <div class="container-fluid">
+    <h1>Education List</h1>
+    <a href="{{ path('app_back_education_new') }}"><button type="button" class="btn btn-primary mb-3 bi bi-plus-lg"></button></a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>School</th>
+          <th>Start Year</th>
+          <th>End Year</th>
+          <th>Start Month</th>
+          <th>End Month</th>
+          <th>Field</th>
+          <th>Icon</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for education in educations|sort((a, b) => a.startYear <=> b.startYear) %}
+          <tr>
+            <td>{{ education.school }}</td>
+            <td>{{ education.startYear }}</td>
+            <td>{{ education.endYear }}</td>
+            <td>{{ education.startMonth }}</td>
+            <td>{{ education.endMonth }}</td>
+            <td>{{ education.field }}</td>
+            <td>{{ education.icon }}</td>
+            {% dump education.icon %}
+            <td>
+              <a href="{{ path('app_back_education_show', { id: education.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+              <a href="{{ path('app_back_education_edit', { id: education.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="8">No records found</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

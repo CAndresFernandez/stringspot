@@ -1,0 +1,17 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}
+  Edit Education
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <h1>Edit Education</h1>
+
+    {{ include('back/Education/_form.html.twig', { button_label: 'Update' }) }}
+
+    {{ include('back/Education/_delete_form.html.twig') }}
+
+    <a href="{{ path('app_back_education_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+  </div>
+{% endblock %}

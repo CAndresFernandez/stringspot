@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+  Admin Homepage
+{% endblock %}
+{% block body %}
+  <div class="col-12 col-lg-4">
+    <h2 class="text-center text-muted fw-bold mb-4">StringSpot</h2>
+    <div class="d-flex flex-column flex-wrap list-unstyled justify-content-center">
+      <button type="button" onclick="window.location.href='{{ path('app_back_movie_index') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Users</button>
+      <button type="button" onclick="window.location.href='{{ path('app_back_person_index') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Centers</button>
+      <button type="button" onclick="window.location.href='{{ path('app_back_casting_index') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Reservations</button>
+      <button type="button" onclick="window.location.href='{{ path('app_back_genre_index') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Zones</button>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}
+  Experience
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <h1>Experience</h1>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Company</th>
+          <td>{{ experience.company }}</td>
+        </tr>
+        <tr>
+          <th>Start Year</th>
+          <td>{{ experience.startYear }}</td>
+        </tr>
+        <tr>
+          <th>End Year</th>
+          <td>{{ experience.endYear }}</td>
+        </tr>
+        <tr>
+          <th>Location</th>
+          <td>{{ experience.location }}</td>
+        </tr>
+        <tr>
+          <th>Job Title</th>
+          <td>{{ experience.jobTitle }}</td>
+        </tr>
+        <tr>
+          <th>Responsibilities</th>
+          <td class="p-0">
+            <table class="table table-hover m-0">
+              <tbody>
+                {% for resp in experience.responsibilities %}
+                  <tr>
+                    {% if loop.last %}
+                      <td class="border-bottom-0">{{ resp }}</td>
+                    {% else %}
+                      <td>{{ resp }}</td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+                {# {{ experience.responsibilities|json_encode(constant('JSON_PRETTY_PRINT'))|nl2br|raw }} #}
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <a href="{{ path('app_back_experience_edit', { id: experience.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit</button></a>
+
+    {{ include('back/experience/_delete_form.html.twig') }}
+
+    <a href="{{ path('app_back_experience_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+  </div>
+{% endblock %}

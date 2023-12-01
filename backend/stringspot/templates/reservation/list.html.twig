@@ -1,0 +1,42 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}
+  Technology List
+{% endblock %}
+{% block techActive %}
+  active
+{% endblock %}
+{% block body %}
+  <div class="container-fluid">
+    <h1>Technology List</h1>
+    <a href="{{ path('app_back_tech_new') }}"><button type="button" class="btn btn-primary mb-3 bi bi-plus-lg"></button></a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Version</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tech in techs %}
+          <tr>
+            <td>{{ tech.name }}</td>
+            <td>
+              {% if tech.version %}{{ tech.version }}{% endif %}
+            </td>
+            <td>{{ tech.level }}</td>
+            <td>
+              <a href="{{ path('app_back_tech_show', { id: tech.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+              <a href="{{ path('app_back_tech_edit', { id: tech.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="8">No records found</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

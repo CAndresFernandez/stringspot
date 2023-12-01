@@ -1,0 +1,81 @@
+{{ form_start(form) }}
+<div class="form-group">
+  {{ form_row(form.company) }}
+  {{ form_row(form.startYear) }}
+  {{ form_row(form.endYear) }}
+  {{ form_row(form.location) }}
+  {{ form_row(form.jobTitle) }}
+  {{ form_row(form.icon) }}
+
+  {% if app.request.attributes.get('_route') == 'app_back_experience_edit' %}
+    {% if form.responsibilities is iterable %}
+      <div id="responsibilities-container" data-prototype="{{ form_row(form.responsibilities.vars.prototype)|e('html_attr') }}">
+        {% for responsibilityForm in form.responsibilities %}
+          <div class="responsibility-item">
+            {{ form_row(responsibilityForm) }}
+            <button type="button" class="delete-responsibility btn btn-danger btn-sm mx-1 mb-2">Delete Responsibility</button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% else %}
+    <div id="responsibilities-container" data-prototype="{{ form_row(form.responsibilities.vars.prototype)|e('html_attr') }}">
+      <div class="responsibility-item">{{ form_row(form.responsibilities) }}</div>
+    </div>
+  {% endif %}
+
+  <button type="button" class="add-another-collection-widget btn btn-secondary btn-sm mx-1 mb-2">Add a Responsibility</button>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button class="btn btn-warning btn-sm mx-1 mb-2 bi bi-save">{{ button_label|default(' Create') }}</button>
+      <a href="{{ path('app_back_experience_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  </div>
+</div>
+
+{{ form_end(form) }}
+
+<script>
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('delete-responsibility')) {
+      event.preventDefault()
+      var responsibilityItem = event.target.closest('.responsibility-item')
+      responsibilityItem.remove()
+    }
+  })
+  
+  document.querySelector('.add-another-collection-widget').addEventListener('click', function () {
+    var container = document.getElementById('responsibilities-container')
+    var lengthLabels = container.getElementsByTagName('label').length
+  
+    if (container.getElementsByTagName('label')[lengthLabels - 1] === undefined) {
+      var lastLabelIndex = 0
+    } else {
+      var lastLabelIndex = parseInt(container.getElementsByTagName('label')[lengthLabels - 1].innerHTML)
+    }
+  
+    if (container.children.length == 0) {
+      var index = 1
+    } else if (container.children.length > 0) {
+      var index = lastLabelIndex + 1
+    }
+  
+    var prototype = container.getAttribute('data-prototype')
+    var newForm = prototype.replace(/__name__/g, index)
+  
+    var responsibilityItem = document.createElement('div')
+    responsibilityItem.classList.add('responsibility-item')
+    responsibilityItem.innerHTML = newForm
+  
+    var deleteButton = document.createElement('button')
+    deleteButton.type = 'button'
+    deleteButton.classList.add('delete-responsibility', 'btn', 'btn-danger', 'btn-sm', 'mx-1', 'mb-2')
+    deleteButton.textContent = 'Delete Responsibility'
+  
+    responsibilityItem.appendChild(deleteButton)
+    container.appendChild(responsibilityItem)
+  
+    index++
+  })
+</script>
