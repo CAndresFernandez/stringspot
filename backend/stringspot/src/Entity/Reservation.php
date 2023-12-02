@@ -2,10 +2,24 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
+use App\Entity\User;
+use ApiPlatform\Metadata\Get;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use App\Repository\ReservationRepository;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get,
+        new GetCollection,
+        new Post,
+        new Delete
+    ]
+)]
 #[ORM\HasLifecycleCallbacks]
 class Reservation
 {

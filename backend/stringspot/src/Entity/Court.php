@@ -2,12 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\CourtRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Reservation;
+use ApiPlatform\Metadata\Get;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CourtRepository;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CourtRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get,
+        new GetCollection,
+    ]
+)]
 class Court
 {
     #[ORM\Id]

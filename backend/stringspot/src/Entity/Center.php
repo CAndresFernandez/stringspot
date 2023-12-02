@@ -2,12 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\CenterRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Court;
+use ApiPlatform\Metadata\Get;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CenterRepository;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CenterRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get,
+        new GetCollection,
+    ]
+)]
 class Center
 {
     #[ORM\Id]
