@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Reservation;
 use ApiPlatform\Metadata\Get;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
@@ -48,6 +50,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Reservation $reservation = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PastRes::class, orphanRemoval: true)]
+    private Collection $pastRes;
+
+    public function __construct()
+    {
+        $this->pastRes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +166,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PastRes>
+     */
+    public function getPastRes(): Collection
+    {
+        return $this->pastRes;
+    }
+
+    public function addPastRe(PastRes $pastRe): static
+    {
+        if (!$this->pastRes->contains($pastRe)) {
+            $this->pastRes->add($pastRe);
+            $pastRe->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePastRe(PastRes $pastRe): static
+    {
+        if ($this->pastRes->removeElement($pastRe)) {
+            // set the owning side to null (unless already changed)
+            if ($pastRe->getUser() === $this) {
+                $pastRe->setUser(null);
+            }
+        }
 
         return $this;
     }
