@@ -2,8 +2,8 @@
 namespace App\DataFixtures;
 
 class CourtProvider {
-
-    private $courtList = [
+// Paris, FR tennis courts
+    private $parisTennisCourts = [
         "75004" => [
             "Tennis Neuve Saint-Pierre" => "5 rue Neuve Saint-Pierre"
         ],
@@ -80,13 +80,10 @@ class CourtProvider {
         ]
     ];
 
-    public function tennisCourts() {
-        return $this->courtList;
+    public function parisTennisCourts() {
+        return $this->parisTennisCourts;
     }
 
-    public function zones() {
-        return array_keys($this->courtList);
-    }
 }
 
 

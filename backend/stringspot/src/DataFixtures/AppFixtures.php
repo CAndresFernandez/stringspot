@@ -4,6 +4,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Center;
+use App\Entity\Country;
 use App\Entity\Court;
 use App\Entity\Reservation;
 use App\Entity\user;
@@ -52,18 +53,30 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         };
 
+
+
+        // ! COUNTRY
+            $country = new Country();
+            $country->setName("France");
+            $country->setAbbr("FR");
+            $country->setContinent("Europe");
+            $manager->persist($country);
+
+
         // ! ZONE
         $zoneList = [];
 
         for ($z = 1; $z <= 9; $z++) {
             $zone = new Zone();
-            $zone->setCountry("France");
+            $zone->setCountry($country);
+            $zone->setCity("Paris");
             $zone->setPostCode("7500" . $z);
             $zoneList[] = $zone;
         }
         for ($z=10; $z <= 20; $z++) {
             $zone = new Zone();
-            $zone->setCountry("France");
+            $zone->setCountry($country);
+            $zone->setCity("Paris");
             $zone->setPostCode("750" . $z);
             $zoneList[] = $zone;
         }
@@ -73,7 +86,7 @@ class AppFixtures extends Fixture
         }
 
         // ! CENTER
-        $allCourts = $courtProvider->tennisCourts();
+        $allCourts = $courtProvider->parisTennisCourts();
         $centerList = [];
         foreach ($allCourts as $postCode => $centersByZone) {
             foreach($zoneList as $zone) {

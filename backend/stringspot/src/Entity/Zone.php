@@ -16,13 +16,17 @@ class Zone
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    private ?string $country = null;
-
-    #[ORM\Column(length: 64)]
     private ?string $post_code = null;
 
     #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Center::class)]
     private Collection $centers;
+
+    #[ORM\Column(length: 64)]
+    private ?string $city = null;
+
+    #[ORM\ManyToOne(inversedBy: 'zones')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Country $country = null;
 
     public function __construct()
     {
@@ -32,18 +36,6 @@ class Zone
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(string $country): static
-    {
-        $this->country = $country;
-
-        return $this;
     }
 
     public function getPostCode(): ?string
@@ -84,6 +76,30 @@ class Zone
                 $center->setZone(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): static
+    {
+        $this->country = $country;
 
         return $this;
     }

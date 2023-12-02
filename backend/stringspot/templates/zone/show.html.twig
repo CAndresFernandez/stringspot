@@ -11,30 +11,34 @@
       <table class="table">
         <tbody>
           <tr>
+            <th>City</th>
+            <td>{{ zone.city }}</td>
+          </tr>
+          <tr>
             <th>Postal Code</th>
-            <td>{{ zone.post_code }}</td>
+            <td>{{ zone.postCode }}</td>
           </tr>
           <tr>
             <th>Country</th>
-            <td>{{ zone.country }}</td>
+            <td>{{ zone.country.name }}</td>
           </tr>
           <tr>
             <th>Centers</th>
             {% if zone.centers %}
               <td class="p-0">
-                <table class="table table-hover table-striped m-0">
+                <table class="table table-hover m-0">
                   <tbody>
                     <tr>
-                      <td scope="col" class="col-1">Name</td>
-                      <td scope="col" class="col-1">Address</td>
-                      <td scope="col" class="col-1"># of Courts</td>
-                      <td scope="col" class="col-1">Actions</td>
+                      <th scope="col" style="width: 30%">Name</th>
+                      <th scope="col" style="width: 30%">Address</th>
+                      <th scope="col" style="width: 30%"># of Courts</th>
+                      <th scope="col" style="width: 10%">Actions</th>
                     </tr>
                     {% for center in zone.centers %}
                       <tr>
                         <td class="border-bottom-0">{{ center.name|e }}</td>
                         <td class="border-bottom-0">{{ center.address|e }}</td>
-                        <td class="border-bottom-0">{{ center.number_courts|e }}</td>
+                        <td class="border-bottom-0">{{ center.numberCourts|e }}</td>
                         <td>
                           <a href="{{ path('app_admin_center_show', { id: center.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
                           <a href="{{ path('app_admin_center_edit', { id: center.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
@@ -53,7 +57,7 @@
 
       {{ include('zone/_delete_form.html.twig') }}
 
-      <a href="{{ path('app_admin_zone_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+      <a href="{{ path('app_admin_country_show', { id: zone.country.id }) }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to Country</button></a>
     </div>
   {% endblock %}
 {% endblock %}

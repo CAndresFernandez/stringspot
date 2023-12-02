@@ -12,7 +12,7 @@
       {{ include('zone/_form.html.twig', { button_label: 'Update' }) }}
 
       {{ include('zone/_delete_form.html.twig') }}
-      <a href="{{ path('app_admin_zone_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+      <a href="{{ path('app_admin_zone_show', { id: zone.id }) }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to Zone Page</button></a>
     </div>
   {% endblock %}
 {% endblock %}

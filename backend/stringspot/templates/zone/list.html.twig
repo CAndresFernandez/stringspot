@@ -22,13 +22,13 @@
       <tbody>
         {% for zone in zones %}
           <tr>
-            <td>{{ zone.country }}</td>
+            <td>{{ zone.country.name }}</td>
             <td>{{ zone.postCode }}</td>
             <td>
               <a href="{{ path('app_admin_zone_edit', { id: zone.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
             </td>
             <td class="p-0">
-              <table class="table table-hover table-striped m-0">
+              <table class="table table-hover m-0">
                 <tbody>
                   {% for center in zone.centers %}
                     <tr>
