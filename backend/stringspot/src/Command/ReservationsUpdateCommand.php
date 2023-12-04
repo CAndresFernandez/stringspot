@@ -12,6 +12,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Scheduler\Scheduler;
 
 #[AsCommand(
     name: 'app:reservations-update',
@@ -20,13 +21,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ReservationsUpdateCommand extends Command
 {
     private $reservationRepository;
-    private $pastResRepository;
     private $em;
 
-    public function __construct(ReservationRepository $reservationRepository, PastResRepository $pastResRepository, EntityManagerInterface $em)
+    public function __construct(ReservationRepository $reservationRepository, EntityManagerInterface $em)
     {
         $this->reservationRepository = $reservationRepository;
-        $this->pastResRepository = $pastResRepository;
         $this->em = $em;
         parent::__construct();
     }
