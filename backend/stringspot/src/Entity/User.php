@@ -14,6 +14,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource(
@@ -21,37 +22,46 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
         new Get,
         new Post,
         new Delete
-    ]
+    ],
+    normalizationContext: ['groups' => ['users']]
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['users'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['reservations', 'users'])]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Groups(['users'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(['users'])]
     private ?string $password = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['reservations', 'users'])]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['reservations', 'users'])]
     private ?string $last_name = null;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Reservation::class, cascade: ['persist'])]
+    #[Groups(['users'])]
     private ?Reservation $reservation = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: PastRes::class, orphanRemoval: true, cascade: ['persist'])]
+    #[Groups(['users'])]
     private Collection $pastRes;
 
     public function __construct()

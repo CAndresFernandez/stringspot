@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PastResRepository;
 use ApiPlatform\Metadata\GetCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PastResRepository::class)]
 #[ApiResource(
@@ -16,7 +17,8 @@ use ApiPlatform\Metadata\GetCollection;
         new Get(uriTemplate: '/pastRes/{id}'),
         new GetCollection(uriTemplate: '/pastRes'),
         new Post(uriTemplate: '/pastRes/{id}'),
-    ]
+    ],
+    normalizationContext: ['groups' => ['pastRes']]
 )]
 #[ORM\HasLifecycleCallbacks]
 class PastRes
@@ -24,31 +26,40 @@ class PastRes
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['pastRes'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'pastRes')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['pastRes'])]
     private ?User $user = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['users', 'pastRes'])]
     private ?string $center = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['pastRes'])]
     private ?string $court = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['users', 'pastRes'])]
     private ?string $zone = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['pastRes'])]
     private ?string $country = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['users', 'pastRes'])]
     private ?string $date = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['users', 'pastRes'])]
     private ?string $time = null;
 
     #[ORM\Column]
+    #[Groups(['pastRes'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     public function getId(): ?int

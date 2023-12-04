@@ -10,31 +10,38 @@ use App\Repository\CountryRepository;
 use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CountryRepository::class)]
 #[ApiResource(
     operations: [
         new Get,
         new GetCollection,
-    ]
+    ],
+    normalizationContext: ['groups' => ['countries']]
 )]
 class Country
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['countries'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['countries'])]
     private ?string $abbr = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['countries'])]
     private ?string $continent = null;
 
     #[ORM\OneToMany(mappedBy: 'country', targetEntity: Zone::class, orphanRemoval: true)]
+    #[Groups(['countries'])]
     private Collection $zones;
 
     public function __construct()

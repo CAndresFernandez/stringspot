@@ -12,32 +12,39 @@ use App\Repository\ReservationRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CourtRepository::class)]
 #[ApiResource(
     operations: [
         new Get,
         new GetCollection,
-    ]
+    ],
+    normalizationContext: ['groups' => ['courts']]
 )]
 class Court
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['courts'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['courts', 'reservations'])]
     private ?string $number = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['courts', 'reservations'])]
     private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'court', targetEntity: Reservation::class)]
+    #[Groups(['courts'])]
     private Collection $reservations;
 
     #[ORM\ManyToOne(inversedBy: 'courts')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['courts'])]
     private ?Center $center = null;
 
 

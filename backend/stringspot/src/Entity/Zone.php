@@ -10,32 +10,39 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ZoneRepository::class)]
 #[ApiResource(
     operations: [
         new Get,
         new GetCollection()
-    ]
+    ],
+    normalizationContext: ['groups' => ['zones']]
 )]
 class Zone
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['zones'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations'])]
     private ?string $post_code = null;
 
     #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Center::class)]
+    #[Groups(['zones'])]
     private Collection $centers;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations'])]
     private ?string $city = null;
 
     #[ORM\ManyToOne(inversedBy: 'zones')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['zones'])]
     private ?Country $country = null;
 
     public function __construct()

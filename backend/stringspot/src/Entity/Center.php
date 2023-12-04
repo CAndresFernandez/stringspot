@@ -10,35 +10,43 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CenterRepository::class)]
 #[ApiResource(
     operations: [
         new Get,
         new GetCollection,
-    ]
+    ],
+    normalizationContext: ['groups' => ['centers']]
 )]
 class Center
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['centers'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['centers'])]
     private ?string $address = null;
 
     #[ORM\ManyToOne(inversedBy: 'centers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['centers'])]
     private ?Zone $zone = null;
 
     #[ORM\OneToMany(mappedBy: 'center', targetEntity: Court::class, orphanRemoval: true)]
+    #[Groups(['centers'])]
     private Collection $courts;
 
     #[ORM\Column]
+    #[Groups(['centers'])]
     private ?int $number_courts = null;
 
     public function __construct()

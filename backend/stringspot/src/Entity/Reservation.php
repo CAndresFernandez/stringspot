@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Repository\ReservationRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 #[ApiResource(
@@ -18,7 +19,8 @@ use App\Repository\ReservationRepository;
         new GetCollection,
         new Post,
         new Delete
-    ]
+    ],
+    normalizationContext: ['groups' => ['reservations']]
 )]
 #[ORM\HasLifecycleCallbacks]
 class Reservation
@@ -26,32 +28,41 @@ class Reservation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['reservations'])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['courts', 'reservations'])]
     private ?\DateTimeImmutable $start_time = null;
 
     #[ORM\Column]
+    #[Groups(['courts', 'reservations'])]
     private ?\DateTimeImmutable $end_time = null;
 
     #[ORM\Column(length: 64)]
+    #[Groups(['reservations'])]
     private ?string $res_type = null;
 
     #[ORM\Column]
+    #[Groups(['reservations'])]
     private ?bool $active = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['reservations'])]
     private ?Court $court = null;
 
     #[ORM\Column]
+    #[Groups(['reservations'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['reservations'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\OneToOne(inversedBy: 'reservation')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['courts', 'reservations'])]
     private ?User $user = null;
 
     public function getId(): ?int
