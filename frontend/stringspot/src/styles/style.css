@@ -1,0 +1,250 @@
+h1 {
+    /* padding-bottom: 25px; */
+}
+
+.desktop {
+    background-color: #20711f;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.desktop .div {
+    background-color: #20711f;
+    height: 2530px;
+    position: relative;
+    width: 1440px;
+}
+
+.desktop .text-wrapper {
+    color: #ffffff;
+    font-family: "Koulen", Helvetica;
+    font-size: 96px;
+    font-weight: 400;
+    /* height: 50px; */
+    left: 135px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 240px;
+    white-space: nowrap;
+    width: 1170px;
+}
+
+.desktop .p {
+    color: #ffffff;
+    font-family: "Arial-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 135px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 366px;
+    white-space: nowrap;
+}
+
+.desktop .frame {
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 25px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    left: 135px;
+    overflow: hidden;
+    padding: 16px 42px;
+    position: absolute;
+    top: 437px;
+    width: 170px;
+}
+
+.desktop .text-wrapper-2 {
+    color: #000000;
+    font-family: "Arial-Bold", Helvetica;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-left: -14.5px;
+    margin-right: -14.5px;
+    margin-top: -1px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.desktop .overlap {
+    background-color: #d9d9d9;
+    height: 80px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1440px;
+}
+
+.desktop .div-wrapper {
+    align-items: center;
+    background-color: #000000;
+    border-radius: 25px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    left: 1090px;
+    overflow: hidden;
+    padding: 16px 42px;
+    position: absolute;
+    top: 13px;
+    width: 215px;
+}
+
+.desktop .text-wrapper-3 {
+    color: #ffffff;
+    font-family: "Arial-Bold", Helvetica;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-left: -21.5px;
+    margin-right: -21.5px;
+    margin-top: -1px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.desktop .ellipse {
+    background-color: #000000;
+    border-radius: 20px;
+    height: 40px;
+    left: 1340px;
+    position: absolute;
+    top: 20px;
+    width: 40px;
+}
+
+.desktop .overlap-group {
+    background-color: #d9d9d9;
+    height: 620px;
+    left: 0;
+    position: absolute;
+    top: 680px;
+    width: 1440px;
+}
+
+.desktop .text-wrapper-4 {
+    color: #000000;
+    font-family: "Arial-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 600px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 69px;
+    white-space: nowrap;
+}
+
+.desktop .ellipse-2 {
+    background-color: #000000;
+    border-radius: 95px;
+    height: 190px;
+    left: 160px;
+    position: absolute;
+    top: 180px;
+    width: 190px;
+}
+
+.desktop .ellipse-3 {
+    background-color: #000000;
+    border-radius: 95px;
+    height: 190px;
+    left: 600px;
+    position: absolute;
+    top: 180px;
+    width: 190px;
+}
+
+.desktop .ellipse-4 {
+    background-color: #000000;
+    border-radius: 95px;
+    height: 190px;
+    left: 1040px;
+    position: absolute;
+    top: 180px;
+    width: 190px;
+}
+
+.desktop .overlap-2 {
+    background-color: #d9d9d9;
+    height: 620px;
+    left: 0;
+    position: absolute;
+    top: 1910px;
+    width: 1440px;
+}
+
+.desktop .text-wrapper-5 {
+    color: #000000;
+    font-family: "Arial-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 465px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 378px;
+    white-space: nowrap;
+}
+
+.desktop .text-wrapper-6 {
+    color: #000000;
+    font-family: "Arial-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 178px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 1399px;
+    white-space: nowrap;
+}
+
+.desktop .paris-london-new {
+    color: #000000;
+    font-family: "Arial-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 178px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 1542px;
+}
+
+.desktop .text-wrapper-7 {
+    color: #000000;
+    font-family: "Arial-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 178px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 1685px;
+    white-space: nowrap;
+}
+
+.desktop .rectangle {
+    background-color: #d9d9d9;
+    height: 390px;
+    left: 710px;
+    position: absolute;
+    top: 1410px;
+    width: 590px;
+}
+
+.primary {
+    color: #DFFF4F;
+}
