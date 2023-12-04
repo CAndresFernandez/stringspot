@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
 
         // USER (stringspot member)
         $userList = [];
-        for ($u = 0; $u <= 9; $u++) {
+        for ($u = 0; $u <= 299; $u++) {
             $user = new User();
             $user->setFirstname($faker->firstname());
             $user->setLastname($faker->lastname());
@@ -121,9 +121,9 @@ class AppFixtures extends Fixture
         // ! RESERVATION
         $reservationList = [];
 
-        for ($r = 1; $r <= 5; $r++) {
+        for ($r = 1; $r <= 100; $r++) {
 
-            $startTime = $faker->dateTimeBetween('-1 day', 'now', 'Europe/Paris');
+            $startTime = $faker->dateTimeBetween('-1 day', '+1 week', 'Europe/Paris');
             $endTime = (clone $startTime)->add(new DateInterval('PT59M'));
             $reservation = new Reservation();
             $reservation->setStartTime(DateTimeImmutable::createFromMutable($startTime));
