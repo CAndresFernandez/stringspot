@@ -28,11 +28,11 @@
             <td>{{ reservation.id }}</td>
             <td>{{ reservation.user.firstName ~ ' ' ~ reservation.user.lastName }}</td>
             <td>{{ reservation.user.email }}</td>
-            <td>{{ reservation.startTime|date('Y-m-d') }}</td>
+            <td>{{ reservation.startTime|date('d-m-Y') }}</td>
             <td>{{ reservation.court.center.name }}</td>
             <td>{{ reservation.court.number }}</td>
             <td>{{ reservation.startTime|date('H:i') }}</td>
-            <td>{{ reservation.createdAt|date('Y-m-d H:i') }}</td>
+            <td>{{ reservation.createdAt|date('d-m-Y H:i') }}</td>
             <td>
               <a href="{{ path('app_admin_reservation_show', { id: reservation.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
             </td>

@@ -48,10 +48,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 64)]
     private ?string $last_name = null;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Reservation::class, cascade: ['persist'])]
     private ?Reservation $reservation = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PastRes::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PastRes::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $pastRes;
 
     public function __construct()
@@ -178,7 +178,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->pastRes;
     }
 
-    public function addPastRe(PastRes $pastRe): static
+    public function addPastRes(PastRes $pastRe): static
     {
         if (!$this->pastRes->contains($pastRe)) {
             $this->pastRes->add($pastRe);
@@ -188,7 +188,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removePastRe(PastRes $pastRe): static
+    public function removePastRes(PastRes $pastRe): static
     {
         if ($this->pastRes->removeElement($pastRe)) {
             // set the owning side to null (unless already changed)

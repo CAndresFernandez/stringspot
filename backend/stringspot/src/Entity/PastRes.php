@@ -2,11 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\PastResRepository;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\PastResRepository;
+use ApiPlatform\Metadata\GetCollection;
 
 #[ORM\Entity(repositoryClass: PastResRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get(uriTemplate: '/pastRes/{id}'),
+        new GetCollection(uriTemplate: '/pastRes'),
+        new Post(uriTemplate: '/pastRes/{id}'),
+    ]
+)]
+#[ORM\HasLifecycleCallbacks]
 class PastRes
 {
     #[ORM\Id]
@@ -30,11 +42,14 @@ class PastRes
     #[ORM\Column(length: 64)]
     private ?string $country = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    #[ORM\Column(length: 64)]
+    private ?string $date = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $time = null;
+    #[ORM\Column(length: 64)]
+    private ?string $time = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function getId(): ?int
     {
@@ -101,26 +116,39 @@ class PastRes
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setDate(string $date): static
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getTime(): ?\DateTimeInterface
+    public function getTime(): ?string
     {
         return $this->time;
     }
 
-    public function setTime(\DateTimeInterface $time): static
+    public function setTime(string $time): static
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
+    {
+        $this->createdAt = new \DateTimeImmutable();
 
         return $this;
     }

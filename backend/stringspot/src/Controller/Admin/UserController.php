@@ -45,8 +45,10 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_admin_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
+        $pastReses = $user->getPastRes();
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'pastReses' => $pastReses
         ]);
     }
 

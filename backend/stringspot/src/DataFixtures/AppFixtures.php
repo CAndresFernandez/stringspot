@@ -11,6 +11,7 @@ use App\Entity\user;
 use App\Entity\Zone;
 use DateInterval;
 use DateTimeImmutable;
+use DateTimeZone;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -42,7 +43,7 @@ class AppFixtures extends Fixture
 
         // USER (stringspot member)
         $userList = [];
-        for ($u = 0; $u <= 299; $u++) {
+        for ($u = 0; $u <= 9; $u++) {
             $user = new User();
             $user->setFirstname($faker->firstname());
             $user->setLastname($faker->lastname());
@@ -51,9 +52,7 @@ class AppFixtures extends Fixture
             $user->setRoles(["ROLE_USER"]);
             $userList[] = $user;
             $manager->persist($user);
-        };
-
-
+        }
 
         // ! COUNTRY
             $country = new Country();
@@ -122,8 +121,9 @@ class AppFixtures extends Fixture
         // ! RESERVATION
         $reservationList = [];
 
-        for ($r = 1; $r <= 100; $r++) {
-            $startTime = $faker->dateTimeBetween('now', '+1 week', 'Europe/Paris');
+        for ($r = 1; $r <= 5; $r++) {
+
+            $startTime = $faker->dateTimeBetween('-1 day', 'now', 'Europe/Paris');
             $endTime = (clone $startTime)->add(new DateInterval('PT59M'));
             $reservation = new Reservation();
             $reservation->setStartTime(DateTimeImmutable::createFromMutable($startTime));
@@ -131,7 +131,8 @@ class AppFixtures extends Fixture
             $reservation->setResType("user");
             $reservation->setActive(true);
             $reservation->setUser($userList[$r]);
-            $reservation->setCourt($courtList[mt_rand(0, count($courtList) - 1)]);
+            $court = $courtList[mt_rand(0, count($courtList) - 1)];
+            $reservation->setCourt($court);
             $reservationList[] = $reservation;
             $manager->persist($reservation);
         }

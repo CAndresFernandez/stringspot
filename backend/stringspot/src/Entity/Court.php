@@ -8,8 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CourtRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
+use App\Repository\ReservationRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 
 #[ORM\Entity(repositoryClass: CourtRepository::class)]
 #[ApiResource(
@@ -37,6 +39,7 @@ class Court
     #[ORM\ManyToOne(inversedBy: 'courts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Center $center = null;
+
 
     public function __construct()
     {
@@ -90,13 +93,10 @@ class Court
         return $this;
     }
 
-    public function removeReservation(Reservation $reservation): static
+    public function removeReservation(Reservation $reservation, ReservationRepository $reservationRepository): static
     {
         if ($this->reservations->removeElement($reservation)) {
-            // set the owning side to null (unless already changed)
-            if ($reservation->getCourt() === $this) {
-                $reservation->setCourt(null);
-            }
+            $reservationRepository->remove($reservation, true);
         }
 
         return $this;

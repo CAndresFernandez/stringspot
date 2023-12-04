@@ -21,6 +21,23 @@ class CenterRepository extends ServiceEntityRepository
         parent::__construct($registry, Center::class);
     }
 
+    public function add(Center $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Center $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 //    /**
 //     * @return Center[] Returns an array of Center objects
 //     */

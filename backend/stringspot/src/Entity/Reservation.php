@@ -40,7 +40,7 @@ class Reservation
     #[ORM\Column]
     private ?bool $active = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\ManyToOne(inversedBy: 'reservations', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Court $court = null;
 
@@ -50,7 +50,7 @@ class Reservation
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToOne(inversedBy: 'reservation', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'reservation')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

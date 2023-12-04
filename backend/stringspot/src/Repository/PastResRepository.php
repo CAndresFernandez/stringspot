@@ -21,6 +21,24 @@ class PastResRepository extends ServiceEntityRepository
         parent::__construct($registry, PastRes::class);
     }
 
+    public function add(PastRes $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(PastRes $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return PastRes[] Returns an array of PastRes objects
 //     */

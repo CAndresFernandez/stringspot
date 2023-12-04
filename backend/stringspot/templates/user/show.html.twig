@@ -33,6 +33,25 @@
               {{ rolesText|trim(', ') }}
             </td>
           </tr>
+          <tr>
+            <th>Past Reservations</th>
+            <td class="p-0">
+              <table class="table table-hover m-0">
+                <tbody>
+                  {% for pastRes in pastReses %}
+                    <tr>
+                      <td class="border-bottom-0" style="width: 30%">{{ pastRes.date|e }}</td>
+                      <td class="border-bottom-0" style="width: 60%">{{ pastRes.center|e }}</td>
+                      <td class="border-bottom-0" style="width: 60%">{{ pastRes.zone|e }}</td>
+                      <td style="width: 10%">
+                        <a href="{{ path('app_admin_pastRes_show', { id: pastRes.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </td>
+          </tr>
         </tbody>
       </table>
 
