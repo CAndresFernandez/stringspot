@@ -6,11 +6,9 @@ import Homepage from "./pages/homepage";
 const App = () => {
   return (
     <Router>
-      {/* <Layout> */}
       <Routes>
         <Route path="/" element={<Homepage />} />
       </Routes>
-      {/* </Layout> */}
     </Router>
   );
 };

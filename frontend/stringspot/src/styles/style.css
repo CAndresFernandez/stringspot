@@ -35,7 +35,7 @@ h3 {
 
 a {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-family: "Noto Sans", sans-serif;
 }
 
@@ -48,7 +48,8 @@ a:visited {
 }
 
 a:hover {
-    color: #dfff4f;
+    /* color: #dfff4f; */
+    font-weight: 700;
 }
 
 a:active {
@@ -57,6 +58,9 @@ a:active {
 
 a.grey-button-link:link {
     color: black;
+}
+
+a.grey-button-link:hover {
     font-weight: 700;
 }
 
@@ -66,6 +70,11 @@ a.nav-item:link {
 
 a.nav-item:hover {
     color: #20711f;
+}
+
+#map {
+    align-self: stretch;
+    flex: 1;
 }
 
 .springspot-homepage {
@@ -113,35 +122,25 @@ a.nav-item:hover {
 
 .nav-item {
     color: #000000;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: normal;
-    position: relative;
-    width: fit-content;
+    font-size: 1.25rem;
 }
 
 .connect-button-frame {
     align-items: center;
     background-color: #000000;
-    border-radius: 25px;
+    border-radius: 40px;
     display: flex;
     gap: 8px;
-    height: 55px;
+    height: 40px;
     justify-content: center;
     padding: 8px;
     position: relative;
-    width: 215px;
+    width: 10%;
 }
 
-.div {
+.connect-button {
     color: #ffffff;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 0;
-    line-height: normal;
-    position: relative;
-    width: fit-content;
+    font-size: 1.25rem;
 }
 
 .user-icon {
@@ -221,7 +220,8 @@ a.nav-item:hover {
 .find-court-button {
     align-items: center;
     background-color: #d9d9d9;
-    border-radius: 25px;
+    border-radius: 55px;
+    border: none;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -229,7 +229,7 @@ a.nav-item:hover {
     justify-content: center;
     padding: 8px;
     position: relative;
-    width: 215px;
+    width: 35%;
 }
 
 .how-it-works {
@@ -252,7 +252,7 @@ a.nav-item:hover {
     align-self: stretch;
     display: flex;
     flex: 0 0 auto;
-    gap: 160px;
+    gap: 15%;
     justify-content: center;
     position: relative;
     width: 100%;
@@ -263,6 +263,18 @@ a.nav-item:hover {
     border-radius: 100px;
     height: 200px;
     position: relative;
+    width: 200px;
+}
+
+.ellipse-tags {
+    display: flex;
+    width: 100%;
+    gap: 15%;
+    justify-content: center;
+}
+
+.tag-items {
+    text-align: center;
     width: 200px;
 }
 
@@ -291,14 +303,13 @@ a.nav-item:hover {
     width: fit-content;
 }
 
-.image-box {
+/* .image-box {
     align-self: stretch;
     background-color: #d9d9d9;
     flex: 1;
-    /* flex-grow: 1; */
     position: relative;
     margin: 0 2%;
-}
+} */
 
 .footer {
     background-color: #d9d9d9;
