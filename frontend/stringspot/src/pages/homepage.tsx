@@ -3,42 +3,100 @@ import React from "react";
 export default function Homepage() {
   return (
     <>
-      <div className="desktop">
-        <div className="div">
-          <div className="text-wrapper">
-            <h1>
-              STRING<span className="primary">SPOT</span>
-            </h1>
-          </div>
-          <p className="p">Find and book your court real fast.</p>
-          <div className="frame">
-            <div className="text-wrapper-2">Find a court</div>
-          </div>
-          <div className="overlap">
-            <div className="div-wrapper">
-              <div className="text-wrapper-3">Create an account</div>
+      <div className="springspot-homepage">
+        <div className="header-wrapper">
+          <nav className="navbar">
+            <div className="brand-icon" />
+            <div className="nav-links">
+              <ul className="nav-link-items">
+                <li>
+                  <a href="#" className="nav-item">
+                    Find a court
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="nav-item">
+                    Our Story
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div className="ellipse" />
+            <div className="connect-button-frame">
+              <a href="#" className="div">
+                Connect
+              </a>
+            </div>
+            <div className="div-wrapper">
+              <div className="user-icon" />
+            </div>
+          </nav>
+        </div>
+        <div className="main-box-wrapper">
+          <div className="main-box green">
+            <div className="title-box">
+              <h1 className="page-title">
+                STRING<span>SPOT</span>
+              </h1>
+              <div className="div-wrapper-2">
+                <p className="find-and-book-your">
+                  Find and book your court,{" "}
+                  <span className="text-wrapper-3">real fast</span>
+                </p>
+              </div>
+              <div className="find-court-button">
+                <a href="#" className="grey-button-link">
+                  Find a court
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="overlap-group">
-            <div className="text-wrapper-4">How it works</div>
-            <div className="ellipse-2" />
-            <div className="ellipse-3" />
-            <div className="ellipse-4" />
+        </div>
+        <div className="main-box-wrapper">
+          <div className="main-box grey how">
+            <h2>How it works</h2>
+            <div className="ellipse-frame">
+              <div className="ellipse" />
+              <div className="ellipse" />
+              <div className="ellipse" />
+            </div>
           </div>
-          <div className="overlap-2">
-            <div className="text-wrapper-5">footer with carbon calculator</div>
+        </div>
+        <div className="main-box-wrapper">
+          <div className="main-box green courts">
+            <div className="textbox">
+              <h3 className="textbox-title">Reserve courts in:</h3>
+              <a href="">Paris</a>
+              <a href="">London</a>
+              <a href="">NYC</a>
+              <span>More coming soon...</span>
+            </div>
+            <div className="image-box"></div>
           </div>
-          <div className="text-wrapper-6">Our courts</div>
-          <div className="paris-london-new">
-            Paris
-            <br />
-            London
-            <br />
-            New York
-          </div>
-          <p className="text-wrapper-7">Want us to come to your city? LOrem</p>
-          <div className="rectangle" />
+        </div>
+        <div className="main-box-wrapper">
+          <footer className="footer">
+            <nav className="nav-links">
+              <ul className="nav-link-items">
+                <li>
+                  <a href="#" className="nav-item">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="nav-item">
+                    Legal Notices
+                  </a>
+                </li>
+              </ul>
+              <ul className="nav-link-items socials">
+                <li>IG</li>
+                <li>X</li>
+                <li>LI</li>
+                <li>YT</li>
+                <li>TT</li>
+              </ul>
+            </nav>
+          </footer>
         </div>
       </div>
     </>

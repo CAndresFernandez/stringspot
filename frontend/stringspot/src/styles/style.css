@@ -1,250 +1,325 @@
-h1 {
-    /* padding-bottom: 25px; */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: white;
 }
 
-.desktop {
-    background-color: #20711f;
+body {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    font-family: "Noto Sans", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    color: #ffffff;
+    font-family: "Koulen", sans-serif;
+}
+
+h1 {
+    font-size: 7rem;
+}
+
+h2 {
+    font-size: 3.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #dfff4f;
+}
+
+a:active {
+    color: white;
+}
+
+a.grey-button-link:link {
+    color: black;
+    font-weight: 700;
+}
+
+a.nav-item:link {
+    color: black;
+}
+
+a.nav-item:hover {
+    color: #20711f;
+}
+
+.springspot-homepage {
+    align-items: center;
+    position: relative;
     width: 100%;
 }
 
-.desktop .div {
-    background-color: #20711f;
-    height: 2530px;
+.header-wrapper {
     position: relative;
-    width: 1440px;
+    box-sizing: border-box;
 }
 
-.desktop .text-wrapper {
-    color: #ffffff;
-    font-family: "Koulen", Helvetica;
-    font-size: 96px;
-    font-weight: 400;
-    /* height: 50px; */
-    left: 135px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 240px;
-    white-space: nowrap;
-    width: 1170px;
-}
-
-.desktop .p {
-    color: #ffffff;
-    font-family: "Arial-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
-    left: 135px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 366px;
-    white-space: nowrap;
-}
-
-.desktop .frame {
+.navbar {
     align-items: center;
     background-color: #d9d9d9;
-    border-radius: 25px;
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    left: 135px;
-    overflow: hidden;
-    padding: 16px 42px;
-    position: absolute;
-    top: 437px;
-    width: 170px;
+    gap: 5%;
+    height: 8vh;
+    padding: .5rem 5%;
 }
 
-.desktop .text-wrapper-2 {
+.brand-icon {
+    background-color: #dfff4f;
+    border-radius: 27.5px;
+    height: 55px;
+    position: relative;
+    width: 55px;
+}
+
+.nav-links {
+    align-items: flex-start;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    /* gap: 24px; */
+    padding: 8px;
+    position: relative;
+}
+
+.nav-links .nav-link-items {
+    display: inline-flex;
+    gap: 2rem;
+}
+
+.nav-item {
     color: #000000;
-    font-family: "Arial-Bold", Helvetica;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
-    margin-left: -14.5px;
-    margin-right: -14.5px;
-    margin-top: -1px;
     position: relative;
-    white-space: nowrap;
     width: fit-content;
 }
 
-.desktop .overlap {
-    background-color: #d9d9d9;
-    height: 80px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 1440px;
-}
-
-.desktop .div-wrapper {
+.connect-button-frame {
     align-items: center;
     background-color: #000000;
     border-radius: 25px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    height: 55px;
     justify-content: center;
-    left: 1090px;
-    overflow: hidden;
-    padding: 16px 42px;
-    position: absolute;
-    top: 13px;
+    padding: 8px;
+    position: relative;
     width: 215px;
 }
 
-.desktop .text-wrapper-3 {
+.div {
     color: #ffffff;
-    font-family: "Arial-Bold", Helvetica;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: 0;
     line-height: normal;
-    margin-left: -21.5px;
-    margin-right: -21.5px;
-    margin-top: -1px;
     position: relative;
-    white-space: nowrap;
     width: fit-content;
 }
 
-.desktop .ellipse {
+.user-icon {
     background-color: #000000;
-    border-radius: 20px;
-    height: 40px;
-    left: 1340px;
-    position: absolute;
-    top: 20px;
-    width: 40px;
+    border-radius: 27.5px;
+    height: 55px;
+    position: relative;
+    width: 55px;
 }
 
-.desktop .overlap-group {
+.box-wrapper {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.main-box {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    height: 50vh;
+    justify-content: center;
+    padding: 5%;
+}
+
+.main-box.green {
+    background-color: #20711f;
+}
+
+.main-box.grey h2,
+.main-box.grey p {
+    color: black;
+}
+
+.main-box.how {
+    align-items: center;
+    gap: 4rem;
+}
+
+.courts {
+    flex-direction: row;
+}
+
+.title-box {
+    align-self: first baseline;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.page-title {
+    position: relative;
+    top: 1.75rem;
+}
+
+.page-title span {
+    color: #dfff4f;
+}
+
+.find-and-book-your {
+    align-self: stretch;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.text-wrapper-3 {
+    font-style: italic;
+}
+
+.find-court-button {
+    align-items: center;
     background-color: #d9d9d9;
-    height: 620px;
-    left: 0;
-    position: absolute;
-    top: 680px;
-    width: 1440px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 55px;
+    justify-content: center;
+    padding: 8px;
+    position: relative;
+    width: 215px;
 }
 
-.desktop .text-wrapper-4 {
-    color: #000000;
-    font-family: "Arial-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
-    left: 600px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 69px;
-    white-space: nowrap;
-}
-
-.desktop .ellipse-2 {
-    background-color: #000000;
-    border-radius: 95px;
-    height: 190px;
-    left: 160px;
-    position: absolute;
-    top: 180px;
-    width: 190px;
-}
-
-.desktop .ellipse-3 {
-    background-color: #000000;
-    border-radius: 95px;
-    height: 190px;
-    left: 600px;
-    position: absolute;
-    top: 180px;
-    width: 190px;
-}
-
-.desktop .ellipse-4 {
-    background-color: #000000;
-    border-radius: 95px;
-    height: 190px;
-    left: 1040px;
-    position: absolute;
-    top: 180px;
-    width: 190px;
-}
-
-.desktop .overlap-2 {
+.how-it-works {
+    align-items: center;
+    align-self: stretch;
     background-color: #d9d9d9;
-    height: 620px;
-    left: 0;
-    position: absolute;
-    top: 1910px;
-    width: 1440px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    height: 600px;
+    justify-content: center;
+    padding: 8px;
+    position: relative;
+    width: 100%;
+    box-sizing: content-box;
 }
 
-.desktop .text-wrapper-5 {
-    color: #000000;
-    font-family: "Arial-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
-    left: 465px;
+.ellipse-frame {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 160px;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.ellipse {
+    background-color: #000000;
+    border-radius: 100px;
+    height: 200px;
+    position: relative;
+    width: 200px;
+}
+
+.textbox {
+    align-items: flex-start;
+    align-self: center;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+.textbox-title {
+    line-height: normal;
+}
+
+.textbox span {
+    color: #ffffff;
+    font-size: 24px;
+    font-style: italic;
+    /* font-weight: 400; */
     letter-spacing: 0;
     line-height: normal;
-    position: absolute;
-    top: 378px;
-    white-space: nowrap;
+    /* margin-top: -1px; */
+    position: relative;
+    width: fit-content;
 }
 
-.desktop .text-wrapper-6 {
-    color: #000000;
-    font-family: "Arial-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
-    left: 178px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 1399px;
-    white-space: nowrap;
-}
-
-.desktop .paris-london-new {
-    color: #000000;
-    font-family: "Arial-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
-    left: 178px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 1542px;
-}
-
-.desktop .text-wrapper-7 {
-    color: #000000;
-    font-family: "Arial-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
-    left: 178px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 1685px;
-    white-space: nowrap;
-}
-
-.desktop .rectangle {
+.image-box {
+    align-self: stretch;
     background-color: #d9d9d9;
-    height: 390px;
-    left: 710px;
-    position: absolute;
-    top: 1410px;
-    width: 590px;
+    flex: 1;
+    /* flex-grow: 1; */
+    position: relative;
+    margin: 0 2%;
 }
 
-.primary {
-    color: #DFFF4F;
+.footer {
+    background-color: #d9d9d9;
+    height: 8vh;
+    position: relative;
+    width: 100%;
+}
+
+.footer .nav-links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    flex-grow: 1;
+    position: relative;
+    height: 100%;
+    padding: 0;
+    gap: .5rem;
+}
+
+.footer .nav-link-items {
+    gap: 3rem;
+    max-width: fit-content;
 }
