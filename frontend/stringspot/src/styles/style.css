@@ -110,7 +110,6 @@ a.nav-item:hover {
     display: flex;
     flex: 1;
     flex-grow: 1;
-    /* gap: 24px; */
     padding: 8px;
     position: relative;
 }
@@ -293,7 +292,7 @@ a.nav-item:hover {
 
 .textbox span {
     color: #ffffff;
-    font-size: 24px;
+    font-size: 1.25rem;
     font-style: italic;
     /* font-weight: 400; */
     letter-spacing: 0;
