@@ -48,7 +48,6 @@ a:visited {
 }
 
 a:hover {
-    /* color: #dfff4f; */
     font-weight: 700;
 }
 
@@ -69,6 +68,15 @@ a.nav-item:link {
 }
 
 a.nav-item:hover {
+    color: #20711f;
+}
+
+.footer a:link {
+    color: black;
+}
+
+.footer a:hover {
+    font-weight: normal;
     color: #20711f;
 }
 
@@ -106,23 +114,32 @@ a.nav-item:hover {
 }
 
 .nav-links {
-    align-items: flex-start;
     display: flex;
     flex: 1;
     flex-grow: 1;
-    padding: 8px;
+    height: 6vh;
     position: relative;
 }
 
-.nav-links .nav-link-items {
-    display: inline-flex;
-    gap: 2rem;
+.nav-link-items {
+    position: relative;
 }
 
 .nav-item {
-    color: #000000;
-    font-size: 1.25rem;
+    position: absolute;
+    width: 20vw;
+    height: 1.25rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
+
+.nav-item-2 {
+    margin-left: 150px;
+}
+
 
 .connect-button-frame {
     align-items: center;
@@ -134,6 +151,7 @@ a.nav-item:hover {
     justify-content: center;
     padding: 8px;
     position: relative;
+    min-width: fit-content;
     width: 10%;
 }
 
@@ -294,42 +312,52 @@ a.nav-item:hover {
     color: #ffffff;
     font-size: 1.25rem;
     font-style: italic;
-    /* font-weight: 400; */
     letter-spacing: 0;
     line-height: normal;
-    /* margin-top: -1px; */
     position: relative;
     width: fit-content;
 }
 
-/* .image-box {
-    align-self: stretch;
-    background-color: #d9d9d9;
-    flex: 1;
-    position: relative;
-    margin: 0 2%;
-} */
-
 .footer {
     background-color: #d9d9d9;
-    height: 8vh;
+    height: 12vh;
     position: relative;
     width: 100%;
 }
 
-.footer .nav-links {
+/* .footer .nav-links {
     flex-direction: column;
-    align-items: center;
+    align-items: end;
     justify-content: center;
     flex: 1;
     flex-grow: 1;
     position: relative;
     height: 100%;
     padding: 0;
-    gap: .5rem;
+} */
+
+.footer-nav-links {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+    gap: 1.25rem;
 }
 
-.footer .nav-link-items {
-    gap: 3rem;
-    max-width: fit-content;
+.footer-nav-items {
+    display: inline-flex;
+    gap: 2rem;
+}
+
+.socials {
+    display: inline-flex;
+}
+
+.social-icon {
+    /* margin-top: 10px; */
+    padding: 0 32px;
 }

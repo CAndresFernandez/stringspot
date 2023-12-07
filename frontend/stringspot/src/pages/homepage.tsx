@@ -11,12 +11,12 @@ export default function Homepage() {
             <div className="nav-links">
               <ul className="nav-link-items">
                 <li>
-                  <a href="#" className="nav-item">
+                  <a href="#" className="nav-item nav-item-1">
                     Find a court
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="nav-item">
+                  <a href="#" className="nav-item nav-item-2">
                     Our Story
                   </a>
                 </li>
@@ -83,25 +83,21 @@ export default function Homepage() {
         </div>
         <div className="main-box-wrapper">
           <footer className="footer">
-            <nav className="nav-links">
-              <ul className="nav-link-items">
+            <nav className="footer-nav-links">
+              <ul className="footer-nav-items">
                 <li>
-                  <a href="#" className="nav-item">
-                    Contact Us
-                  </a>
+                  <a href="#">Contact Us</a>
                 </li>
                 <li>
-                  <a href="#" className="nav-item">
-                    Legal Notices
-                  </a>
+                  <a href="#">Legal Notices</a>
                 </li>
               </ul>
-              <ul className="nav-link-items socials">
-                <li>IG</li>
-                <li>X</li>
-                <li>LI</li>
-                <li>YT</li>
-                <li>TT</li>
+              <ul className="socials">
+                <li className="social-icon">IG</li>
+                <li className="social-icon">X</li>
+                <li className="social-icon">LI</li>
+                <li className="social-icon">YT</li>
+                <li className="social-icon">TT</li>
               </ul>
             </nav>
           </footer>
