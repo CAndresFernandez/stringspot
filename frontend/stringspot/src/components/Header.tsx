@@ -9,22 +9,18 @@ const Header = () => {
           <div className="nav-links">
             <ul className="nav-link-items">
               <li>
-                <a href="#" className="nav-item nav-item-1">
+                <a href="#" className="nav-item nav-item-1 link-light">
                   Find a court
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-item nav-item-2">
+                <a href="#" className="nav-item nav-item-2 link-light">
                   Our Story
                 </a>
               </li>
             </ul>
           </div>
-          <div className="connect-button-frame">
-            <a href="#" className="link-dark">
-              Connect
-            </a>
-          </div>
+          <button className="connect-button button-dark">Connect</button>
           <div className="div-wrapper">
             <div className="user-icon" />
           </div>

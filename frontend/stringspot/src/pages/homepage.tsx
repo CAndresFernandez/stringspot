@@ -20,10 +20,8 @@ export default function Homepage() {
                   <span className="text-wrapper-3">real fast.</span>
                 </p>
               </div>
-              <button className="find-court-button">
-                <a href="#" className="link-light">
-                  Find a court
-                </a>
+              <button className="find-court-button button-light">
+                Find a court
               </button>
             </div>
           </div>
@@ -44,24 +42,7 @@ export default function Homepage() {
           </div>
         </div>
         <div className="main-box-wrapper">
-          <div className="main-box green courts">
-            <div className="textbox">
-              <h3 className="textbox-title">Reserve courts in:</h3>
-              <a href="#" className="link-dark">
-                Paris
-              </a>
-              <a href="#" className="link-dark">
-                London
-              </a>
-              <a href="#" className="link-dark">
-                NYC
-              </a>
-              <span>More coming soon...</span>
-            </div>
-            <div id="map">
-              <CentersMap />
-            </div>
-          </div>
+          <CentersMap />
         </div>
         <div className="main-box-wrapper">
           <Footer />
