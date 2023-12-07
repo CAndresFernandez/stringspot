@@ -14,6 +14,7 @@ const CentersMap = () => {
       setCenters(centers["hydra:member"]);
     });
   }, []);
+
   console.log(centers);
   return (
     <MapContainer
@@ -30,8 +31,11 @@ const CentersMap = () => {
         <Popup></Popup>
       </Marker> */}
       {centers.map((center) => (
-        <Marker position={[center["latitude"], center["longitude"]]}>
-          <Popup></Popup>
+        <Marker
+          position={[center["latitude"], center["longitude"]]}
+          key={center["id"]}
+        >
+          <Popup>{[center["name"]]}</Popup>
         </Marker>
       ))}
     </MapContainer>
