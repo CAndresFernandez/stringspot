@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  New Court
+{% endblock %}
+
+{% block body %}
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Create new Court</h1>
+
+      {{ include('court/_form.html.twig') }}
+    </div>
+  {% endblock %}
+{% endblock %}

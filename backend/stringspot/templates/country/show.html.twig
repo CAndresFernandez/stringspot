@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Country
+{% endblock %}
+
+{% block body %}
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Country</h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <td>{{ country.name }}</td>
+          </tr>
+          <tr>
+            <th>Abbr</th>
+            <td>{{ country.abbr }}</td>
+          </tr>
+          <tr>
+            <th>Continent</th>
+            <td>{{ country.continent }}</td>
+          </tr>
+          <tr>
+            <th>Zones</th>
+            {% if country.zones %}
+              <td class="p-0">
+                <table class="table table-hover m-0">
+                  <tbody>
+                    <tr>
+                      <th scope="col" style="width: 20%">City</th>
+                      <th scope="col" style="width: 20%">Postal Code</th>
+                      <th scope="col" style="width: 20%"># Centers</th>
+                      <th scope="col" style="width: 20%"># Courts</th>
+                      <th scope="col" style="width: 10%">Actions</th>
+                    </tr>
+                    {% for zone in country.zones %}
+                      <tr>
+                        <td class="border-bottom-0">{{ zone.city|e }}</td>
+                        <td class="border-bottom-0">{{ zone.postCode|e }}</td>
+                        <td class="border-bottom-0">{{ zone.centers|length }}</td>
+                        <td class="border-bottom-0">{{ allZonesCourtCounts[zone.postCode] }}</td>
+                        <td>
+                          <a href="{{ path('app_admin_zone_show', { id: zone.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+                          <a href="{{ path('app_admin_zone_edit', { id: zone.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="{{ path('app_admin_country_edit', { id: country.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit Country</button></a>
+
+      {{ include('country/_delete_form.html.twig') }}
+
+      <a href="{{ path('app_admin_country_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
+{% endblock %}

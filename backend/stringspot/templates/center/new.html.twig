@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  New Center
+{% endblock %}
+
+{% block body %}
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Create new Center</h1>
+
+      {{ include('center/_form.html.twig') }}
+    </div>
+  {% endblock %}
+{% endblock %}

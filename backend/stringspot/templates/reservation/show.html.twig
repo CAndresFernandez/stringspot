@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Reservation
+{% endblock %}
+
+{% block body %}
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Reservation</h1>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Res #</th>
+            <td>{{ reservation.id }}</td>
+          </tr>
+          <tr>
+            <th>User Name</th>
+            <td>{{ reservation.user.firstName ~ ' ' ~ reservation.user.lastName }}</td>
+          </tr>
+          <tr>
+            <th>Contact</th>
+            <td>{{ reservation.user.email }}</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>{{ reservation.startTime|date('Y:m:d') }}</td>
+          </tr>
+          <tr>
+            <th>Center</th>
+            <td>{{ reservation.court.center.name }}</td>
+          </tr>
+          <tr>
+            <th>Court</th>
+            <td>{{ reservation.court.number }}</td>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td>{{ reservation.startTime|date('H:i') }}</td>
+          </tr>
+          <tr>
+            <th>Created</th>
+            <td>{{ reservation.createdAt|date('d-m-Y H:i') }}</td>
+          </tr>
+          <tr>
+            <th>Type</th>
+            {% if reservation.resType == 'user' %}
+              <td>User</td>
+            {% else %}
+              <td>Admin</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th>Active</th>
+            {% if reservation.active %}
+              <td>Active</td>
+            {% else %}
+              <td>Past</td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+
+      {{ include('reservation/_delete_form.html.twig') }}
+
+      <a href="{{ path('app_admin_reservation_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
+{% endblock %}

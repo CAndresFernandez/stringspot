@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  User
+{% endblock %}
+
+{% block body %}
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>User</h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>First Name</th>
+            <td>{{ user.firstName }}</td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td>{{ user.lastName }}</td>
+          </tr>
+          <tr>
+            <th>E-mail</th>
+            <td>{{ user.email }}</td>
+          </tr>
+          <tr>
+            <th>Role</th>
+            <td>
+              {% set rolesText = '' %}
+              {% for role in user.roles %}
+                {% set roleName = role|replace({ ROLE_: '' }) %}
+                {% set rolesText = rolesText ~ roleName ~ ', ' %}
+              {% endfor %}
+              {{ rolesText|trim(', ') }}
+            </td>
+          </tr>
+          <tr>
+            <th>Past Reservations</th>
+            <td class="p-0">
+              <table class="table table-hover m-0">
+                <tbody>
+                  {% for pastRes in pastReses %}
+                    <tr>
+                      <td class="border-bottom-0" style="width: 30%">{{ pastRes.date|e }}</td>
+                      <td class="border-bottom-0" style="width: 60%">{{ pastRes.center|e }}</td>
+                      <td class="border-bottom-0" style="width: 60%">{{ pastRes.zone|e }}</td>
+                      <td style="width: 10%">
+                        <a href="{{ path('app_admin_pastRes_show', { id: pastRes.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="{{ path('app_admin_user_edit', { id: user.id }) }}"><button type="button" class="btn btn-sm btn-warning mx-1 mb-2">Edit</button></a>
+
+      {{ include('user/_delete_form.html.twig') }}
+
+      <a href="{{ path('app_admin_user_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
+{% endblock %}

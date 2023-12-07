@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Zone List
+{% endblock %}
+{% block zoneActive %}
+  active
+{% endblock %}
+{% block subBody %}
+  <div class="container-fluid">
+    <h1>Zone List</h1>
+    <a href="{{ path('app_admin_zone_new') }}"><button type="button" class="btn btn-primary mb-3 bi bi-plus-lg"></button></a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 8%">Country</th>
+          <th scope="col" style="width: 8%">Zone</th>
+          <th scope="col" style="width: 4%">Edit</th>
+          <th scope="col" style="width: 80%">Centers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for zone in zones %}
+          <tr>
+            <td>{{ zone.country.name }}</td>
+            <td>{{ zone.postCode }}</td>
+            <td>
+              <a href="{{ path('app_admin_zone_edit', { id: zone.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+            </td>
+            <td class="p-0">
+              <table class="table table-hover m-0">
+                <tbody>
+                  {% for center in zone.centers %}
+                    <tr>
+                      <td class="border-bottom-0" style="width: 30%">{{ center.name|e }}</td>
+                      <td class="border-bottom-0" style="width: 60%">{{ center.address|e }}</td>
+                      <td style="width: 10%">
+                        <a href="{{ path('app_admin_center_show', { id: center.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+                        <a href="{{ path('app_admin_center_edit', { id: center.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="8">No records found</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

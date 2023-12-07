@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Past Reservation
+{% endblock %}
+
+{% block body %}
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Past Reservation</h1>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>User</th>
+            <td>{{ pastRes.user.email }}</td>
+          </tr>
+          <tr>
+            <th>Center</th>
+            <td>{{ pastRes.center }}</td>
+          </tr>
+          <tr>
+            <th>Court</th>
+            <td>{{ pastRes.court }}</td>
+          </tr>
+          <tr>
+            <th>Zone</th>
+            <td>{{ pastRes.zone }}</td>
+          </tr>
+          <tr>
+            <th>Country</th>
+            <td>{{ pastRes.country }}</td>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td>{{ pastRes.time }}</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>{{ pastRes.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="{{ path('app_admin_user_show', { id: user.id }) }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to User page</button></a>
+    </div>
+  {% endblock %}
+{% endblock %}

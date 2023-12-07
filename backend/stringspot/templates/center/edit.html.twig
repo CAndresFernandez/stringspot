@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Edit Center
+{% endblock %}
+
+{% block body %}
+  {% block subBody %}
+    <div class="container-fluid">
+      <h1>Edit Center</h1>
+
+      {{ include('center/_form.html.twig', { button_label: 'Update' }) }}
+
+      {{ include('center/_delete_form.html.twig') }}
+      <a href="{{ path('app_admin_center_list') }}"><button type="button" class="btn btn-sm btn-primary mx-1 mb-2 bi bi-arrow-left-square">Back to list</button></a>
+    </div>
+  {% endblock %}
+{% endblock %}

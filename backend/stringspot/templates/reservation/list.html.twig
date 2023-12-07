@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Reservation List
+{% endblock %}
+{% block resActive %}
+  active
+{% endblock %}
+{% block subBody %}
+  <div class="container-fluid">
+    <h1>Reservation List</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Res #</th>
+          <th>User Name</th>
+          <th>Contact</th>
+          <th>Date</th>
+          <th>Center</th>
+          <th>Court</th>
+          <th>Time</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for reservation in reservations %}
+          <tr>
+            <td>{{ reservation.id }}</td>
+            <td>{{ reservation.user.firstName ~ ' ' ~ reservation.user.lastName }}</td>
+            <td>{{ reservation.user.email }}</td>
+            <td>{{ reservation.startTime|date('d-m-Y') }}</td>
+            <td>{{ reservation.court.center.name }}</td>
+            <td>{{ reservation.court.number }}</td>
+            <td>{{ reservation.startTime|date('H:i') }}</td>
+            <td>{{ reservation.createdAt|date('d-m-Y H:i') }}</td>
+            <td>
+              <a href="{{ path('app_admin_reservation_show', { id: reservation.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+            </td>
+            <td>{{ include('reservation/_delete_form.html.twig') }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="8">No records found</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  User List
+{% endblock %}
+{% block userActive %}
+  active
+{% endblock %}
+{% block subBody %}
+  <div class="container-fluid">
+    <h1>User List</h1>
+    <a href="{{ path('app_admin_user_new') }}"><button type="button" class="btn btn-primary mb-3 bi bi-plus-lg"></button></a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">E-Mail</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>
+              {% set rolesText = '' %}
+              {% for role in user.roles %}
+                {% set roleName = role|replace({ ROLE_: '' }) %}
+                {% set rolesText = rolesText ~ roleName ~ ', ' %}
+              {% endfor %}
+              {{ rolesText|trim(', ') }}
+            </td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <a href="{{ path('app_admin_user_show', { id: user.id }) }}"><button type="button" class="btn btn-info btn-sm bi bi-eye"></button></a>
+              <a href="{{ path('app_admin_user_edit', { id: user.id }) }}"><button type="button" class="btn btn-warning btn-sm bi bi-pencil-square"></button></a>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="8">No records found</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

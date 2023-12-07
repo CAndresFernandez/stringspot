@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+  Admin Homepage
+{% endblock %}
+{% block subBody %}
+  <div class="wrapper">
+    <div class="row align-items-start placeholder"></div>
+    <div class="row align-items-center">
+      <div class="col"></div>
+      <div class="col">
+        <h2 class="text-center text-muted fw-bold mb-4">StringSpot</h2>
+        <div class="d-flex flex-column flex-wrap list-unstyled justify-content-center">
+          <button type="button" onclick="window.location.href='{{ path('app_admin_user_list') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Users</button>
+          <button type="button" onclick="window.location.href='{{ path('app_admin_center_list') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Centers</button>
+          <button type="button" onclick="window.location.href='{{ path('app_admin_reservation_list') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Reservations</button>
+          <button type="button" onclick="window.location.href='{{ path('app_admin_country_list') }}';" class="btn btn-sm btn-outline-danger mx-1 mb-2">Countries</button>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row align-items-start placeholder"></div>
+  </div>
+{% endblock %}
