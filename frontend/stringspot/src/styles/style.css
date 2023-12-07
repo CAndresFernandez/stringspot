@@ -39,27 +39,27 @@ a {
     font-family: "Noto Sans", sans-serif;
 }
 
-a:link {
+a.link-dark:link {
     color: white;
 }
 
-a:visited {
+a.link-dark:visited {
     color: white;
 }
 
-a:hover {
+a.link-dark:hover {
     font-weight: 700;
 }
 
-a:active {
+a.link-dark:active {
     color: white;
 }
 
-a.grey-button-link:link {
+a.link-light:link {
     color: black;
 }
 
-a.grey-button-link:hover {
+a.link-light:hover {
     font-weight: 700;
 }
 
@@ -68,6 +68,7 @@ a.nav-item:link {
 }
 
 a.nav-item:hover {
+    font-weight: 700;
     color: #20711f;
 }
 
@@ -153,11 +154,6 @@ a.nav-item:hover {
     position: relative;
     min-width: fit-content;
     width: 10%;
-}
-
-.connect-button {
-    color: #ffffff;
-    font-size: 1.25rem;
 }
 
 .user-icon {
@@ -324,17 +320,6 @@ a.nav-item:hover {
     position: relative;
     width: 100%;
 }
-
-/* .footer .nav-links {
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-    flex: 1;
-    flex-grow: 1;
-    position: relative;
-    height: 100%;
-    padding: 0;
-} */
 
 .footer-nav-links {
     flex-direction: column;

@@ -23,7 +23,7 @@ export default function Homepage() {
               </ul>
             </div>
             <div className="connect-button-frame">
-              <a href="#" className="connect-button">
+              <a href="#" className="link-dark">
                 Connect
               </a>
             </div>
@@ -45,7 +45,7 @@ export default function Homepage() {
                 </p>
               </div>
               <button className="find-court-button">
-                <a href="#" className="grey-button-link">
+                <a href="#" className="link-light">
                   Find a court
                 </a>
               </button>
@@ -71,9 +71,15 @@ export default function Homepage() {
           <div className="main-box green courts">
             <div className="textbox">
               <h3 className="textbox-title">Reserve courts in:</h3>
-              <a href="">Paris</a>
-              <a href="">London</a>
-              <a href="">NYC</a>
+              <a href="#" className="link-dark">
+                Paris
+              </a>
+              <a href="#" className="link-dark">
+                London
+              </a>
+              <a href="#" className="link-dark">
+                NYC
+              </a>
               <span>More coming soon...</span>
             </div>
             <div id="map" className="image-box">
