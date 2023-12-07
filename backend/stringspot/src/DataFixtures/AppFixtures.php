@@ -91,14 +91,20 @@ class AppFixtures extends Fixture
             foreach($zoneList as $zone) {
                 if($zone->getPostCode() === strval($postCode)) {
                 $zoneToSet = $zone;
-                foreach($centersByZone as $centerName => $centerAddress) {
-                        $center = new Center();
-                        $center->setName($centerName);
-                        $center->setAddress($centerAddress);
-                        $center->setNumberCourts($faker->numberBetween(1,12));
-                        $center->setZone($zoneToSet);
-                        $centerList[] = $center;
-                        $manager->persist($center);
+                foreach($centersByZone as $centerName => $positions) {
+                    $address = key($positions);
+                    $coordinates = $positions[$address];
+                    $latitude = $coordinates[0];
+                    $longitude = $coordinates[1];
+                    $center = new Center();
+                    $center->setName($centerName);
+                    $center->setAddress($address);
+                    $center->setNumberCourts($faker->numberBetween(1,12));
+                    $center->setZone($zoneToSet);
+                    $center->setLatitude($latitude);
+                    $center->setLongitude($longitude);
+                    $centerList[] = $center;
+                    $manager->persist($center);
                     }
                 }
             }
