@@ -1,37 +1,13 @@
 import React from "react";
 import CentersMap from "../components/map";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Homepage() {
   return (
     <>
       <div className="springspot-homepage">
-        <div className="header-wrapper">
-          <nav className="navbar">
-            <div className="brand-icon" />
-            <div className="nav-links">
-              <ul className="nav-link-items">
-                <li>
-                  <a href="#" className="nav-item nav-item-1">
-                    Find a court
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="nav-item nav-item-2">
-                    Our Story
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="connect-button-frame">
-              <a href="#" className="link-dark">
-                Connect
-              </a>
-            </div>
-            <div className="div-wrapper">
-              <div className="user-icon" />
-            </div>
-          </nav>
-        </div>
+        <Header />
         <div className="main-box-wrapper">
           <div className="main-box green">
             <div className="title-box">
@@ -82,31 +58,13 @@ export default function Homepage() {
               </a>
               <span>More coming soon...</span>
             </div>
-            <div id="map" className="image-box">
+            <div id="map">
               <CentersMap />
             </div>
           </div>
         </div>
         <div className="main-box-wrapper">
-          <footer className="footer">
-            <nav className="footer-nav-links">
-              <ul className="footer-nav-items">
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">Legal Notices</a>
-                </li>
-              </ul>
-              <ul className="socials">
-                <li className="social-icon">IG</li>
-                <li className="social-icon">X</li>
-                <li className="social-icon">LI</li>
-                <li className="social-icon">YT</li>
-                <li className="social-icon">TT</li>
-              </ul>
-            </nav>
-          </footer>
+          <Footer />
         </div>
       </div>
     </>
