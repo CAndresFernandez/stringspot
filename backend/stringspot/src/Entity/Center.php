@@ -50,9 +50,11 @@ class Center
     private ?int $number_courts = null;
 
     #[ORM\Column]
+    #[Groups(['centers'])]
     private ?float $latitude = null;
 
     #[ORM\Column]
+    #[Groups(['centers'])]
     private ?float $longitude = null;
 
     public function __construct()
