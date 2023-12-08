@@ -73,7 +73,7 @@ const Login = () => {
   return (
     <>
       <div className="wrapper">
-        // todo change or rewrite this dropdown manually
+        {/* // todo change or rewrite this dropdown manually */}
         <UnopDropdown
           trigger={
             <button className="connect-button button-dark">Connect</button>
