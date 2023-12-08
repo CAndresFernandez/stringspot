@@ -1,4 +1,5 @@
 import React from "react";
+import Login from "./Login";
 
 const Header = () => {
   return (
@@ -20,7 +21,8 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <button className="connect-button button-dark">Connect</button>
+          <Login />
+          {/* <button className="connect-button button-dark">Connect</button> */}
           <div className="div-wrapper">
             <div className="user-icon" />
           </div>

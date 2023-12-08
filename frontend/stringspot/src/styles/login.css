@@ -1,0 +1,97 @@
+.dropdown-container {
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 200px;
+    background-color: #d9d9d9;
+    margin-top: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 64px;
+    font-weight: bolder;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-container,
+.history-item {
+    flex-direction: row;
+    display: flex;
+    width: 400px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.history-container {
+    flex-direction: column;
+    display: flex;
+    height: 200px;
+    align-items: center;
+    flex-grow: 5;
+    justify-content: flex-start;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 260px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.input-container>.error-label {
+    color: red;
+    font-size: 12px;
+}
+
+.input-box {
+    height: 48px;
+    width: 400px;
+    font-size: large;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+
+.settings-input {
+    border-radius: 10px;
+    border: 1px solid grey;
+    height: 20px;
+    padding: 5px;
+    width: 160px;
+}
+
+.input-button {
+    font-family: "Noto Sans", sans-serif;
+    color: white;
+    font-size: 1rem;
+    border-radius: 20px;
+    background-color: black;
+    width: 100px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.invalid-error {
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+}
+
+.hidden {
+    display: none;
+}

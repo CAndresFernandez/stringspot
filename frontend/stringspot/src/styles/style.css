@@ -105,6 +105,12 @@ button {
     flex: 1;
 }
 
+input:focus {
+    outline: transparent;
+    border: 1px solid #20711f;
+    box-shadow: 0 0 10px #20711f;
+}
+
 .springspot-homepage {
     align-items: center;
     position: relative;
