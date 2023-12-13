@@ -267,7 +267,7 @@ input:focus {
     line-height: normal;
     margin-top: -1px;
     position: relative;
-    #ffffff-space: nowrap;
+    white-space: nowrap;
 }
 
 .text-wrapper-3 {
@@ -309,7 +309,7 @@ input:focus {
 }
 
 .ellipse {
-    background-color: #000000;
+    background-color: #363333;
     border-radius: 100px;
     height: 200px;
     position: relative;
@@ -340,7 +340,6 @@ input:focus {
 }
 
 .textbox span {
-    color: #ffffff;
     font-size: 1.25rem;
     font-style: italic;
     letter-spacing: 0;
@@ -349,7 +348,12 @@ input:focus {
     width: fit-content;
 }
 
+.textbox-title {
+    color: black;
+}
+
 .footer {
+    color: #ffffff;
     background-color: #363333;
     height: 12vh;
     position: relative;
@@ -378,7 +382,6 @@ input:focus {
 }
 
 .social-icon {
-    /* margin-top: 10px; */
     padding: 0 32px;
 }
 
@@ -389,6 +392,10 @@ input:focus {
     width: 150px;
     min-width: fit-content;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.map-button:last-of-type {
+    margin-bottom: .5rem;
 }
 
 .button-light:hover {

@@ -1,6 +1,6 @@
 .dropdown-container {
     flex-direction: column;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 25px;
     display: flex;
     align-items: center;

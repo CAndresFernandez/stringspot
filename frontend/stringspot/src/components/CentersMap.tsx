@@ -53,7 +53,11 @@ const CentersMap = () => {
           center={parisPosition}
           zoom={12}
           ref={mapRef}
-          style={{ height: "100%", width: "100%" }}
+          style={{
+            height: "100%",
+            width: "100%",
+            boxShadow: "0 0 36px black",
+          }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
