@@ -12,17 +12,27 @@ const Header = () => {
     <>
       <div className="header-wrapper">
         <nav className="navbar">
-          <div className="brand-icon" />
+          <div className="title-wrapper">
+            <h1 className="page-title">
+              STRING<span>SPOT</span>
+            </h1>
+          </div>
+          {/* <div className="brand-icon" /> */}
           <div className="nav-links">
             <ul className="nav-link-items">
               <li>
                 <a href="#" className="nav-item nav-item-1">
-                  Find a court
+                  Find.
                 </a>
               </li>
               <li>
                 <a href="#" className="nav-item nav-item-2">
-                  Our Story
+                  Book.
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-item nav-item-2">
+                  Play.
                 </a>
               </li>
             </ul>

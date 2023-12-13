@@ -11,9 +11,6 @@ export default function Homepage() {
         <div className="main-box-wrapper">
           <div className="main-box green">
             <div className="title-box">
-              <h1 className="page-title">
-                STRING<span>SPOT</span>
-              </h1>
               <div className="div-wrapper-2">
                 <p className="find-and-book-your">
                   Find and book your court,{" "}
