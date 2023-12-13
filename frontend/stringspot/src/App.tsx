@@ -1,29 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import "reset-css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/redux";
-import Login from "./components/Login";
 import { getFromLocalStorage } from "./localStorage/localStorage";
 import { getActionLogin } from "./store/reducers/userReducer";
 import Homepage from "./pages/homepage";
 
 const App = () => {
-  //   useEffect(() => {
-  //     const auth = getFromLocalStorage("auth");
+  const logged = useAppSelector((state) => state.user.logged);
+  const dispatch = useAppDispatch();
 
-  //     if (!auth || !auth.token) {
-  //       return;
-  //     }
+  useEffect(() => {
+    if (!logged) {
+      const auth = getFromLocalStorage("auth");
 
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, []);
+      if (auth) {
+        dispatch(getActionLogin(auth));
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [logged]);
 
   return (
     <Routes>

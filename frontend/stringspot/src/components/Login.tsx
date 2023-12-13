@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import login from "../api/login";
@@ -14,27 +14,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
-  // TODO handle account verification
-  //     checkAccountExists((accountExists) => {
-  //       if (accountExists) {
-  //         login();
-  //       } else {
-  //         if (
-  //           window.confirm(
-  //             "An account does not exist with this e-mail address: " +
-  //               email +
-  //               ". Do you want to create a new account?"
-  //           )
-  //         ) {
-  //           login();
-  //         }
-  //       }
-  //     });
-  //   }
-
-  //   const checkAccountExists = () => {
-  //   }
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
