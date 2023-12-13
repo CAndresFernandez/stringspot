@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     height: 150px;
-    width: 200px;
+    width: 180px;
     background-color: #d9d9d9;
     margin-top: 10px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -72,7 +72,7 @@
     border: 1px solid grey;
     height: 20px;
     padding: 5px;
-    width: 160px;
+    width: 140px;
 }
 
 .input-button {

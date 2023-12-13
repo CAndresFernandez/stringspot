@@ -16,12 +16,12 @@ const Header = () => {
           <div className="nav-links">
             <ul className="nav-link-items">
               <li>
-                <a href="#" className="nav-item nav-item-1 link-light">
+                <a href="#" className="nav-item nav-item-1">
                   Find a court
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-item nav-item-2 link-light">
+                <a href="#" className="nav-item nav-item-2">
                   Our Story
                 </a>
               </li>
@@ -29,7 +29,10 @@ const Header = () => {
           </div>
           {logged ? (
             <div className="div-wrapper logged-as">
-              Connected as: <span className="username">{storeUser?.name}</span>
+              <div>Welcome back,</div>
+              <div>
+                <span className="username">{storeUser?.name}</span>
+              </div>
             </div>
           ) : null}
           {logged ? <LoggedAs /> : <Login />}

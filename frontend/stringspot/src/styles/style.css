@@ -68,7 +68,7 @@ a.link-light:hover {
 }
 
 a.nav-item:hover {
-    font-weight: 700;
+    /* font-weight: 700; */
     color: #20711f;
 }
 
