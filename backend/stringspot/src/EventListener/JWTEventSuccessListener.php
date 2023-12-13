@@ -14,6 +14,7 @@ class JWTEventSuccessListener
         /** @var User $user */
         $user = $event->getUser();
         $id = $user->getId();
+        $email = $user->getEmail();
         $first_name = $user->getFirstName();
         $last_name = $user->getLastName();
         $role = $user->getRoles();
@@ -24,6 +25,7 @@ class JWTEventSuccessListener
 
         $data['data'] = array(
             'id' => $id,
+            'email' => $email,
             'name' => $first_name . ' ' . $last_name,
             'role' => $role,
         );
