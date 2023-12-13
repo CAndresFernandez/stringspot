@@ -1,7 +1,14 @@
 import React from "react";
 import Login from "./Login";
+import LoggedAs from "./LoggedAs";
+import { useAppSelector } from "../hooks/redux";
+import { getFromLocalStorage } from "../localStorage/localStorage";
 
 const Header = () => {
+  const logged = useAppSelector((state) => state.user.logged);
+  console.log(logged);
+  const storeUser = getFromLocalStorage("auth");
+
   return (
     <>
       <div className="header-wrapper">
@@ -21,11 +28,13 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <Login />
-          {/* <button className="connect-button button-dark">Connect</button> */}
-          <div className="div-wrapper">
+          {logged ? (
+            <div className="div-wrapper">{storeUser?.email}</div>
+          ) : null}
+          {logged ? <LoggedAs /> : <Login />}
+          {/* <div className="div-wrapper">
             <div className="user-icon" />
-          </div>
+          </div> */}
         </nav>
       </div>
     </>
