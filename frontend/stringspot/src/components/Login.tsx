@@ -40,9 +40,9 @@ const Login = () => {
       const response = await login(email, password);
       const {
         token,
-        data: { id, name, roles },
+        data: { id, username, name, roles },
       } = response;
-      dispatch(getActionLogin({ token, id, name, roles }));
+      dispatch(getActionLogin({ token, id, username, name, roles }));
       navigate("/");
     } catch (error) {
       setError("Invalid credentials");

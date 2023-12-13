@@ -1,12 +1,8 @@
 import React from "react-router-dom";
 import "../styles/login.css";
-import { getFromLocalStorage } from "../localStorage/localStorage";
 import UnopDropdown from "unop-react-dropdown";
 
 function LoggedAs() {
-  const storeUser = getFromLocalStorage("auth");
-  // console.log(storeUser);
-
   return (
     <>
       <div className="wrapper">

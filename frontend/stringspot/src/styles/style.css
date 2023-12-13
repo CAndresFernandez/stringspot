@@ -178,6 +178,14 @@ input:focus {
     /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
+.logged-as {
+    font-size: 1.25rem;
+}
+
+.logged-as span {
+    font-weight: 700;
+}
+
 .user-icon {
     background-color: #000000;
     border-radius: 27.5px;

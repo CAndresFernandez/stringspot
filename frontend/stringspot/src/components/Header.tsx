@@ -6,7 +6,6 @@ import { getFromLocalStorage } from "../localStorage/localStorage";
 
 const Header = () => {
   const logged = useAppSelector((state) => state.user.logged);
-  console.log(logged);
   const storeUser = getFromLocalStorage("auth");
 
   return (
@@ -29,7 +28,9 @@ const Header = () => {
             </ul>
           </div>
           {logged ? (
-            <div className="div-wrapper">{storeUser?.email}</div>
+            <div className="div-wrapper logged-as">
+              Connected as: <span className="username">{storeUser?.name}</span>
+            </div>
           ) : null}
           {logged ? <LoggedAs /> : <Login />}
           {/* <div className="div-wrapper">
