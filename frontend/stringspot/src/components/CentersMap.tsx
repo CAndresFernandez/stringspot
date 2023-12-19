@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import API from "../api/axios";
 import "leaflet/dist/leaflet.css";
 import "../styles/map.css";
-import { LatLng, LatLngExpression, map } from "leaflet";
+import { LatLngExpression } from "leaflet";
 
 const CentersMap = () => {
   const mapRef = useRef();

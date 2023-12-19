@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import LoggedAs from "./LoggedAs";
+import SearchBar from "./SearchBar";
 import { useAppSelector } from "../hooks/redux";
 import { getFromLocalStorage } from "../localStorage/localStorage";
 
@@ -36,6 +37,7 @@ const Header = () => {
               </li>
             </ul>
           </div>
+          <SearchBar />
           {logged ? (
             <div className="div-wrapper logged-as">
               <div>Welcome back,</div>
