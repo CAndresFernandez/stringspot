@@ -77,7 +77,7 @@ const CentersMap = () => {
                   <br />
                   {[center["zone"]["post_code"]]} {[center["zone"]["city"]]}
                   <br />
-                  <button className="popup-button button-dark">Reserve</button>
+                  <button className="popup-button button">Reserve</button>
                 </div>
               </Popup>
             </Marker>
