@@ -46,6 +46,8 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setError("Invalid credentials");
+      setEmail("");
+      setPassword("");
     }
   };
 
@@ -90,16 +92,16 @@ const Login = () => {
               <div className="input-container">
                 <button
                   type="submit"
-                  className={"input-button button-dark"}
+                  className={"input-button button"}
                   value={"Log in"}
                 >
                   Login
                 </button>
+                <div className="invalid-error">
+                  <label className="error-message">{error}</label>
+                </div>
               </div>
             </form>
-          </div>
-          <div className="invalid-error">
-            {error && <p className="error-message">{error}</p>}
           </div>
         </UnopDropdown>
       </div>

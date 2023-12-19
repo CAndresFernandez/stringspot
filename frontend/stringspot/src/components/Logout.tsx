@@ -18,7 +18,7 @@ function Logout() {
 
   return (
     <li className="item-wrapper">
-      <a href="#" onClick={handleDisconnect} className="logout-link link">
+      <a href="#" onClick={handleDisconnect} className="logout-link">
         Logout
       </a>
     </li>
