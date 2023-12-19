@@ -43,35 +43,15 @@ a:visited {
     color: #ffffff;
 }
 
-a.link-dark:link {
+a.link:link {
     color: #ffffff;
 }
 
-a.link-dark:visited {
-    color: #ffffff;
-}
-
-a.link-dark:hover {
-    font-weight: 600;
-}
-
-a.link-dark:active {
-    color: #ffffff;
-}
-
-a.link-light:link {
-    color: #ffffff;
-}
-
-a.link-light:hover {
-    font-weight: 600;
-}
-
-a.nav-item:hover {
+a.link:hover {
     color: #dfff4f;
 }
 
-a.nav-item:active {
+a.link:active {
     color: #ffffff;
 }
 
@@ -79,14 +59,14 @@ a.nav-item:active {
     font-size: .8rem;
 }
 
-.footer a:link {
+/* .footer-wrapper a:link {
     color: #ffffff;
 }
 
-.footer a:hover {
+.footer-wrapper a:hover {
     font-weight: normal;
     color: #dfff4f;
-}
+} */
 
 button {
     font-family: "Overpass Mono", monospace;
@@ -98,6 +78,9 @@ button {
     justify-content: center;
     position: relative;
     transition-duration: .2s;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: .1s;
+    -webkit-transition-timing-function: ease;
 }
 
 #map {
@@ -218,15 +201,20 @@ input:focus {
 }
 
 .social-icon {
-    padding: 0 32px;
+    margin: 0 32px;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: .3s;
+    -webkit-transition-timing-function: ease;
 }
 
-
+.social-icon:hover {
+    transform: scale(2);
+}
 
 .button:hover {
     background-color: #dfff4f;
     color: black;
-    font-weight: 600;
+    transform: scale(1.1);
     /* box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); */
 }
 

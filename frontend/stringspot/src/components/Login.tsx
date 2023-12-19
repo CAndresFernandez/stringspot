@@ -22,7 +22,7 @@ const Login = () => {
     setPasswordError("");
 
     if ("" === email) {
-      setEmailError("Please enter your e-mail address");
+      setEmailError("Enter an e-mail address");
       return;
     }
 
@@ -32,7 +32,7 @@ const Login = () => {
     }
 
     if ("" === password) {
-      setPasswordError("Please enter a password");
+      setPasswordError("Enter a password");
       return;
     }
 
@@ -69,7 +69,9 @@ const Login = () => {
                   value={email} // control en lecture : on affiche la donnée de redux
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <label className="error-label">{emailError}</label>
+                <div className="error-wrapper">
+                  <label className="error-label">{emailError}</label>
+                </div>
               </div>
               <br />
               <div className="input-container">
@@ -80,7 +82,9 @@ const Login = () => {
                   value={password} // control en lecture : on affiche la donnée de redux
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <label className="error-label">{passwordError}</label>
+                <div className="error-wrapper">
+                  <label className="error-label">{passwordError}</label>
+                </div>
               </div>
               <br />
               <div className="input-container">

@@ -20,17 +20,17 @@ const Header = () => {
           <div className="nav-links">
             <ul className="nav-link-items">
               <li>
-                <a href="#" className="nav-item nav-item-1">
+                <a href="#" className="nav-item nav-item-1 link">
                   Find.
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-item nav-item-2">
+                <a href="#" className="nav-item nav-item-2 link">
                   Book.
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-item nav-item-2">
+                <a href="#" className="nav-item nav-item-3 link">
                   Play.
                 </a>
               </li>
