@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import API from "../api/axios";
 import "leaflet/dist/leaflet.css";
+import "../styles/map.css";
 import { LatLng, LatLngExpression, map } from "leaflet";
 
 const CentersMap = () => {
@@ -25,24 +26,24 @@ const CentersMap = () => {
 
   return (
     <>
-      <div className="main-box green courts">
+      <div className="main-box map-wrapper">
         <div className="textbox">
           <h2 className="textbox-title">Cities</h2>
           <button
             onClick={() => map.panTo(parisPosition)}
-            className="button-light map-button"
+            className="button map-button"
           >
             Paris
           </button>
           <button
             onClick={() => map.panTo(londonPosition)}
-            className="button-light map-button"
+            className="button map-button"
           >
             London
           </button>
           <button
             onClick={() => map.panTo(nycPosition)}
-            className="button-light map-button"
+            className="button map-button"
           >
             NYC
           </button>
@@ -56,7 +57,8 @@ const CentersMap = () => {
           style={{
             height: "100%",
             width: "100%",
-            boxShadow: "0 0 36px black",
+            boxShadow:
+              "0 8px 8px 0 rgba(0, 0, 0, .2), 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px #363333",
           }}
         >
           <TileLayer

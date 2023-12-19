@@ -17,7 +17,6 @@ const Header = () => {
               STRING<span>SPOT</span>
             </h1>
           </div>
-          {/* <div className="brand-icon" /> */}
           <div className="nav-links">
             <ul className="nav-link-items">
               <li>
@@ -46,9 +45,6 @@ const Header = () => {
             </div>
           ) : null}
           {logged ? <LoggedAs /> : <Login />}
-          {/* <div className="div-wrapper">
-            <div className="user-icon" />
-          </div> */}
         </nav>
       </div>
     </>
