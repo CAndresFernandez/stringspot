@@ -4,6 +4,8 @@ import API from "../api/axios";
 import "leaflet/dist/leaflet.css";
 import "../styles/map.css";
 import { LatLngExpression } from "leaflet";
+import SearchBar from "./SearchBar";
+import L from "leaflet";
 
 const CentersMap = () => {
   const mapRef = useRef();
@@ -54,6 +56,7 @@ const CentersMap = () => {
           center={parisPosition}
           zoom={12}
           ref={mapRef}
+          scrollWheelZoom={false}
           style={{
             height: "100%",
             width: "100%",
@@ -65,6 +68,7 @@ const CentersMap = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          <SearchBar />
           {centers.map((center) => (
             <Marker
               position={[center["latitude"], center["longitude"]]}

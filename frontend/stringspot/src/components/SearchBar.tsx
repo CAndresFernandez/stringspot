@@ -1,5 +1,5 @@
 import API from "../api/axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { ICenter } from "../@types/center";
 import { IZone } from "../@types/zone";
@@ -80,22 +80,28 @@ const SearchBar = () => {
           placeholder="Center Name or Postal Code..."
           value={searchItem}
           onChange={handleSearchInputChange}
-          onBlur={async () => {
+          onBlur={() => {
             setTimeout(() => {
               setHideSuggestions(true);
             }, 200);
           }}
         />
         <div
-          className={`${"suggestions-wrapper"} ${hideSuggestions && "hidden"}`}
+          className={`${"suggestions-wrapper"} ${
+            hideSuggestions ? "hidden" : ""
+          }`}
         >
-          <ul className="suggestions">
-            {suggestions.map((suggestion: ICenter | IZone) => (
-              <li key={suggestion.id} className="suggestion">
-                {getDisplayText(suggestion)}
-              </li>
-            ))}
-          </ul>
+          {suggestions.length === 0 ? (
+            <p className="no-results">No results found. Please try again...</p>
+          ) : (
+            <ul className="suggestions">
+              {suggestions.map((suggestion: ICenter | IZone) => (
+                <li key={suggestion.id} className="suggestion">
+                  {getDisplayText(suggestion)}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </>

@@ -37,7 +37,7 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <SearchBar />
+          {/* <SearchBar /> */}
           {logged ? (
             <div className="div-wrapper logged-as">
               <div>Welcome back,</div>
