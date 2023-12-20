@@ -47,11 +47,12 @@
 
 .popup-button {
     font-size: .75rem;
-    color: #ffffff;
-    background-color: black;
+    color: black;
+    background-color: #ffffff;
     height: 25px;
     width: 50%;
     min-width: fit-content;
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19), inset 0 0 6px black;
 }
 
 .popup-title {
