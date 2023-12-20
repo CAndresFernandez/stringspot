@@ -2,52 +2,73 @@ import API from "../api/axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { ICenter } from "../@types/center";
-// import { IZone } from "../@types/zone";
+import { IZone } from "../@types/zone";
 
 const SearchBar = () => {
   const [apiCenters, setApiCenters] = useState<ICenter[]>([]);
-  //   const [apiZones, setApiZones] = useState([]);
-  //   const [apiCities, setApiCities] = useState([]);
+  const [apiZones, setApiZones] = useState<IZone[]>([]);
   const [searchItem, setSearchItem] = useState("");
-  const [suggestions, setSuggestions] = useState<ICenter[]>([]);
+  const [suggestions, setSuggestions] = useState<(ICenter | IZone)[]>([]);
   const [hideSuggestions, setHideSuggestions] = useState(true);
 
   useEffect(() => {
-    API.get(`centers`)
-      .then((res) => {
-        const centers = res.data;
-        let toAddArray: ICenter[] = [];
+    Promise.all([API.get(`centers`), API.get(`zones`)])
+      .then(([centersRes, zonesRes]) => {
+        // process centers
+        const centers = centersRes.data;
+        let toAddCentersArray: ICenter[] = [];
         centers["hydra:member"].map(
-          (center: ICenter) => (toAddArray = [...toAddArray, center])
+          (center: ICenter) =>
+            (toAddCentersArray = [...toAddCentersArray, center])
         );
-        setApiCenters(toAddArray);
-        setSuggestions(toAddArray);
-      })
+        setApiCenters(toAddCentersArray);
+        setSuggestions(toAddCentersArray);
 
-      // API.get(`zones`)
-      //   .then((res) => {
-      //     const apiZones = res.data;
-      //     setApiZones(apiZones["hydra:member"]);
-      //     // setApiCities(apiZones["hydra:member"]["city"]);
-      //     setSuggestions(...suggestions, apiZones);
-      //   })
+        // process zones
+        const zones = zonesRes.data;
+        let toAddZonesArray: IZone[] = zones["hydra:member"];
+        setApiZones(toAddZonesArray);
+        setSuggestions((prevSuggestions) => [
+          ...prevSuggestions,
+          ...toAddZonesArray,
+        ]);
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  const handleSearchInputChange = (event: any) => {
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const searchTerm: string = event.target.value;
     setSearchItem(searchTerm);
-    const filteredSuggestions = apiCenters.filter((center) =>
+    if (searchTerm.trim() === "") {
+      setHideSuggestions(true);
+      return;
+    }
+    setHideSuggestions(false);
+
+    // filter centers
+    const filteredCenters = apiCenters.filter((center) =>
       center.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setSuggestions(filteredSuggestions);
 
-    // const filteredZones = apiZones.filter((zone: IZone) =>
-    //   zone.post_code.includes(searchTerm)
-    // );
-    // filteredZones.map((zone: IZone) =>
-    //   setSuggestions(...suggestions, zone.post_code)
-    // );
+    // filter zones
+    const filteredZones = apiZones.filter((zone) =>
+      zone.post_code.includes(searchTerm)
+    );
+
+    // set suggestions with both
+    setSuggestions([...filteredCenters, ...filteredZones]);
+  };
+
+  //   function to grab the appropriate text to display in the search suggestions
+  const getDisplayText = (suggestion: ICenter | IZone): string => {
+    if ("name" in suggestion) {
+      return suggestion.name;
+    } else if ("post_code" in suggestion) {
+      return suggestion.post_code;
+    }
+    return "";
   };
 
   return (
@@ -56,10 +77,9 @@ const SearchBar = () => {
         <input
           type="text"
           className="search-input"
-          placeholder="Search..."
+          placeholder="Center Name or Postal Code..."
           value={searchItem}
           onChange={handleSearchInputChange}
-          onFocus={() => setHideSuggestions(false)}
           onBlur={async () => {
             setTimeout(() => {
               setHideSuggestions(true);
@@ -70,9 +90,9 @@ const SearchBar = () => {
           className={`${"suggestions-wrapper"} ${hideSuggestions && "hidden"}`}
         >
           <ul className="suggestions">
-            {suggestions.map((suggestion: ICenter) => (
+            {suggestions.map((suggestion: ICenter | IZone) => (
               <li key={suggestion.id} className="suggestion">
-                {suggestion.name}
+                {getDisplayText(suggestion)}
               </li>
             ))}
           </ul>
