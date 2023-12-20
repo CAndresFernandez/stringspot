@@ -5,6 +5,8 @@ import "leaflet/dist/leaflet.css";
 import "../styles/map.css";
 import { LatLngExpression } from "leaflet";
 import SearchBar from "./SearchBar";
+import { ICenter } from "../@types/center";
+import { IZone } from "../@types/zone";
 import L from "leaflet";
 
 const CentersMap = () => {
@@ -17,7 +19,7 @@ const CentersMap = () => {
   const nycPosition: LatLngExpression = [
     40.735006424621766, -73.99031122791754,
   ];
-  const [centers, setCenters] = useState([]);
+  const [centers, setCenters] = useState<ICenter[]>([]);
 
   useEffect(() => {
     API.get(`centers`).then((res) => {
@@ -25,6 +27,32 @@ const CentersMap = () => {
       setCenters(centers["hydra:member"]);
     });
   }, []);
+
+  const handleResultClick = (suggestion: ICenter | IZone) => {
+    if (
+      "latitude" in suggestion &&
+      "longitude" in suggestion &&
+      "id" in suggestion
+    ) {
+      const { latitude, longitude } = suggestion;
+      map.flyTo([latitude, longitude], 15);
+      const latlng = L.latLng(latitude ?? 0, longitude ?? 0);
+      const popup = L.popup()
+        .setLatLng(latlng)
+        .setContent(
+          "<div class='popup-wrapper'><span class='popup-title'>" +
+            `${suggestion.name}` +
+            "</span>" +
+            `${suggestion.address}` +
+            "<br />" +
+            `${suggestion.zone?.post_code}` +
+            " " +
+            `${suggestion.zone?.city}` +
+            "<br /><button class='popup-button button'>Reserve</button></div>"
+        );
+      map.openPopup(popup);
+    }
+  };
 
   return (
     <>
@@ -68,10 +96,9 @@ const CentersMap = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <SearchBar />
           {centers.map((center) => (
             <Marker
-              position={[center["latitude"], center["longitude"]]}
+              position={[center.latitude, center.longitude] as LatLngExpression}
               key={center["id"]}
             >
               <Popup>
@@ -79,13 +106,14 @@ const CentersMap = () => {
                   <span className="popup-title">{[center["name"]]}</span>
                   {[center["address"]]}
                   <br />
-                  {[center["zone"]["post_code"]]} {[center["zone"]["city"]]}
+                  {[center.zone?.post_code]} {[center.zone?.city]}
                   <br />
                   <button className="popup-button button">Reserve</button>
                 </div>
               </Popup>
             </Marker>
           ))}
+          <SearchBar onResultClick={handleResultClick} />
         </MapContainer>
       </div>
     </>

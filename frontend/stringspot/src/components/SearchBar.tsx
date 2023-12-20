@@ -1,10 +1,14 @@
 import API from "../api/axios";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { ICenter } from "../@types/center";
 import { IZone } from "../@types/zone";
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onResultClick: (suggestion: ICenter) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onResultClick }) => {
   const [apiCenters, setApiCenters] = useState<ICenter[]>([]);
   const [apiZones, setApiZones] = useState<IZone[]>([]);
   const [searchItem, setSearchItem] = useState("");
@@ -71,6 +75,11 @@ const SearchBar = () => {
     return "";
   };
 
+  const handleResultClick = (suggestion: ICenter | IZone) => {
+    onResultClick && onResultClick(suggestion as ICenter);
+    setHideSuggestions(true);
+  };
+
   return (
     <>
       <div className="search-wrapper">
@@ -96,7 +105,11 @@ const SearchBar = () => {
           ) : (
             <ul className="suggestions">
               {suggestions.map((suggestion: ICenter | IZone) => (
-                <li key={suggestion.id} className="suggestion">
+                <li
+                  key={suggestion.id}
+                  className="suggestion"
+                  onClick={() => handleResultClick(suggestion)}
+                >
                   {getDisplayText(suggestion)}
                 </li>
               ))}
