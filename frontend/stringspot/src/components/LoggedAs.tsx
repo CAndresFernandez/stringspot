@@ -1,27 +1,33 @@
 import React from "react-router-dom";
-import "../styles/login.css";
-import { getFromLocalStorage } from "../localStorage/localStorage";
+import "../styles/logged.css";
 import UnopDropdown from "unop-react-dropdown";
+import Logout from "./Logout";
 
 function LoggedAs() {
-  const storeUser = getFromLocalStorage("auth");
-  // console.log(storeUser);
-
   return (
     <>
       <div className="wrapper">
         {/* // todo change or rewrite this dropdown manually */}
         <UnopDropdown
-          trigger={
-            <button className="connect-button button-dark">Account</button>
-          }
+          trigger={<button className="account-button button">Account</button>}
           align="CENTER"
           delay={100}
         >
-          <div className="dropdown-container">
-            <ul>
-              <li>Account Dashboard</li>
-              <li>Logout</li>
+          <div className="dropdown-container-logged">
+            <ul className="dropdown-items">
+              <div className="dropdown-row">
+                <div className="dropdown-item">
+                  <li className="item-wrapper">
+                    <a href="#" className="">
+                      Dashboard
+                    </a>
+                  </li>
+                </div>
+
+                <div className="dropdown-item">
+                  <Logout />
+                </div>
+              </div>
             </ul>
           </div>
         </UnopDropdown>

@@ -29,14 +29,10 @@ export const getActionLogin = createAction<{
   name: string;
   roles: [];
 }>("email");
-// export const refreshFromLocalStorage = createAction<{}>("email/REFRESH");
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getActionLogin, (state, action) => {
-      // mettre isLogged à true dans le state
-      // enregistrer le speudo et le tocken dans le state
-      // console.log(action.id, action.token);
       state.logged = true;
       state.id = action.payload.id;
       state.token = action.payload.token;
@@ -44,7 +40,6 @@ const userReducer = createReducer(initialState, (builder) => {
       state.roles = action.payload.roles;
       myAxiosInstance.defaults.headers.common.Authorization = `Bearer ${action.payload.token}`;
 
-      // on va aussi enregistrer le token dans le localStorage
       saveToLocalStorage("auth", {
         token: action.payload.token,
         id: action.payload.id,
