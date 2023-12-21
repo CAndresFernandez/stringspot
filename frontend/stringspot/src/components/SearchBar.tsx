@@ -70,7 +70,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onResultClick }) => {
     if ("name" in suggestion) {
       return suggestion.name;
     } else if ("post_code" in suggestion) {
-      return suggestion.post_code;
+      return suggestion.city + " - " + suggestion.post_code;
     }
     return "";
   };

@@ -1,3 +1,5 @@
+import { ICenter } from "./center";
+
 export interface ICountry {
   id: number;
   name: string;
@@ -10,4 +12,5 @@ export interface IZone {
   city: string;
   post_code: string;
   country: ICountry;
+  centers: ICenter[];
 }

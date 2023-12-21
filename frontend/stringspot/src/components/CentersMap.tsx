@@ -8,6 +8,7 @@ import SearchBar from "./SearchBar";
 import { ICenter } from "../@types/center";
 import { IZone } from "../@types/zone";
 import L from "leaflet";
+import postCodeSearch from "../api/postCodeSearch";
 
 const CentersMap = () => {
   const mapRef = useRef();
@@ -35,7 +36,7 @@ const CentersMap = () => {
       "id" in suggestion
     ) {
       const { latitude, longitude } = suggestion;
-      map.flyTo([latitude, longitude], 15);
+      map.flyTo([latitude, longitude], 17);
       const latlng = L.latLng(latitude ?? 0, longitude ?? 0);
       const popup = L.popup()
         .setLatLng(latlng)
@@ -51,6 +52,26 @@ const CentersMap = () => {
             "<br /><button class='popup-button button'>Reserve</button></div>"
         );
       map.openPopup(popup);
+    } else if ("post_code" in suggestion) {
+      const apiKey = import.meta.env.VITE_GEOAPIFY_KEY;
+      postCodeSearch
+        .get(
+          `search?postcode=${suggestion.post_code}&format=json&apiKey=${apiKey}`
+        )
+        .then((res) => {
+          const results = res.data["results"];
+          if (results.length > 1) {
+            results.map((result: any) => {
+              if (result["city"] === suggestion.city) {
+                const latitude = result["lat"];
+                const longitude = result["lon"];
+                const latlng = L.latLng(latitude, longitude);
+                map.flyTo(latlng, 14);
+              }
+            });
+          }
+        })
+        .catch((err) => console.log(err));
     }
   };
 
