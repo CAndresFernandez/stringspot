@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import API from "../api/axios";
 import "leaflet/dist/leaflet.css";
 import "../styles/map.css";
@@ -28,6 +28,24 @@ const CentersMap = () => {
       setCenters(centers["hydra:member"]);
     });
   }, []);
+
+  const handleSearchBarFocus = () => {
+    map.dragging.disable();
+    map.scrollWheelZoom.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+  };
+
+  const handleSearchBarBlur = () => {
+    map.dragging.enable();
+    map.scrollWheelZoom.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
+  };
 
   const handleResultClick = (suggestion: ICenter | IZone) => {
     if (
@@ -134,7 +152,11 @@ const CentersMap = () => {
               </Popup>
             </Marker>
           ))}
-          <SearchBar onResultClick={handleResultClick} />
+          <SearchBar
+            onResultClick={handleResultClick}
+            onBlur={handleSearchBarBlur}
+            onFocus={handleSearchBarFocus}
+          />
         </MapContainer>
       </div>
     </>

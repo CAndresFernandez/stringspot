@@ -6,9 +6,15 @@ import { IZone } from "../@types/zone";
 
 interface SearchBarProps {
   onResultClick: (suggestion: ICenter) => void;
+  onFocus: () => void;
+  onBlur: () => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onResultClick }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  onResultClick,
+  onFocus,
+  onBlur,
+}) => {
   const [apiCenters, setApiCenters] = useState<ICenter[]>([]);
   const [apiZones, setApiZones] = useState<IZone[]>([]);
   const [searchItem, setSearchItem] = useState("");
@@ -89,9 +95,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onResultClick }) => {
           placeholder="Center Name or Postal Code..."
           value={searchItem}
           onChange={handleSearchInputChange}
+          onFocus={onFocus}
           onBlur={() => {
             setTimeout(() => {
               setHideSuggestions(true);
+              onBlur();
             }, 200);
           }}
         />
