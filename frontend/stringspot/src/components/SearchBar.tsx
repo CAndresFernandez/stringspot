@@ -1,5 +1,5 @@
 import API from "../api/axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { ICenter } from "../@types/center";
 import { IZone } from "../@types/zone";
@@ -86,6 +86,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
     setHideSuggestions(true);
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleClearClick = () => {
+    setSearchItem("");
+    setHideSuggestions(true);
+    inputRef.current?.focus();
+  };
+
   return (
     <>
       <div className="search-wrapper">
@@ -94,6 +101,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           className="search-input"
           placeholder="Center Name or Postal Code..."
           value={searchItem}
+          ref={inputRef}
           onChange={handleSearchInputChange}
           onFocus={onFocus}
           onBlur={() => {
@@ -103,6 +111,15 @@ const SearchBar: React.FC<SearchBarProps> = ({
             }, 200);
           }}
         />
+        {searchItem && (
+          <button
+            className="clear-button"
+            onClick={handleClearClick}
+            title="Clear"
+          >
+            x
+          </button>
+        )}
         <div
           className={`${"suggestions-wrapper"} ${
             hideSuggestions ? "hidden" : ""

@@ -123,7 +123,6 @@ const CentersMap = () => {
           center={parisPosition}
           zoom={12}
           ref={mapRef}
-          scrollWheelZoom={false}
           style={{
             height: "100%",
             width: "100%",

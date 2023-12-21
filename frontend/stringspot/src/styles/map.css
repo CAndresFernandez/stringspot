@@ -145,3 +145,16 @@
     font-size: .8rem;
     padding: 1rem;
 }
+
+.clear-button {
+    position: absolute;
+    background-color: white;
+    border: none;
+    box-shadow: none;
+    font-size: 1.25rem;
+    color: lightslategray;
+    z-index: 1001;
+    margin-right: .625rem;
+    padding: 0;
+    cursor: pointer;
+}
