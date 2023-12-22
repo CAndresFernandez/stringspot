@@ -1,0 +1,160 @@
+.textbox {
+    align-items: center;
+    align-self: center;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    padding-right: 5%;
+    width: 30%;
+}
+
+.textbox span {
+    font-size: 1.25rem;
+    font-style: italic;
+    letter-spacing: 0;
+    line-height: normal;
+    position: relative;
+    width: fit-content;
+}
+
+.textbox-title {
+    color: black;
+}
+
+.map-button {
+    font-size: 1.25rem;
+    background-color: #ffffff;
+    height: 55px;
+    width: 150px;
+    min-width: fit-content;
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19), inset 0 0 6px black;
+}
+
+.map-button:last-of-type {
+    margin-bottom: .5rem;
+}
+
+.popup-wrapper {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    width: fit-content;
+
+}
+
+.popup-button {
+    font-size: .75rem;
+    color: black;
+    background-color: #ffffff;
+    height: 25px;
+    width: 50%;
+    min-width: fit-content;
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19), inset 0 0 6px black;
+}
+
+.popup-title {
+    font-weight: 600;
+}
+
+.leaflet-control span {
+    color: black;
+}
+
+.leaflet-container {
+    position: relative;
+    font-family: "Overpass Mono", monospace;
+    z-index: 0;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-top: 10px;
+    padding-right: 10px;
+    margin-left: 50%;
+    z-index: 1000;
+}
+
+.search-input {
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid grey;
+    height: 25px;
+    padding: 5px;
+    width: 60%;
+    z-index: 1000;
+}
+
+.suggestions-wrapper {
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: white;
+    min-height: 2rem;
+    width: 61%;
+    position: absolute;
+    top: 50px;
+    overflow: hidden;
+    z-index: 1001;
+    pointer-events: auto;
+}
+
+.suggestions {
+    position: relative;
+    padding: 1rem .5rem;
+    padding-right: 0;
+    width: 97%;
+    max-height: 25vh;
+    overflow-y: auto;
+    box-sizing: content-box;
+    z-index: 1001;
+    pointer-events: auto;
+}
+
+.suggestions::-webkit-scrollbar {
+    width: 1rem;
+
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 8px;
+    border: 2px solid white;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 1);
+
+}
+
+.suggestion {
+    cursor: pointer;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.suggestion:hover {
+    background-color: #d9d9d9;
+}
+
+.no-results {
+    font-size: .8rem;
+    padding: 1rem;
+}
+
+.clear-button {
+    position: absolute;
+    background-color: white;
+    border: none;
+    box-shadow: none;
+    font-size: 1.25rem;
+    color: lightslategray;
+    z-index: 1001;
+    margin-right: .625rem;
+    padding: 0;
+    cursor: pointer;
+}

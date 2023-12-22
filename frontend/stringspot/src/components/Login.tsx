@@ -22,7 +22,7 @@ const Login = () => {
     setPasswordError("");
 
     if ("" === email) {
-      setEmailError("Please enter your e-mail address");
+      setEmailError("Enter an e-mail address");
       return;
     }
 
@@ -32,7 +32,7 @@ const Login = () => {
     }
 
     if ("" === password) {
-      setPasswordError("Please enter a password");
+      setPasswordError("Enter a password");
       return;
     }
 
@@ -46,6 +46,8 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setError("Invalid credentials");
+      setEmail("");
+      setPassword("");
     }
   };
 
@@ -54,9 +56,7 @@ const Login = () => {
       <div className="wrapper">
         {/* // todo change or rewrite this dropdown manually */}
         <UnopDropdown
-          trigger={
-            <button className="connect-button button-dark">Connect</button>
-          }
+          trigger={<button className="connect-button button">Connect</button>}
           align="CENTER"
           delay={100}
         >
@@ -71,7 +71,9 @@ const Login = () => {
                   value={email} // control en lecture : on affiche la donnée de redux
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <label className="error-label">{emailError}</label>
+                <div className="error-wrapper">
+                  <label className="error-label">{emailError}</label>
+                </div>
               </div>
               <br />
               <div className="input-container">
@@ -82,22 +84,24 @@ const Login = () => {
                   value={password} // control en lecture : on affiche la donnée de redux
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <label className="error-label">{passwordError}</label>
+                <div className="error-wrapper">
+                  <label className="error-label">{passwordError}</label>
+                </div>
               </div>
               <br />
               <div className="input-container">
                 <button
                   type="submit"
-                  className={"input-button button-dark"}
+                  className={"input-button button"}
                   value={"Log in"}
                 >
                   Login
                 </button>
+                <div className="invalid-error">
+                  <label className="error-message">{error}</label>
+                </div>
               </div>
             </form>
-          </div>
-          <div className="invalid-error">
-            {error && <p className="error-message">{error}</p>}
           </div>
         </UnopDropdown>
       </div>

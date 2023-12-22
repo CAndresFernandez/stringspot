@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import LoggedAs from "./LoggedAs";
+import SearchBar from "./SearchBar";
 import { useAppSelector } from "../hooks/redux";
 import { getFromLocalStorage } from "../localStorage/localStorage";
 
@@ -17,26 +18,26 @@ const Header = () => {
               STRING<span>SPOT</span>
             </h1>
           </div>
-          {/* <div className="brand-icon" /> */}
           <div className="nav-links">
             <ul className="nav-link-items">
               <li>
-                <a href="#" className="nav-item nav-item-1">
+                <a href="#" className="nav-item nav-item-1 link">
                   Find.
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-item nav-item-2">
+                <a href="#" className="nav-item nav-item-2 link">
                   Book.
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-item nav-item-2">
+                <a href="#" className="nav-item nav-item-3 link">
                   Play.
                 </a>
               </li>
             </ul>
           </div>
+          {/* <SearchBar /> */}
           {logged ? (
             <div className="div-wrapper logged-as">
               <div>Welcome back,</div>
@@ -46,9 +47,6 @@ const Header = () => {
             </div>
           ) : null}
           {logged ? <LoggedAs /> : <Login />}
-          {/* <div className="div-wrapper">
-            <div className="user-icon" />
-          </div> */}
         </nav>
       </div>
     </>

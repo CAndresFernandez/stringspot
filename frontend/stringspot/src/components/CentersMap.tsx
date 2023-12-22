@@ -2,7 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import API from "../api/axios";
 import "leaflet/dist/leaflet.css";
-import { LatLng, LatLngExpression, map } from "leaflet";
+import "../styles/map.css";
+import { LatLngExpression } from "leaflet";
+import SearchBar from "./SearchBar";
+import { ICenter } from "../@types/center";
+import { IZone } from "../@types/zone";
+import L from "leaflet";
+import postCodeSearch from "../api/postCodeSearch";
 
 const CentersMap = () => {
   const mapRef = useRef();
@@ -14,7 +20,7 @@ const CentersMap = () => {
   const nycPosition: LatLngExpression = [
     40.735006424621766, -73.99031122791754,
   ];
-  const [centers, setCenters] = useState([]);
+  const [centers, setCenters] = useState<ICenter[]>([]);
 
   useEffect(() => {
     API.get(`centers`).then((res) => {
@@ -23,26 +29,90 @@ const CentersMap = () => {
     });
   }, []);
 
+  const handleSearchBarFocus = () => {
+    map.dragging.disable();
+    map.scrollWheelZoom.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+  };
+
+  const handleSearchBarBlur = () => {
+    map.dragging.enable();
+    map.scrollWheelZoom.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
+  };
+
+  const handleResultClick = (suggestion: ICenter | IZone) => {
+    if (
+      "latitude" in suggestion &&
+      "longitude" in suggestion &&
+      "id" in suggestion
+    ) {
+      const { latitude, longitude } = suggestion;
+      map.flyTo([latitude, longitude], 17);
+      const latlng = L.latLng(latitude ?? 0, longitude ?? 0);
+      const popup = L.popup()
+        .setLatLng(latlng)
+        .setContent(
+          "<div class='popup-wrapper'><span class='popup-title'>" +
+            `${suggestion.name}` +
+            "</span>" +
+            `${suggestion.address}` +
+            "<br />" +
+            `${suggestion.zone?.post_code}` +
+            " " +
+            `${suggestion.zone?.city}` +
+            "<br /><button class='popup-button button'>Reserve</button></div>"
+        );
+      map.openPopup(popup);
+    } else if ("post_code" in suggestion) {
+      const apiKey = import.meta.env.VITE_GEOAPIFY_KEY;
+      postCodeSearch
+        .get(
+          `search?postcode=${suggestion.post_code}&format=json&apiKey=${apiKey}`
+        )
+        .then((res) => {
+          const results = res.data["results"];
+          if (results.length > 1) {
+            results.map((result: any) => {
+              if (result["city"] === suggestion.city) {
+                const latitude = result["lat"];
+                const longitude = result["lon"];
+                const latlng = L.latLng(latitude, longitude);
+                map.flyTo(latlng, 14);
+              }
+            });
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <>
-      <div className="main-box green courts">
+      <div className="main-box map-wrapper">
         <div className="textbox">
           <h2 className="textbox-title">Cities</h2>
           <button
             onClick={() => map.panTo(parisPosition)}
-            className="button-light map-button"
+            className="button map-button"
           >
             Paris
           </button>
           <button
             onClick={() => map.panTo(londonPosition)}
-            className="button-light map-button"
+            className="button map-button"
           >
             London
           </button>
           <button
             onClick={() => map.panTo(nycPosition)}
-            className="button-light map-button"
+            className="button map-button"
           >
             NYC
           </button>
@@ -56,7 +126,8 @@ const CentersMap = () => {
           style={{
             height: "100%",
             width: "100%",
-            boxShadow: "0 0 36px black",
+            boxShadow:
+              "0 8px 8px 0 rgba(0, 0, 0, .2), 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px #363333",
           }}
         >
           <TileLayer
@@ -65,7 +136,7 @@ const CentersMap = () => {
           />
           {centers.map((center) => (
             <Marker
-              position={[center["latitude"], center["longitude"]]}
+              position={[center.latitude, center.longitude] as LatLngExpression}
               key={center["id"]}
             >
               <Popup>
@@ -73,13 +144,18 @@ const CentersMap = () => {
                   <span className="popup-title">{[center["name"]]}</span>
                   {[center["address"]]}
                   <br />
-                  {[center["zone"]["post_code"]]} {[center["zone"]["city"]]}
+                  {[center.zone?.post_code]} {[center.zone?.city]}
                   <br />
-                  <button className="popup-button button-dark">Reserve</button>
+                  <button className="popup-button button">Reserve</button>
                 </div>
               </Popup>
             </Marker>
           ))}
+          <SearchBar
+            onResultClick={handleResultClick}
+            onBlur={handleSearchBarBlur}
+            onFocus={handleSearchBarFocus}
+          />
         </MapContainer>
       </div>
     </>

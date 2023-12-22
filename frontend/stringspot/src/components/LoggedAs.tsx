@@ -9,9 +9,7 @@ function LoggedAs() {
       <div className="wrapper">
         {/* // todo change or rewrite this dropdown manually */}
         <UnopDropdown
-          trigger={
-            <button className="account-button button-dark">Account</button>
-          }
+          trigger={<button className="account-button button">Account</button>}
           align="CENTER"
           delay={100}
         >

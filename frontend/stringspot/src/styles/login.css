@@ -1,3 +1,15 @@
+.connect-button {
+    font-size: 1.25rem;
+    color: black;
+    background-color: #ffffff;
+    height: 55px;
+    padding: 8px;
+    min-width: 120px;
+    width: 10%;
+    border: .5px solid black;
+    /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
 .dropdown-container {
     flex-direction: column;
     border: 1px solid black;
@@ -5,11 +17,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
-    width: 180px;
+    height: 180px;
+    width: 200px;
     background-color: #d9d9d9;
     margin-top: 10px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    z-index: 3;
 }
 
 .title-container {
@@ -21,50 +35,13 @@
     justify-content: center;
 }
 
-.result-container,
-.history-item {
-    flex-direction: row;
-    display: flex;
-    width: 400px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.history-container {
-    flex-direction: column;
-    display: flex;
-    height: 200px;
-    align-items: center;
-    flex-grow: 5;
-    justify-content: flex-start;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 260px;
-}
-
 .input-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
 }
 
-.input-container>.error-label {
+.error-wrapper .error-label {
     color: red;
     font-size: 12px;
-}
-
-.input-box {
-    height: 48px;
-    width: 400px;
-    font-size: large;
-    border-radius: 20px;
-    border: 1px solid grey;
 }
 
 .settings-input {
@@ -77,18 +54,24 @@
 
 .input-button {
     font-family: "Overpass Mono", monospace;
-    color: white;
+    color: #ffffff;
     font-size: 1rem;
     border-radius: 20px;
     background-color: black;
     width: 100px;
     height: 30px;
     margin: 0 auto;
+    margin-bottom: 0;
+}
+
+.input-button:hover {
+    box-shadow: inset 0 0 8px black;
 }
 
 .invalid-error {
     text-align: center;
-    color: white;
+    font-size: 12px;
+    color: red;
     padding-top: 10px;
 }
 
