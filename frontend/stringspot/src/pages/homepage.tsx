@@ -1,19 +1,17 @@
 import React from "react";
-import CentersMap from "../components/CentersMap";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import CentersMap from "../components/Map/CentersMap";
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
 
 export default function Homepage() {
   return (
     <>
-      <div className="springspot-homepage">
+      <div className="stringspot-layout">
         <Header />
         <div className="main-box-wrapper">
           <CentersMap />
         </div>
-        {/* <div className="main-box-wrapper"> */}
         <Footer />
-        {/* </div> */}
       </div>
     </>
   );

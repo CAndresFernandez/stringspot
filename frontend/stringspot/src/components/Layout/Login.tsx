@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/login.css";
-import login from "../api/login";
-import { useAppDispatch } from "../hooks/redux";
-import { getActionLogin } from "../store/reducers/userReducer";
+import "../../styles/login.css";
+import login from "../../api/login";
+import { useAppDispatch } from "../../hooks/redux";
+import { getActionLogin } from "../../store/reducers/userReducer";
 import UnopDropdown from "unop-react-dropdown";
 
 const Login = () => {

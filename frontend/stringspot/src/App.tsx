@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import { getFromLocalStorage } from "./localStorage/localStorage";
 import { getActionLogin } from "./store/reducers/userReducer";
 import Homepage from "./pages/homepage";
+import Dashboard from "./pages/dashboard";
 
 const App = () => {
   const logged = useAppSelector((state) => state.user.logged);
@@ -26,6 +27,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 };

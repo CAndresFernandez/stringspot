@@ -1,7 +1,8 @@
 import React from "react-router-dom";
-import "../styles/logged.css";
+import "../../styles/logged.css";
 import UnopDropdown from "unop-react-dropdown";
 import Logout from "./Logout";
+import { Link } from "react-router-dom";
 
 function LoggedAs() {
   return (
@@ -18,9 +19,10 @@ function LoggedAs() {
               <div className="dropdown-row">
                 <div className="dropdown-item">
                   <li className="item-wrapper">
-                    <a href="#" className="">
+                    <Link to={`/dashboard`}>Dashboard</Link>
+                    {/* <a href="" className="">
                       Dashboard
-                    </a>
+                    </a> */}
                   </li>
                 </div>
 

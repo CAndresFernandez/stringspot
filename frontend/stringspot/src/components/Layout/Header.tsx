@@ -1,9 +1,9 @@
 import React from "react";
 import Login from "./Login";
 import LoggedAs from "./LoggedAs";
-import SearchBar from "./SearchBar";
-import { useAppSelector } from "../hooks/redux";
-import { getFromLocalStorage } from "../localStorage/localStorage";
+import { useAppSelector } from "../../hooks/redux";
+import { getFromLocalStorage } from "../../localStorage/localStorage";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const logged = useAppSelector((state) => state.user.logged);
@@ -14,9 +14,11 @@ const Header = () => {
       <div className="header-wrapper">
         <nav className="navbar">
           <div className="title-wrapper">
-            <h1 className="page-title">
-              STRING<span>SPOT</span>
-            </h1>
+            <Link to={`/`}>
+              <h1 className="page-title">
+                STRING<span>SPOT</span>
+              </h1>
+            </Link>
           </div>
           <div className="nav-links">
             <ul className="nav-link-items">
@@ -37,7 +39,6 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          {/* <SearchBar /> */}
           {logged ? (
             <div className="div-wrapper logged-as">
               <div>Welcome back,</div>

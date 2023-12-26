@@ -33,6 +33,10 @@ h3 {
     font-size: 3rem;
 }
 
+h4 {
+    font-size: 2rem;
+}
+
 a {
     text-decoration: none;
     font-size: 1.25rem;
@@ -95,7 +99,7 @@ input:focus {
     box-shadow: 0 0 10px #363333;
 }
 
-.springspot-homepage {
+.stringspot-layout {
     align-items: center;
     position: relative;
     width: 100%;

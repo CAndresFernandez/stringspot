@@ -1,8 +1,8 @@
-import API from "../api/axios";
+import API from "../../api/axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { ICenter } from "../@types/center";
-import { IZone } from "../@types/zone";
+import { ICenter } from "../../@types/center";
+import { IZone } from "../../@types/zone";
 
 interface SearchBarProps {
   onResultClick: (suggestion: ICenter) => void;

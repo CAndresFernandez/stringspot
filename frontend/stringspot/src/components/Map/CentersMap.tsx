@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import API from "../api/axios";
+import API from "../../api/axios";
 import "leaflet/dist/leaflet.css";
-import "../styles/map.css";
+import "../../styles/map.css";
 import { LatLngExpression } from "leaflet";
 import SearchBar from "./SearchBar";
-import { ICenter } from "../@types/center";
-import { IZone } from "../@types/zone";
+import { ICenter } from "../../@types/center";
+import { IZone } from "../../@types/zone";
 import L from "leaflet";
-import postCodeSearch from "../api/postCodeSearch";
+import postCodeSearch from "../../api/postCodeSearch";
 
 const CentersMap = () => {
   const mapRef = useRef();

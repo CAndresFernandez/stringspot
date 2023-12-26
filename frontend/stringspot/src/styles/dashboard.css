@@ -1,0 +1,26 @@
+.sidebar {
+    border-right: 1px solid black;
+    height: 100%;
+}
+
+.sidebar-header {}
+
+.sidebar-list-wrapper {
+    position: relative;
+}
+
+.sidebar-list {}
+
+.sidebar-list-item {}
+
+.reservations {
+    height: 100%;
+}
+
+.prefs {
+    height: 100%;
+}
+
+.prefs-list {}
+
+.prefs-list-item {}
