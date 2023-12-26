@@ -1,20 +1,57 @@
-.sidebar {
-    border-right: 1px solid black;
-    height: 100%;
+.main-wrapper {
+    display: flex;
+    height: 80vh;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
 }
 
-.sidebar-header {}
+.component-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard-wrapper {
+    width: 100vh;
+    justify-content: center;
+}
+
+.sidebar {
+    height: 100%;
+    background-color: #363333;
+    padding: 2rem 5%;
+    width: fit-content;
+}
+
+.sidebar-header {
+    color: #dfff4f;
+    margin-bottom: 1.25rem;
+}
 
 .sidebar-list-wrapper {
+    display: flex;
     position: relative;
 }
 
-.sidebar-list {}
+.sidebar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
-.sidebar-list-item {}
+.sidebar-list-item {
+    cursor: pointer;
+}
 
-.reservations {
-    height: 100%;
+.res-active {
+    height: 30%;
+    border-bottom: 2px solid grey;
+    padding: 2rem 0;
+
+}
+
+.res-past {
+    height: 70%;
+    padding: 2rem 0;
 }
 
 .prefs {
@@ -23,4 +60,41 @@
 
 .prefs-list {}
 
-.prefs-list-item {}
+.prefs-list-item .link:link {
+    color: black;
+}
+
+.prefs-list-item .link:visited {
+    color: black;
+}
+
+.prefs-list-item .link:hover {
+    color: grey;
+}
+
+.prefs-list-item .link.edit:active {
+    color: black;
+}
+
+.prefs-list-item .link.delete:active {
+    color: red;
+}
+
+.h4-dark {
+    color: black;
+}
+
+.table-header {
+    height: fit-content;
+    padding-left: .5rem;
+    margin-bottom: .5rem;
+
+}
+
+.table-columns {
+    border-bottom: 1px solid lightgray;
+}
+
+.table-custom {
+    height: fit-content;
+}

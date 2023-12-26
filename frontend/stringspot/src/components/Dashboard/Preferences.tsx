@@ -3,7 +3,7 @@ import React from "react";
 function Preferences() {
   return (
     <div className="row prefs">
-      <h4>Account Settings</h4>
+      <h4 className="h4-dark">Account Preferences</h4>
       <div className="acct-info">
         <table className="table table-hover">
           <tbody>
@@ -31,13 +31,27 @@ function Preferences() {
               </th>
               <td></td>
             </tr>
+            <tr>
+              <th scope="col" className="col-1">
+                Member since
+              </th>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </div>
       <div className="options">
         <ul className="prefs-list">
-          <li className="prefs-list-item">Edit Account information</li>
-          <li className="prefs-list-item">Delete account</li>
+          <li className="prefs-list-item">
+            <a href="#" className="link edit">
+              Edit Account information
+            </a>
+          </li>
+          <li className="prefs-list-item">
+            <a href="#" className="link delete">
+              Delete account
+            </a>
+          </li>
         </ul>
       </div>
     </div>

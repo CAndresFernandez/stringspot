@@ -16,7 +16,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     color: #ffffff;
     font-family: "Overpass Mono", monospace;
 }
@@ -47,6 +48,11 @@ a:visited {
     color: #ffffff;
 }
 
+a.link {
+    text-decoration: none;
+    color: #ffffff;
+}
+
 a.link:link {
     color: #ffffff;
 }
@@ -62,15 +68,6 @@ a.link:active {
 .popup-button a {
     font-size: .8rem;
 }
-
-/* .footer-wrapper a:link {
-    color: #ffffff;
-}
-
-.footer-wrapper a:hover {
-    font-weight: normal;
-    color: #dfff4f;
-} */
 
 button {
     font-family: "Overpass Mono", monospace;
@@ -108,7 +105,6 @@ input:focus {
 .header-wrapper {
     position: relative;
     box-sizing: border-box;
-    margin-bottom: 5vh;
 }
 
 .navbar {
@@ -160,6 +156,8 @@ input:focus {
     box-sizing: border-box;
     height: 70vh;
     z-index: 0;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 .main-box {
@@ -180,7 +178,7 @@ input:focus {
     background-color: #363333;
     position: relative;
     width: 100%;
-    margin-top: 5vh;
+    /* margin-top: 5vh; */
 }
 
 .footer-nav-links {
