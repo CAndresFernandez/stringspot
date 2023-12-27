@@ -61,14 +61,13 @@ const Login = () => {
           delay={100}
         >
           <div className="dropdown-container">
-            {/* <form action=""> */}
             <form onSubmit={handleLogin}>
               <div className="input-container">
                 <input
                   type="text"
                   className="settings-input"
                   placeholder="E-mail address"
-                  value={email} // control en lecture : on affiche la donnée de redux
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <div className="error-wrapper">
@@ -81,7 +80,7 @@ const Login = () => {
                   type="password"
                   className="settings-input"
                   placeholder="Password"
-                  value={password} // control en lecture : on affiche la donnée de redux
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="error-wrapper">
@@ -97,8 +96,8 @@ const Login = () => {
                 >
                   Login
                 </button>
-                <div className="invalid-error">
-                  <label className="error-message">{error}</label>
+                <div className="error-wrapper">
+                  <label className="error-label">{error}</label>
                 </div>
               </div>
             </form>

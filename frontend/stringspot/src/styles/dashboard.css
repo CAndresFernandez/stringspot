@@ -1,22 +1,29 @@
 .main-wrapper {
+    position: relative;
+    box-sizing: border-box;
     display: flex;
-    height: 80vh;
+    /* height: 80vh; */
+    /* width: 100vw; */
     border-top: 1px solid white;
     border-bottom: 1px solid white;
 }
 
 .component-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    width: fit-content;
+    box-sizing: content-box;
+    margin: 0 auto;
 }
 
 .dashboard-wrapper {
-    width: 100vh;
+    width: fit-content;
     justify-content: center;
+    margin: 0 5%;
 }
 
 .sidebar {
-    height: 100%;
+    height: 80vh;
     background-color: #363333;
     padding: 2rem 5%;
     width: fit-content;
@@ -42,16 +49,17 @@
     cursor: pointer;
 }
 
-.res-active {
+.res-active-wrapper {
     height: 30%;
     border-bottom: 2px solid grey;
     padding: 2rem 0;
-
+    align-content: flex-start;
 }
 
-.res-past {
+.res-past-wrapper {
     height: 70%;
     padding: 2rem 0;
+    align-content: flex-start;
 }
 
 .prefs {

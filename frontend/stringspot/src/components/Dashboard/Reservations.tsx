@@ -3,10 +3,10 @@ import React from "react";
 function Reservations() {
   return (
     <div className="row dashboard-wrapper">
-      <div className="row res-active">
+      <div className="row res-active-wrapper">
+        <h4 className="h4-dark table-header">Reservations</h4>
         <table className="table table-custom">
           <thead className="thead-dark">
-            <h4 className="h4-dark table-header">Reservations</h4>
             <tr className="table-columns">
               <th scope="col">Date</th>
               <th scope="col">Time</th>
@@ -24,10 +24,10 @@ function Reservations() {
           </tbody>
         </table>
       </div>
-      <div className="row res-past">
+      <div className="row res-past-wrapper">
+        <h4 className="h4-dark table-header">Past Reservations</h4>
         <table className="table table-striped table-hover table-custom">
           <thead>
-            <h4 className="h4-dark table-header">Past reservations</h4>
             <tr className="table-columns">
               <th>Date</th>
               <th>Time</th>
