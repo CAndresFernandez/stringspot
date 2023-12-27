@@ -1,37 +1,40 @@
+/* wrappers */
 .main-wrapper {
     position: relative;
     box-sizing: border-box;
     display: flex;
-    /* height: 80vh; */
-    /* width: 100vw; */
     border-top: 1px solid white;
     border-bottom: 1px solid white;
 }
 
 .component-wrapper {
+    box-sizing: border-box;
     display: flex;
     justify-content: flex-start;
     width: fit-content;
-    box-sizing: content-box;
     margin: 0 auto;
 }
 
 .dashboard-wrapper {
-    width: fit-content;
+    width: 75vw;
     justify-content: center;
-    margin: 0 5%;
 }
 
+/* sidebar */
 .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     height: 80vh;
     background-color: #363333;
-    padding: 2rem 5%;
-    width: fit-content;
+    padding: 2rem 3%;
+    min-width: fit-content;
+    max-width: 15vw;
 }
 
 .sidebar-header {
-    color: #dfff4f;
     margin-bottom: 1.25rem;
+    align-self: flex-start;
 }
 
 .sidebar-list-wrapper {
@@ -49,54 +52,104 @@
     cursor: pointer;
 }
 
+.active {
+    padding: .25rem .5rem;
+    border: 1px solid #dfff4f;
+    border-radius: 10px;
+}
+
+/* component parts - reservations */
 .res-active-wrapper {
     height: 30%;
-    border-bottom: 2px solid grey;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     align-content: flex-start;
 }
 
 .res-past-wrapper {
     height: 70%;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     align-content: flex-start;
 }
 
-.prefs {
-    height: 100%;
-}
-
-.prefs-list {}
-
-.prefs-list-item .link:link {
-    color: black;
-}
-
-.prefs-list-item .link:visited {
-    color: black;
-}
-
-.prefs-list-item .link:hover {
-    color: grey;
-}
-
-.prefs-list-item .link.edit:active {
-    color: black;
-}
-
-.prefs-list-item .link.delete:active {
-    color: red;
-}
-
-.h4-dark {
-    color: black;
-}
-
-.table-header {
+.res-table-header {
     height: fit-content;
     padding-left: .5rem;
     margin-bottom: .5rem;
+}
 
+/* component parts - preferences */
+.acct-info-wrapper {
+    height: 70%;
+    padding: 2rem 1rem;
+    align-content: flex-start;
+}
+
+.acct-info-table-custom {
+    font-size: 1.25rem;
+}
+
+.options-wrapper {
+    display: flex;
+    height: 30%;
+    padding: 2rem 1rem;
+    align-items: center;
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.options-link {
+    color: black;
+}
+
+.link-edit:hover {
+    color: grey;
+}
+
+.link-delete:hover {
+    color: red;
+}
+
+.link-edit:active {
+    color: black;
+}
+
+.link-delete:active {
+    color: black;
+}
+
+.options-table-header {
+    height: fit-content;
+    padding-left: .5rem;
+    margin-bottom: 2rem;
+}
+
+.td {
+    font-style: italic;
+}
+
+/* component parts - favorites */
+
+.favorites-wrapper {
+    display: flex;
+    width: 100%;
+    padding: 2rem 1rem;
+    align-content: flex-start;
+}
+
+.favorites-table-header {
+    height: fit-content;
+    padding-left: .5rem;
+    margin-bottom: 2rem;
+}
+
+/* misc */
+.h4-dark {
+    color: black;
 }
 
 .table-columns {

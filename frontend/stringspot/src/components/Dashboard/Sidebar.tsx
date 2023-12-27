@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface SidebarProps {
-  setActiveComponent: (component: string) => void;
+  setActiveComponent: React.Dispatch<React.SetStateAction<string>>;
 }
 const Sidebar: React.FC<SidebarProps> = ({ setActiveComponent }) => {
+  const [activeComponent, setActiveComponentInternal] =
+    useState("Reservations");
+
   const handleItemClick = (component: string) => {
+    setActiveComponentInternal(component);
     setActiveComponent(component);
   };
 
@@ -15,7 +19,9 @@ const Sidebar: React.FC<SidebarProps> = ({ setActiveComponent }) => {
         <ul className="sidebar-list">
           <li>
             <a
-              className="link sidebar-list-item"
+              className={`link sidebar-list-item ${
+                activeComponent === "Reservations" ? "active" : ""
+              }`}
               onClick={() => handleItemClick("Reservations")}
             >
               Reservations
@@ -23,7 +29,9 @@ const Sidebar: React.FC<SidebarProps> = ({ setActiveComponent }) => {
           </li>
           <li>
             <a
-              className="link sidebar-list-item"
+              className={`link sidebar-list-item ${
+                activeComponent === "Favorites" ? "active" : ""
+              }`}
               onClick={() => handleItemClick("Favorites")}
             >
               My centers
@@ -31,20 +39,24 @@ const Sidebar: React.FC<SidebarProps> = ({ setActiveComponent }) => {
           </li>
           <li>
             <a
-              className="link sidebar-list-item"
+              className={`link sidebar-list-item ${
+                activeComponent === "Profile" ? "active" : ""
+              }`}
               onClick={() => handleItemClick("Profile")}
             >
               Profile
             </a>
           </li>
-          <li>
+          {/* <li>
             <a
-              className="link sidebar-list-item"
+              className={`link sidebar-list-item ${
+                activeComponent === "Preferences" ? "active" : ""
+              }`}
               onClick={() => handleItemClick("Preferences")}
             >
               Preferences
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

@@ -1,17 +1,25 @@
 import React from "react";
 
-function Reservations() {
+const Reservations = () => {
   return (
     <div className="row dashboard-wrapper">
       <div className="row res-active-wrapper">
-        <h4 className="h4-dark table-header">Reservations</h4>
-        <table className="table table-custom">
-          <thead className="thead-dark">
+        <h4 className="h4-dark res-table-header">Active Reservations</h4>
+        <table className="table table-hover table-custom">
+          <thead>
             <tr className="table-columns">
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
-              <th scope="col">Center</th>
-              <th scope="col">Court</th>
+              <th scope="col" className="col-2">
+                Date
+              </th>
+              <th scope="col" className="col-1">
+                Time
+              </th>
+              <th scope="col" className="col-4">
+                Center
+              </th>
+              <th scope="col" className="col-2">
+                Court
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -25,14 +33,14 @@ function Reservations() {
         </table>
       </div>
       <div className="row res-past-wrapper">
-        <h4 className="h4-dark table-header">Past Reservations</h4>
-        <table className="table table-striped table-hover table-custom">
+        <h4 className="h4-dark res-table-header">Past Reservations</h4>
+        <table className="table table-hover table-custom">
           <thead>
             <tr className="table-columns">
-              <th>Date</th>
-              <th>Time</th>
-              <th>Center</th>
-              <th>Court</th>
+              <th className="col-2">Date</th>
+              <th className="col-1">Time</th>
+              <th className="col-4">Center</th>
+              <th className="col-2">Court</th>
             </tr>
           </thead>
           <tbody>
@@ -59,6 +67,6 @@ function Reservations() {
       </div>
     </div>
   );
-}
+};
 
 export default Reservations;

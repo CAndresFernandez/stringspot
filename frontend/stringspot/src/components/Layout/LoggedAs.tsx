@@ -4,7 +4,7 @@ import UnopDropdown from "unop-react-dropdown";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
 
-function LoggedAs() {
+const LoggedAs = () => {
   return (
     <>
       <div className="wrapper">
@@ -36,5 +36,5 @@ function LoggedAs() {
       </div>
     </>
   );
-}
+};
 export default LoggedAs;

@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import "../styles/dashboard.css";
-import Preferences from "../components/Dashboard/Preferences";
 import Sidebar from "../components/Dashboard/Sidebar";
 import Reservations from "../components/Dashboard/Reservations";
 
@@ -14,12 +13,11 @@ export default function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("Reservations");
   const renderComponent = () => {
     switch (activeComponent) {
-      case "Profile":
-        return <Profile />;
       case "Favorites":
         return <Favorites />;
-      case "Preferences":
-        return <Preferences />;
+      case "Profile":
+        return <Profile />;
+
       default:
         return <Reservations />;
     }

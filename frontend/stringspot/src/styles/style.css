@@ -48,6 +48,10 @@ a:visited {
     color: #ffffff;
 }
 
+a:hover {
+    cursor: pointer;
+}
+
 a.link {
     text-decoration: none;
     color: #ffffff;
