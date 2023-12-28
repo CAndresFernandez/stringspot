@@ -61,7 +61,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Reservation $reservation = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: PastRes::class, orphanRemoval: true, cascade: ['persist'])]
-    #[Groups(['users'])]
+    #[Groups(['users', 'pastRes'])]
     private Collection $pastRes;
 
     public function __construct()

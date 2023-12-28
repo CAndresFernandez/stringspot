@@ -1,3 +1,16 @@
+import { IReservation } from "./reservation";
+
+export interface IPastRes {
+  id: number;
+  user: IUser;
+  center: string;
+  court: string;
+  zone: string;
+  country: string;
+  date: string;
+  time: string;
+}
+
 export interface IUser {
   id: number;
   logged?: boolean;
@@ -6,4 +19,6 @@ export interface IUser {
   roles?: [];
   first_name: string;
   last_name: string;
+  reservation: IReservation;
+  pastRes: IPastRes[];
 }

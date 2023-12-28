@@ -17,7 +17,7 @@ class JWTEventSuccessListener
         $email = $user->getEmail();
         $first_name = $user->getFirstName();
         $last_name = $user->getLastName();
-        $role = $user->getRoles();
+        $roles = $user->getRoles();
 
         if (!$user instanceof UserInterface) {
             return;
@@ -26,8 +26,9 @@ class JWTEventSuccessListener
         $data['data'] = array(
             'id' => $id,
             'email' => $email,
-            'name' => $first_name . ' ' . $last_name,
-            'role' => $role,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'roles' => $roles,
         );
 
         // Set the custom data in the response payload
