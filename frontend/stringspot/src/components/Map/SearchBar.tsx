@@ -1,8 +1,8 @@
-import API from "../api/axios";
+import API from "../../api/axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { ICenter } from "../@types/center";
-import { IZone } from "../@types/zone";
+import { ICenter } from "../../@types/center";
+import { IZone } from "../../@types/zone";
 
 interface SearchBarProps {
   onResultClick: (suggestion: ICenter) => void;
@@ -83,6 +83,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   const handleResultClick = (suggestion: ICenter | IZone) => {
     onResultClick && onResultClick(suggestion as ICenter);
+    if ("name" in suggestion) {
+      setSearchItem(suggestion.name);
+    } else if ("post_code" in suggestion) {
+      setSearchItem(suggestion.post_code);
+    }
     setHideSuggestions(true);
   };
 

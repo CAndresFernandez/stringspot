@@ -29,7 +29,7 @@ class Center
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations'])]
+    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations', 'users'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -38,7 +38,7 @@ class Center
 
     #[ORM\ManyToOne(inversedBy: 'centers')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['centers'])]
+    #[Groups(['centers', 'users'])]
     private ?Zone $zone = null;
 
     #[ORM\OneToMany(mappedBy: 'center', targetEntity: Court::class, orphanRemoval: true)]

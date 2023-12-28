@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/login.css";
-import login from "../api/login";
-import { useAppDispatch } from "../hooks/redux";
-import { getActionLogin } from "../store/reducers/userReducer";
+import "../../styles/login.css";
+import login from "../../api/login";
+import { useAppDispatch } from "../../hooks/redux";
+import { getActionLogin } from "../../store/reducers/userReducer";
 import UnopDropdown from "unop-react-dropdown";
 
 const Login = () => {
@@ -56,19 +56,22 @@ const Login = () => {
       <div className="wrapper">
         {/* // todo change or rewrite this dropdown manually */}
         <UnopDropdown
-          trigger={<button className="connect-button button">Connect</button>}
+          trigger={
+            <button className="connect-button">
+              <div className="connect-button-2">Connect</div>
+            </button>
+          }
           align="CENTER"
           delay={100}
         >
           <div className="dropdown-container">
-            {/* <form action=""> */}
             <form onSubmit={handleLogin}>
               <div className="input-container">
                 <input
                   type="text"
                   className="settings-input"
                   placeholder="E-mail address"
-                  value={email} // control en lecture : on affiche la donnée de redux
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <div className="error-wrapper">
@@ -81,7 +84,7 @@ const Login = () => {
                   type="password"
                   className="settings-input"
                   placeholder="Password"
-                  value={password} // control en lecture : on affiche la donnée de redux
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="error-wrapper">
@@ -97,8 +100,8 @@ const Login = () => {
                 >
                   Login
                 </button>
-                <div className="invalid-error">
-                  <label className="error-message">{error}</label>
+                <div className="error-wrapper">
+                  <label className="error-label">{error}</label>
                 </div>
               </div>
             </form>

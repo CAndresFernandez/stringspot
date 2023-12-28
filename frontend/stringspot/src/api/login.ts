@@ -10,7 +10,7 @@ const login = (email: string, password: string) => {
       if (response.data.email) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
-
+      console.log(response.data);
       return response.data;
     });
 };

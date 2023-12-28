@@ -26,7 +26,7 @@ class PastRes
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['pastRes'])]
+    #[Groups(['pastRes', 'users'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'pastRes')]
@@ -39,7 +39,7 @@ class PastRes
     private ?string $center = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['pastRes'])]
+    #[Groups(['pastRes', 'users'])]
     private ?string $court = null;
 
     #[ORM\Column(length: 64)]
@@ -47,7 +47,7 @@ class PastRes
     private ?string $zone = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['pastRes'])]
+    #[Groups(['pastRes', 'users'])]
     private ?string $country = null;
 
     #[ORM\Column(length: 64)]

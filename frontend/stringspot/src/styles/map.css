@@ -85,7 +85,7 @@
     position: relative;
     border-radius: 10px;
     border: 1px solid grey;
-    height: 25px;
+    height: 2rem;
     padding: 5px;
     width: 60%;
     z-index: 1000;
@@ -107,7 +107,7 @@
 .suggestions {
     position: relative;
     padding: 1rem .5rem;
-    padding-right: 0;
+    padding-right: .1rem;
     width: 97%;
     max-height: 25vh;
     overflow-y: auto;

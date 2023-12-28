@@ -32,11 +32,11 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups(['courts', 'reservations'])]
+    #[Groups(['courts', 'reservations', 'users'])]
     private ?\DateTimeImmutable $start_time = null;
 
     #[ORM\Column]
-    #[Groups(['courts', 'reservations'])]
+    #[Groups(['courts', 'reservations', 'users'])]
     private ?\DateTimeImmutable $end_time = null;
 
     #[ORM\Column(length: 64)]
@@ -44,16 +44,16 @@ class Reservation
     private ?string $res_type = null;
 
     #[ORM\Column]
-    #[Groups(['reservations'])]
+    #[Groups(['reservations', 'users'])]
     private ?bool $active = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['reservations'])]
+    #[Groups(['reservations', 'users'])]
     private ?Court $court = null;
 
     #[ORM\Column]
-    #[Groups(['reservations'])]
+    #[Groups(['reservations', 'users'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]

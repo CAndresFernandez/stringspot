@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { getActionDisconnect } from "../store/reducers/userReducer";
-import "../styles/logged.css";
-import { useAppDispatch } from "../hooks/redux";
+import { getActionDisconnect } from "../../store/reducers/userReducer";
+import "../../styles/logged.css";
+import { useAppDispatch } from "../../hooks/redux";
 
-function Logout() {
+const Logout = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const onHomepage = location.pathname === "/";
@@ -23,6 +23,6 @@ function Logout() {
       </a>
     </li>
   );
-}
+};
 
 export default Logout;
