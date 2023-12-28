@@ -44,15 +44,50 @@
     color: black;
 }
 
-.account-button {
-    font-size: 1.25rem;
-    color: black;
-    background-color: #ffffff;
-    height: 55px;
+.acct-button {
+    background-color: #dfff4f;
     padding: 8px;
-    min-width: 100px;
-    width: 10%;
-    /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    height: 60px;
+    width: 60px;
+    font-family: "Overpass Mono", monospace;
+    align-items: center;
+    border-radius: 30px;
+    border: 1px solid #363333;
+    display: flex;
+    position: relative;
+    transition-duration: .2s;
+    box-shadow: 0 0 6px 2px white, inset 0 0 3px 1px black;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: .1s;
+    -webkit-transition-timing-function: ease;
+}
+
+.acct-button-2 {
+    background-color: white;
+    box-shadow: 0 0 6px 3px white, 0 0 6px 3px white;
+    border-radius: 50%;
+    height: 85%;
+    width: 85%;
+}
+
+.acct-button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.acct-button:active {
+    background-color: #dfff4f;
+    transform: scale(1);
+}
+
+.acct-button-initials {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    font-size: 2rem;
+    color: black;
+    padding-top: .5rem;
 }
 
 .logged-as {

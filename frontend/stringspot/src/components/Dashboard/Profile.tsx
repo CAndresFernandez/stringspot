@@ -9,13 +9,15 @@ function Profile() {
   const storeUser = getFromLocalStorage("auth");
 
   useEffect(() => {
-    API.get(`users/${storeUser?.id}`, {
-      headers: { Authorization: `Bearer ${storeUser?.token}` },
-    }).then((res) => {
-      const user = res.data;
-      setUser(user);
-    });
-  });
+    if (storeUser?.id && storeUser?.token) {
+      API.get(`users/${storeUser?.id}`, {
+        headers: { Authorization: `Bearer ${storeUser?.token}` },
+      }).then((res) => {
+        const user = res.data;
+        setUser(user);
+      });
+    }
+  }, [storeUser?.id, storeUser?.token]);
 
   // todo: write these handleClick functions for editing a user and deleting an account
   const handleClickEdit = () => {};

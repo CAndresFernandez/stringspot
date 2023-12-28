@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const logged = useAppSelector((state) => state.user.logged);
-  const storeUser = getFromLocalStorage("auth");
 
   return (
     <>
@@ -22,31 +21,11 @@ const Header = () => {
           </div>
           <div className="nav-links">
             <ul className="nav-link-items">
-              <li>
-                <a href="#" className="nav-item link">
-                  Find.
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-item link">
-                  Book.
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-item link">
-                  Play.
-                </a>
-              </li>
+              <li>Find.</li>
+              <li>Book.</li>
+              <li>Play.</li>
             </ul>
           </div>
-          {logged ? (
-            <div className="div-wrapper logged-as">
-              <div>Welcome back,</div>
-              <div>
-                <span className="username">{storeUser?.name}</span>
-              </div>
-            </div>
-          ) : null}
           {logged ? <LoggedAs /> : <Login />}
         </nav>
       </div>
