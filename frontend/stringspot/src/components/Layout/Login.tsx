@@ -56,7 +56,11 @@ const Login = () => {
       <div className="wrapper">
         {/* // todo change or rewrite this dropdown manually */}
         <UnopDropdown
-          trigger={<button className="connect-button button">Connect</button>}
+          trigger={
+            <button className="connect-button">
+              <div className="connect-button-2">Connect</div>
+            </button>
+          }
           align="CENTER"
           delay={100}
         >
