@@ -29,7 +29,7 @@ class Zone
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations'])]
+    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations', 'users'])]
     private ?string $post_code = null;
 
     #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Center::class)]
@@ -37,7 +37,7 @@ class Zone
     private Collection $centers;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations'])]
+    #[Groups(['courts', 'centers', 'countries', 'zones', 'reservations', 'users'])]
     private ?string $city = null;
 
     #[ORM\ManyToOne(inversedBy: 'zones')]

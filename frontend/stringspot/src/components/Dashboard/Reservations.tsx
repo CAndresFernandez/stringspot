@@ -2,19 +2,38 @@ import React, { useEffect, useState } from "react";
 import API from "../../api/axios";
 import { getFromLocalStorage } from "../../localStorage/localStorage";
 import { IUser } from "../../@types/user";
+import { IReservation } from "../../@types/reservation";
 
 const Reservations = () => {
   const [user, setUser] = useState<IUser>();
   const storeUser = getFromLocalStorage("auth");
+  const [reservation, setReservation] = useState<IReservation>();
+  //   const [formattedStartTime, setFormattedStartTime] = useState("");
 
   useEffect(() => {
     if (storeUser?.id && storeUser?.token) {
-      API.get(`users/${storeUser?.id}`, {
-        headers: { Authorization: `Bearer ${storeUser?.token}` },
-      }).then((res) => {
-        const user = res.data;
-        setUser(user);
-      });
+      const fetchData = async () => {
+        try {
+          API.get(`users/${storeUser?.id}`, {
+            headers: { Authorization: `Bearer ${storeUser?.token}` },
+          }).then((res) => {
+            const user = res.data;
+            setUser(user);
+            if (user && user.reservation) {
+              setReservation(user.reservation);
+              //   const startTime = user.reservation.startTime;
+              //   const dateObject = startTime ? new Date(startTime.date) : null;
+              //   const formattedStartTime = dateObject
+              //     ? dateObject.toLocaleString()
+              //     : "N/A";
+              //   setFormattedStartTime(formattedStartTime);
+            }
+          });
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+      fetchData();
     }
   }, [storeUser?.id, storeUser?.token]);
 
@@ -26,27 +45,32 @@ const Reservations = () => {
           <thead>
             <tr className="table-columns">
               <th scope="col" className="col-2">
-                Date
-              </th>
-              <th scope="col" className="col-1">
-                Time
+                Date/Time
               </th>
               <th scope="col" className="col-4">
                 Center
               </th>
-              <th scope="col" className="col-2">
-                Court
+              <th scope="col" className="col-1">
+                Postal Code
+              </th>
+              <th scope="col" className="col-1">
+                City
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="table-row">
-              <td>a</td>
-              <td>b</td>
-              <td>c</td>
-              <td>d</td>
-            </tr>
-          </tbody>
+          {reservation ? (
+            <tbody>
+              <tr className="table-row">
+                {/* <td>{formattedStartTime}</td> */}
+                <td></td>
+                <td>{reservation.court.center.name}</td>
+                <td>{reservation?.court.center.zone?.post_code}</td>
+                <td>{reservation?.court.center.zone?.city}</td>
+              </tr>
+            </tbody>
+          ) : (
+            ""
+          )}
         </table>
       </div>
       <div className="row res-past-wrapper">
