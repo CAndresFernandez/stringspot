@@ -83,6 +83,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   const handleResultClick = (suggestion: ICenter | IZone) => {
     onResultClick && onResultClick(suggestion as ICenter);
+    if ("name" in suggestion) {
+      setSearchItem(suggestion.name);
+    } else if ("post_code" in suggestion) {
+      setSearchItem(suggestion.post_code);
+    }
     setHideSuggestions(true);
   };
 
