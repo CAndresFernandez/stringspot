@@ -137,7 +137,7 @@ const CentersMap = () => {
           {centers.map((center) => (
             <Marker
               position={[center.latitude, center.longitude] as LatLngExpression}
-              key={center["id"]}
+              key={`center-${center["id"]}`}
             >
               <Popup>
                 <div className="popup-wrapper">

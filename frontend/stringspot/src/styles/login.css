@@ -3,7 +3,7 @@
     color: black;
     font-size: 1.25rem;
     height: 55px;
-    padding: 8px;
+    padding: 8px 6px;
     min-width: 120px;
     width: 10%;
     border: .5px solid black;
@@ -21,9 +21,9 @@
     display: flex;
     background-color: white;
     box-shadow: 0 0 6px 3px white, 0 0 6px 3px white;
-    border-radius: 50%;
-    height: 85%;
-    width: 85%;
+    border-radius: 25%;
+    height: 90%;
+    width: 90%;
     align-items: center;
     justify-content: center;
 }
@@ -38,16 +38,6 @@
     background-color: #dfff4f;
     transform: scale(1);
 }
-
-/* .connect-button-initials {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
-    font-size: 2rem;
-    color: black;
-    padding-top: .5rem;
-} */
 
 .dropdown-container {
     border: 1px solid black;
