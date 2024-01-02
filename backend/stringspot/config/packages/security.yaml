@@ -9,25 +9,30 @@ security:
       entity:
         class: App\Entity\User
         property: email
+    jwt:
+      lexik_jwt:
+        class: App\Entity\User
   firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
     login:
       pattern: ^/api/login
       stateless: true
       json_login:
         check_path: /api/login_check # or api_login_check as defined in config/routes.yaml
         username_path: email
+        provider: app_user_provider
         success_handler: lexik_jwt_authentication.handler.authentication_success
         failure_handler: lexik_jwt_authentication.handler.authentication_failure
     api:
       pattern: ^/api
       stateless: true
       entry_point: jwt
+      provider: jwt
       jwt: ~
       refresh_jwt:
         check_path: /api/token/refresh
-    dev:
-      pattern: ^/(_(profiler|wdt)|css|images|js)/
-      security: false
     main:
       lazy: true
       provider: app_user_provider
