@@ -7,3 +7,10 @@ lexik_jwt_authentication:
     check_path: /api/login_check
     username_path: email
     password_path: security.credentials.password
+  token_extractors:
+    cookie:
+      enabled: true
+      name: BEARER
+  set_cookies:
+    BEARER:
+      secure: false

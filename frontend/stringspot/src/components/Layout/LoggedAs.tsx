@@ -16,11 +16,8 @@ const LoggedAs = () => {
   const [initials, setInitials] = useState("");
 
   useEffect(() => {
-    if (storeUser?.id && storeUser?.token) {
-      API.get(`users/${storeUser?.id}`, {
-        headers: { Authorization: `Bearer ${storeUser?.token}` },
-      }).then((res) => {
-        //   console.log(res);
+    if (storeUser?.id) {
+      API.get(`users/${storeUser?.id}`).then((res) => {
         const user = res.data;
         setUser(user);
         let initials: string =
@@ -28,7 +25,7 @@ const LoggedAs = () => {
         setInitials(initials);
       });
     }
-  }, [storeUser?.id, storeUser?.token]);
+  }, [storeUser?.id]);
 
   return (
     <>

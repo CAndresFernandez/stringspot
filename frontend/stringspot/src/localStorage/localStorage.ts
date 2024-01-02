@@ -19,7 +19,7 @@ export const saveUserIdToLocalStorage = (id: number) => {
 
 // get user ID from local storage
 export const getUserIdFromLocalStorage = () => {
-  return localStorage.getItem("id"); // Note: Vous pourriez vouloir changer "id" par "user_id" pour la cohérence.
+  return localStorage.getItem("user_id"); // Note: Vous pourriez vouloir changer "id" par "user_id" pour la cohérence.
 };
 
 // save data to local storage, must specify key

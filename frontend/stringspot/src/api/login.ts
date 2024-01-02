@@ -1,7 +1,3 @@
-import {
-  saveRTToLocalStorage,
-  saveUserIdToLocalStorage,
-} from "../localStorage/localStorage";
 import myAxiosInstance from "./axios";
 
 const login = (email: string, password: string) => {
@@ -11,14 +7,6 @@ const login = (email: string, password: string) => {
       password,
     })
     .then((response) => {
-      if (response.data.token) {
-        const refresh_token = response.data.refresh_token;
-        const id = response.data.data.id;
-
-        saveUserIdToLocalStorage(id);
-
-        saveRTToLocalStorage(refresh_token);
-      }
       return response.data;
     });
 };

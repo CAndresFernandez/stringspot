@@ -12,6 +12,22 @@ class JWTEventSuccessListener
     {
         $data = $event->getData();
 
+       /** @var User $user */
+       $user = $event->getUser();
+       $id = $user->getId();
+       $first_name = $user->getFirstName();
+       $last_name = $user->getLastName();
+
+       if (!$user instanceof UserInterface) {
+           return;
+       }
+
+       $data['data'] = array(
+           'id' => $id,
+           'first_name' => $first_name,
+           'last_name' => $last_name
+       );
+
         // Set the custom data in the response payload
         $event->setData($data);
 
