@@ -20,12 +20,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource(
+    normalizationContext: ['groups' => ['users']],
     operations: [
-        new Get(name: 'me', uriTemplate: '/users/me', paginationEnabled: false, controller: MeController::class, normalizationContext: ['groups' => ['users']]),
+        new GetCollection(name: 'get_current_user', uriTemplate: '/users/me', paginationEnabled: false, controller: MeController::class),
         new Post,
         new Delete
     ],
-    normalizationContext: ['groups' => ['users']],
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, JWTUserInterface
 {
