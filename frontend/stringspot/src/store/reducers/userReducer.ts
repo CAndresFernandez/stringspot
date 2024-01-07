@@ -29,7 +29,7 @@ export const initialState: RootState = {
 
 export const getActionDisconnect = createAction("email/DISCONNECT");
 export const getActionLogin = createAction<{
-  token: string;
+  //   token: string;
   refresh_token: string;
   id: number;
   first_name: string;

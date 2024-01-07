@@ -39,13 +39,11 @@ const Login = () => {
     try {
       const response = await login(email, password);
       const {
-        token,
         refresh_token,
         data: { id, first_name, last_name },
       } = response;
       dispatch(
         getActionLogin({
-          token,
           refresh_token,
           id,
           first_name,

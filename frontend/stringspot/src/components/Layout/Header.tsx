@@ -2,7 +2,6 @@ import React from "react";
 import Login from "./Login";
 import LoggedAs from "./LoggedAs";
 import { useAppSelector } from "../../hooks/redux";
-import { getFromLocalStorage } from "../../localStorage/localStorage";
 import { Link } from "react-router-dom";
 
 const Header = () => {

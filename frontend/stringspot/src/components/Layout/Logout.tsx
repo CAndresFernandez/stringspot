@@ -9,7 +9,6 @@ const Logout = () => {
   const onHomepage = location.pathname === "/";
 
   const handleDisconnect = () => {
-    localStorage.removeItem("refresh_token");
     dispatch(getActionDisconnect());
     if (!onHomepage) {
       navigate("/");
