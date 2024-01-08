@@ -86,6 +86,10 @@
     transform: scale(1);
 }
 
+/* .acct-button-initials {
+    font-weight: 600;
+} */
+
 .logged-as {
     font-size: 1.25rem;
     color: #ffffff;
