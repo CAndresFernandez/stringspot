@@ -22,6 +22,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     normalizationContext: ['groups' => ['users']],
     operations: [
+        new Get,
         new GetCollection(name: 'get_current_user', uriTemplate: '/users/me', paginationEnabled: false, controller: MeController::class),
         new Post,
         new Delete
@@ -69,6 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, JWTUser
     public function __construct()
     {
         $this->pastRes = new ArrayCollection();
+
     }
 
     public function getId(): ?int
