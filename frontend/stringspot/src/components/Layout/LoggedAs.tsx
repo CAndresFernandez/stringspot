@@ -10,7 +10,6 @@ import { useAppSelector } from "../../hooks/redux";
 const LoggedAs = () => {
   const logged = useAppSelector((state) => state.user.logged);
   const storeUser = getFromLocalStorage("auth");
-  //   const [initials, setInitials] = useState("");
   const [firstInitial, setFirstInitial] = useState("");
   const [lastInitial, setLastInitial] = useState("");
 
@@ -18,10 +17,8 @@ const LoggedAs = () => {
     if (logged) {
       let firstInitial: string = storeUser.first_name.charAt(0);
       let lastInitial: string = storeUser.last_name.charAt(0);
-
       setFirstInitial(firstInitial.toLowerCase());
       setLastInitial(lastInitial.toLowerCase());
-      //   setInitials(initials);
     }
   }, [logged, storeUser]);
 
