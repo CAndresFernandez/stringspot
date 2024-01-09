@@ -3,29 +3,40 @@ import API from "../../api/axios";
 import { getFromLocalStorage } from "../../localStorage/localStorage";
 import { IUser } from "../../@types/user";
 import { IReservation } from "../../@types/reservation";
+import { DateTime } from "luxon";
 
 const Reservations = () => {
-  const [user, setUser] = useState<IUser>();
   const storeUser = getFromLocalStorage("auth");
+  const [user, setUser] = useState<IUser>();
   const [reservation, setReservation] = useState<IReservation>();
-  //   const [formattedStartTime, setFormattedStartTime] = useState("");
+  const [formattedResDate, setFormattedResDate] = useState("");
+  const [formattedResTime, setFormattedResTime] = useState("");
+  //   const [formattedPastResDate, setFormattedPastResDate] = useState("");
+  //   const [formattedPastResTime, setFormattedPastResTime] = useState("");
 
   useEffect(() => {
-    if (storeUser) {
+    if (user === undefined || reservation === undefined) {
       const fetchData = async () => {
         try {
           API.get(`users/${storeUser?.id}`).then((res) => {
-            const user = res.data;
-            if (user && user.reservation) {
-              setUser(user);
-              setReservation(user.reservation);
+            const userResponse = res.data;
+            if (user === undefined) {
+              setUser(userResponse);
+              if (userResponse.reservation && userResponse.reservation) {
+                setReservation(userResponse.reservation);
+              }
             }
-            //   const startTime = user.reservation.startTime;
-            //   const dateObject = startTime ? new Date(startTime.date) : null;
-            //   const formattedStartTime = dateObject
-            //     ? dateObject.toLocaleString()
-            //     : "N/A";
-            //   setFormattedStartTime(formattedStartTime);
+            const startTime = DateTime.fromISO(
+              userResponse.reservation.start_time
+            );
+            const formattedResDate = startTime.toLocaleString(
+              DateTime.DATE_SHORT
+            );
+            setFormattedResDate(formattedResDate);
+            const formattedResTime = startTime.toLocaleString(
+              DateTime.TIME_SIMPLE
+            );
+            setFormattedResTime(formattedResTime);
           });
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -43,7 +54,10 @@ const Reservations = () => {
           <thead>
             <tr className="table-columns">
               <th scope="col" className="col-2">
-                Date/Time
+                Date
+              </th>
+              <th scope="col" className="col-2">
+                Time
               </th>
               <th scope="col" className="col-4">
                 Center
@@ -59,8 +73,8 @@ const Reservations = () => {
           {reservation ? (
             <tbody>
               <tr className="table-row">
-                {/* <td>{formattedStartTime}</td> */}
-                <td></td>
+                <td>{formattedResDate}</td>
+                <td>{formattedResTime}</td>
                 <td>{reservation.court.center.name}</td>
                 <td>{reservation?.court.center.zone?.post_code}</td>
                 <td>{reservation?.court.center.zone?.city}</td>
