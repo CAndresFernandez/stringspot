@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import API from "../../api/axios";
 import "leaflet/dist/leaflet.css";
 import "../../styles/map.css";
@@ -9,6 +9,7 @@ import { ICenter } from "../../@types/center";
 import { IZone } from "../../@types/zone";
 import L from "leaflet";
 import postCodeSearch from "../../api/postCodeSearch";
+import CenterLinkButton from "./CenterLinkButton";
 
 const CentersMap = () => {
   const mapRef = useRef();
@@ -146,7 +147,11 @@ const CentersMap = () => {
                   <br />
                   {[center.zone?.post_code]} {[center.zone?.city]}
                   <br />
-                  <button className="popup-button button">Reserve</button>
+                  {center.id !== undefined && (
+                    <>
+                      <CenterLinkButton centerId={center["id"]} />
+                    </>
+                  )}
                 </div>
               </Popup>
             </Marker>

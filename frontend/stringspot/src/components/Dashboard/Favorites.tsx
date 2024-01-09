@@ -4,7 +4,7 @@ const Favorites = () => {
   return (
     <div className="row dashboard-wrapper">
       <div className="row favorites-wrapper">
-        <h4 className="h4-dark favorites-table-header">
+        <h4 className="h4-dark spacious-table-header">
           Favorite Sports Centers
         </h4>
         <table className="table table-hover table-custom">

@@ -49,7 +49,7 @@ const Reservations = () => {
   return (
     <div className="row dashboard-wrapper">
       <div className="row res-active-wrapper">
-        <h4 className="h4-dark res-table-header">Active Reservations</h4>
+        <h4 className="h4-dark standard-table-header">Active Reservations</h4>
         <table className="table table-hover table-custom">
           <thead>
             <tr className="table-columns">
@@ -86,7 +86,7 @@ const Reservations = () => {
         </table>
       </div>
       <div className="row res-past-wrapper">
-        <h4 className="h4-dark res-table-header">Past Reservations</h4>
+        <h4 className="h4-dark standard-table-header">Past Reservations</h4>
         <table className="table table-hover table-custom">
           <thead>
             <tr className="table-columns">

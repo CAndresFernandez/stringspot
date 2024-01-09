@@ -27,19 +27,19 @@ class Court
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['courts'])]
+    #[Groups(['courts', 'centers'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['courts', 'reservations', 'users'])]
+    #[Groups(['courts', 'reservations', 'users', 'centers'])]
     private ?string $number = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['courts', 'reservations', 'users'])]
+    #[Groups(['courts', 'reservations', 'users', 'centers'])]
     private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'court', targetEntity: Reservation::class)]
-    #[Groups(['courts'])]
+    #[Groups(['courts', 'centers'])]
     private Collection $reservations;
 
     #[ORM\ManyToOne(inversedBy: 'courts')]

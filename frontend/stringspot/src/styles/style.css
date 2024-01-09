@@ -241,3 +241,9 @@ input:focus {
     background-color: #ffffff;
     color: black;
 }
+
+.standard-table-header {
+    height: fit-content;
+    padding-left: .5rem;
+    margin-bottom: .5rem;
+}

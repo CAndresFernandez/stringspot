@@ -1,3 +1,4 @@
+import { ICourt } from "./reservation";
 import { IZone } from "./zone";
 
 export interface ICenter {
@@ -8,4 +9,5 @@ export interface ICenter {
   longitude?: number;
   number_courts?: number;
   zone?: IZone;
+  courts: ICourt[];
 }

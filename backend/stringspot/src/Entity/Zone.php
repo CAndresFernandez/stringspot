@@ -25,7 +25,7 @@ class Zone
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['zones'])]
+    #[Groups(['zones', 'centers'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
@@ -42,7 +42,7 @@ class Zone
 
     #[ORM\ManyToOne(inversedBy: 'zones')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['zones'])]
+    #[Groups(['zones', 'centers'])]
     private ?Country $country = null;
 
     public function __construct()

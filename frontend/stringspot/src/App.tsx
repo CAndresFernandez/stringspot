@@ -10,6 +10,8 @@ import {
 import Homepage from "./pages/homepage";
 import Dashboard from "./pages/dashboard";
 import { getFromLocalStorage } from "./localStorage/localStorage";
+import Reservation from "./pages/reservation";
+import Center from "./pages/center";
 
 const App = () => {
   const logged = useAppSelector((state) => state.user.logged);
@@ -44,6 +46,11 @@ const App = () => {
       <Route
         path="/dashboard"
         element={logged ? <Dashboard /> : <Navigate to="/" />}
+      />
+      <Route path={`/centers/:centerId`} element={<Center />} />
+      <Route
+        path="/reservation"
+        element={logged ? <Reservation /> : <Navigate to="/" />}
       />
     </Routes>
   );
