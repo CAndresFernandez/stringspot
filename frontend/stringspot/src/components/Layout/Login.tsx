@@ -39,13 +39,21 @@ const Login = () => {
     try {
       const response = await login(email, password);
       const {
-        token,
-        data: { id, name, roles },
+        refresh_token,
+        data: { id, first_name, last_name },
       } = response;
-      dispatch(getActionLogin({ token, id, name, roles }));
+      dispatch(
+        getActionLogin({
+          refresh_token,
+          id,
+          first_name,
+          last_name,
+        })
+      );
       navigate("/");
     } catch (error) {
       setError("Invalid credentials");
+      console.log(error);
       setEmail("");
       setPassword("");
     }

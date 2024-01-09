@@ -4,12 +4,15 @@ import Footer from "../components/Layout/Footer";
 import "../styles/dashboard.css";
 import Sidebar from "../components/Dashboard/Sidebar";
 import Reservations from "../components/Dashboard/Reservations";
-
 import { useState } from "react";
 import Profile from "../components/Dashboard/Profile";
 import Favorites from "../components/Dashboard/Favorites";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../hooks/redux";
 
 export default function Dashboard() {
+  const logged = useAppSelector((state) => state.user.logged);
+  const navigate = useNavigate();
   const [activeComponent, setActiveComponent] = useState("Reservations");
   const renderComponent = () => {
     switch (activeComponent) {
@@ -25,14 +28,18 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="stringspot-layout">
-        <Header />
-        <div className="main-wrapper">
-          <Sidebar setActiveComponent={setActiveComponent} />
-          <div className="col-9 component-wrapper">{renderComponent()}</div>
+      {logged ? (
+        <div className="stringspot-layout">
+          <Header />
+          <div className="main-wrapper">
+            <Sidebar setActiveComponent={setActiveComponent} />
+            <div className="col-9 component-wrapper">{renderComponent()}</div>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      ) : (
+        navigate("/")
+      )}
     </>
   );
 }

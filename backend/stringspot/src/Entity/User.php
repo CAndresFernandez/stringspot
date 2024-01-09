@@ -12,20 +12,23 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use App\Controller\MeController;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource(
+    normalizationContext: ['groups' => ['users']],
     operations: [
         new Get,
+        new GetCollection(name: 'get_current_user', uriTemplate: '/users/me', paginationEnabled: false, controller: MeController::class),
         new Post,
         new Delete
     ],
-    normalizationContext: ['groups' => ['users']]
 )]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, JWTUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -67,11 +70,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->pastRes = new ArrayCollection();
+
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -188,25 +198,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->pastRes;
     }
 
-    public function addPastRes(PastRes $pastRe): static
+    public function addPastRes(PastRes $pastRes): static
     {
-        if (!$this->pastRes->contains($pastRe)) {
-            $this->pastRes->add($pastRe);
-            $pastRe->setUser($this);
+        if (!$this->pastRes->contains($pastRes)) {
+            $this->pastRes->add($pastRes);
+            $pastRes->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePastRes(PastRes $pastRe): static
+    public function removePastRes(PastRes $pastRes): static
     {
-        if ($this->pastRes->removeElement($pastRe)) {
+        if ($this->pastRes->removeElement($pastRes)) {
             // set the owning side to null (unless already changed)
-            if ($pastRe->getUser() === $this) {
-                $pastRe->setUser(null);
+            if ($pastRes->getUser() === $this) {
+                $pastRes->setUser(null);
             }
         }
 
         return $this;
+    }
+
+    public static function createFromPayload($id, array $payload)
+    {
+        return (new User())->setId($id);
     }
 }

@@ -7,10 +7,6 @@ const login = (email: string, password: string) => {
       password,
     })
     .then((response) => {
-      if (response.data.email) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-      console.log(response.data);
       return response.data;
     });
 };

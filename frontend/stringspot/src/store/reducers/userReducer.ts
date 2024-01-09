@@ -1,64 +1,57 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import myAxiosInstance from "../../api/axios";
-import { saveToLocalStorage } from "../../localStorage/localStorage";
-import { IPastRes } from "../../@types/user";
+import {
+  getFromLocalStorage,
+  saveToLocalStorage,
+} from "../../localStorage/localStorage";
 
 export interface RootState {
   id: number;
   logged?: boolean;
   email?: string;
-  token: null | string;
-  roles?: [];
+  refresh_token: null | string;
+  //   roles?: [];
   first_name: string;
   last_name: string;
-  pastRes: IPastRes[];
+  //   pastRes: IPastRes[];
 }
 
+const storedUser = getFromLocalStorage("auth");
+
 export const initialState: RootState = {
-  id: 0,
-  logged: false,
+  id: storedUser ? storedUser.id : 0,
+  logged: !!storedUser,
   email: "",
-  token: null,
-  first_name: "",
-  last_name: "",
-  roles: [],
-  pastRes: [],
+  refresh_token: storedUser ? storedUser.refresh_token : null,
+  first_name: storedUser ? storedUser.first_name : "",
+  last_name: storedUser ? storedUser.last_name : "",
 };
 
 export const getActionDisconnect = createAction("email/DISCONNECT");
 export const getActionLogin = createAction<{
-  token: string;
+  refresh_token: string;
   id: number;
   first_name: string;
   last_name: string;
-  roles: [];
-  pastRes: [];
 }>("email");
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getActionLogin, (state, action) => {
       state.logged = true;
+      state.refresh_token = action.payload.refresh_token;
       state.id = action.payload.id;
-      state.token = action.payload.token;
       state.first_name = action.payload.first_name;
       state.last_name = action.payload.last_name;
-      state.roles = action.payload.roles;
-      state.pastRes = action.payload.pastRes;
-      myAxiosInstance.defaults.headers.common.Authorization = `Bearer ${action.payload.token}`;
 
       saveToLocalStorage("auth", {
-        token: action.payload.token,
+        refresh_token: action.payload.refresh_token,
         id: action.payload.id,
         first_name: action.payload.first_name,
         last_name: action.payload.last_name,
-        roles: action.payload.roles,
-        pastRes: action.payload.pastRes,
       });
     })
     .addCase(getActionDisconnect, (state) => {
       state.logged = false;
-      delete myAxiosInstance.defaults.headers.common.Authorization;
       localStorage.removeItem("auth");
     });
 });

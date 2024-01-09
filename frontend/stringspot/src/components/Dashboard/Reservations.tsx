@@ -11,23 +11,21 @@ const Reservations = () => {
   //   const [formattedStartTime, setFormattedStartTime] = useState("");
 
   useEffect(() => {
-    if (storeUser?.id && storeUser?.token) {
+    if (storeUser) {
       const fetchData = async () => {
         try {
-          API.get(`users/${storeUser?.id}`, {
-            headers: { Authorization: `Bearer ${storeUser?.token}` },
-          }).then((res) => {
+          API.get(`users/${storeUser?.id}`).then((res) => {
             const user = res.data;
-            setUser(user);
             if (user && user.reservation) {
+              setUser(user);
               setReservation(user.reservation);
-              //   const startTime = user.reservation.startTime;
-              //   const dateObject = startTime ? new Date(startTime.date) : null;
-              //   const formattedStartTime = dateObject
-              //     ? dateObject.toLocaleString()
-              //     : "N/A";
-              //   setFormattedStartTime(formattedStartTime);
             }
+            //   const startTime = user.reservation.startTime;
+            //   const dateObject = startTime ? new Date(startTime.date) : null;
+            //   const formattedStartTime = dateObject
+            //     ? dateObject.toLocaleString()
+            //     : "N/A";
+            //   setFormattedStartTime(formattedStartTime);
           });
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -35,7 +33,7 @@ const Reservations = () => {
       };
       fetchData();
     }
-  }, [storeUser?.id, storeUser?.token]);
+  });
 
   return (
     <div className="row dashboard-wrapper">

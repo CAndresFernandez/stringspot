@@ -9,22 +9,31 @@ security:
       entity:
         class: App\Entity\User
         property: email
+    jwt:
+      lexik_jwt:
+        class: App\Entity\User
   firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
     login:
       pattern: ^/api/login
       stateless: true
       json_login:
         check_path: /api/login_check # or api_login_check as defined in config/routes.yaml
         username_path: email
+        provider: app_user_provider
         success_handler: lexik_jwt_authentication.handler.authentication_success
         failure_handler: lexik_jwt_authentication.handler.authentication_failure
     api:
       pattern: ^/api
       stateless: true
+      entry_point: jwt
+      provider: jwt
       jwt: ~
-    dev:
-      pattern: ^/(_(profiler|wdt)|css|images|js)/
-      security: false
+      refresh_jwt:
+        check_path: /api/token/refresh
+        provider: app_user_provider
     main:
       lazy: true
       provider: app_user_provider
@@ -50,7 +59,7 @@ security:
     - { path: ^/admin/logout, roles: PUBLIC_ACCESS }
     - { path: ^/admin, roles: ROLE_ADMIN }
     #  ! API
-    - { path: ^/api/login, roles: PUBLIC_ACCESS }
+    - { path: ^/api/(login|token/refresh|zones|centers), roles: PUBLIC_ACCESS }
     - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY }
     - { path: ^/api/reservations, roles: IS_AUTHENTICATED_FULLY }
 

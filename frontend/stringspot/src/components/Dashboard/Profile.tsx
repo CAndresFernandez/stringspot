@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/axios";
-import { useAppSelector } from "../../hooks/redux";
 import { getFromLocalStorage } from "../../localStorage/localStorage";
 import { IUser } from "../../@types/user";
 
@@ -9,20 +8,18 @@ function Profile() {
   const storeUser = getFromLocalStorage("auth");
 
   useEffect(() => {
-    if (storeUser?.id && storeUser?.token) {
-      API.get(`users/${storeUser?.id}`, {
-        headers: { Authorization: `Bearer ${storeUser?.token}` },
-      }).then((res) => {
-        const user = res.data;
-        setUser(user);
-      });
-    }
-  }, [storeUser?.id, storeUser?.token]);
+    API.get(`users/${storeUser?.id}`).then((res) => {
+      const userResponse = res.data;
+      if (user === undefined) {
+        setUser(userResponse);
+      }
+    });
+  });
 
   // todo: write these handleClick functions for editing a user and deleting an account
-  const handleClickEdit = () => {};
+  //   const handleClickEdit = () => {};
 
-  const handleClickDelete = () => {};
+  //   const handleClickDelete = () => {};
 
   return (
     <div className="row dashboard-wrapper">

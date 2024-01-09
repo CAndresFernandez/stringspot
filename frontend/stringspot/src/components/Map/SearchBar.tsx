@@ -10,6 +10,10 @@ interface SearchBarProps {
   onBlur: () => void;
 }
 
+function isCenter(suggestion: ICenter | IZone): suggestion is ICenter {
+  return "name" in suggestion;
+}
+
 const SearchBar: React.FC<SearchBarProps> = ({
   onResultClick,
   onFocus,
@@ -136,7 +140,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <ul className="suggestions">
               {suggestions.map((suggestion: ICenter | IZone) => (
                 <li
-                  key={suggestion.id}
+                  key={`suggestion-${
+                    isCenter(suggestion) ? "center-" : "zone-"
+                  }${suggestion.id}`}
                   className="suggestion"
                   onClick={() => handleResultClick(suggestion)}
                 >

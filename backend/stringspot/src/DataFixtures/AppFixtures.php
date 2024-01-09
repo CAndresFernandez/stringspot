@@ -6,6 +6,7 @@ namespace App\DataFixtures;
 use App\Entity\Center;
 use App\Entity\Country;
 use App\Entity\Court;
+use App\Entity\PastRes;
 use App\Entity\Reservation;
 use App\Entity\user;
 use App\Entity\Zone;
@@ -43,7 +44,7 @@ class AppFixtures extends Fixture
 
         // USER (stringspot member)
         $userList = [];
-        for ($u = 0; $u <= 299; $u++) {
+        for ($u = 0; $u <= 99; $u++) {
             $user = new User();
             $user->setFirstname($faker->firstname());
             $user->setLastname($faker->lastname());
@@ -124,12 +125,12 @@ class AppFixtures extends Fixture
             }
         }
 
-        // ! RESERVATION
+         // ! RESERVATION
         $reservationList = [];
 
-        for ($r = 1; $r <= 100; $r++) {
+        for ($r = 1; $r <= 50; $r++) {
 
-            $startTime = $faker->dateTimeBetween('-1 day', '+1 week', 'Europe/Paris');
+            $startTime = $faker->dateTimeBetween('+1 day', '+1 week', 'Europe/Paris');
             $endTime = (clone $startTime)->add(new DateInterval('PT59M'));
             $reservation = new Reservation();
             $reservation->setStartTime(DateTimeImmutable::createFromMutable($startTime));
@@ -141,6 +142,28 @@ class AppFixtures extends Fixture
             $reservation->setCourt($court);
             $reservationList[] = $reservation;
             $manager->persist($reservation);
+        }
+
+        // ! PAST RES
+        $pastResList = [];
+
+        for ($p = 1; $p <= 200; $p++) {
+            $startTime = $faker->dateTimeBetween('-1 week', '-1 hour', 'Europe/Paris');
+            $court = $courtList[mt_rand(0, count($courtList) - 1)];
+            $center = $court->getCenter();
+            $zone = $center->getZone();
+            $country = $center->getZone()->getCountry();
+
+            $pastRes = new PastRes();
+            $pastRes->setTime($startTime->format('H:i'));
+            $pastRes->setDate($startTime->format('d-m-Y'));
+            $pastRes->setCourt($court->getNumber());
+            $pastRes->setCenter($center->getName());
+            $pastRes->setCountry($country->getName());
+            $pastRes->setZone($zone->getPostCode());
+            $pastRes->setUser($userList[mt_rand(0, (count($userList)-1))]);
+            $pastResList[] = $pastRes;
+            $manager->persist($pastRes);
         }
         $manager->flush();
     }
