@@ -100,17 +100,21 @@ const Login = () => {
                 </div>
               </div>
               <br />
-              <div className="input-container">
-                <button
-                  type="submit"
-                  className={"input-button button"}
-                  value={"Log in"}
-                >
-                  Login
-                </button>
-                <div className="error-wrapper">
-                  <label className="error-label">{error}</label>
-                </div>
+              <button
+                type="submit"
+                className={"input-button button"}
+                value={"Log in"}
+              >
+                Login
+              </button>
+              <div className="acct-create">
+                No account?{" "}
+                <span className="acct-create-link">
+                  <a href="">Create one</a>
+                </span>
+              </div>
+              <div className="error-wrapper">
+                <label className="error-label">{error}</label>
               </div>
             </form>
           </div>
