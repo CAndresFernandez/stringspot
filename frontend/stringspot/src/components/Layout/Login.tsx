@@ -5,6 +5,7 @@ import login from "../../api/login";
 import { useAppDispatch } from "../../hooks/redux";
 import { getActionLogin } from "../../store/reducers/userReducer";
 import UnopDropdown from "unop-react-dropdown";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -110,7 +111,7 @@ const Login = () => {
               <div className="acct-create">
                 No account?{" "}
                 <span className="acct-create-link">
-                  <a href="">Create one</a>
+                  <Link to={"/new-account"}>Create one</Link>
                 </span>
               </div>
               <div className="error-wrapper">

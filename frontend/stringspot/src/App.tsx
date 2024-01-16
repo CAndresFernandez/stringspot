@@ -8,6 +8,7 @@ import {
   getActionLogin,
 } from "./store/reducers/userReducer";
 import Homepage from "./pages/homepage";
+import NewAccount from "./pages/new-account";
 import Dashboard from "./pages/dashboard";
 import { getFromLocalStorage } from "./localStorage/localStorage";
 import Reservation from "./pages/reservation";
@@ -63,11 +64,12 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
+      <Route path={`/centers/:centerId`} element={<Center />} />
+      <Route path="/new-account" element={<NewAccount />} />
       <Route
         path="/dashboard"
         element={logged ? <Dashboard /> : <Navigate to="/" />}
       />
-      <Route path={`/centers/:centerId`} element={<Center />} />
       <Route
         path="/reservation"
         element={logged ? <Reservation /> : <Navigate to="/" />}
