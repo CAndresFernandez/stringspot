@@ -31,7 +31,7 @@ export default function Dashboard() {
       {logged ? (
         <div className="stringspot-layout">
           <Header />
-          <div className="main-wrapper">
+          <div className="main-dashboard-wrapper">
             <Sidebar setActiveComponent={setActiveComponent} />
             <div className="col-9 component-wrapper">{renderComponent()}</div>
           </div>

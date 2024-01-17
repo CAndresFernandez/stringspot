@@ -48,7 +48,6 @@
     height: 180px;
     width: 220px;
     background-color: #d9d9d9;
-    margin: 10px 0;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: relative;
     z-index: 3;
@@ -87,7 +86,6 @@
     padding: 5px;
     width: 190px;
     font-size: .8rem;
-    margin-bottom: .25rem;
 }
 
 .input-button {
@@ -99,11 +97,38 @@
     width: 100px;
     height: 30px;
     margin: 0 auto;
-    margin-bottom: .25rem;
+    margin-bottom: .75rem;
 }
 
 .input-button:hover {
     box-shadow: inset 0 0 8px black;
+}
+
+.acct-create {
+    display: flex;
+    justify-content: center;
+    font-size: .75rem;
+}
+
+.acct-create-link {
+    padding-left: .25rem;
+}
+
+.acct-create a:link {
+    font-size: .75rem;
+}
+
+.acct-create a:visited {
+    color: blue;
+}
+
+.acct-create a:hover {
+    color: #dfff4f;
+
+}
+
+.acct-create a:active {
+    color: black;
 }
 
 .hidden {

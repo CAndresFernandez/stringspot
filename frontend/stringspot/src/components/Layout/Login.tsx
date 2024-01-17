@@ -5,6 +5,7 @@ import login from "../../api/login";
 import { useAppDispatch } from "../../hooks/redux";
 import { getActionLogin } from "../../store/reducers/userReducer";
 import UnopDropdown from "unop-react-dropdown";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -100,17 +101,21 @@ const Login = () => {
                 </div>
               </div>
               <br />
-              <div className="input-container">
-                <button
-                  type="submit"
-                  className={"input-button button"}
-                  value={"Log in"}
-                >
-                  Login
-                </button>
-                <div className="error-wrapper">
-                  <label className="error-label">{error}</label>
-                </div>
+              <button
+                type="submit"
+                className={"input-button button"}
+                value={"Log in"}
+              >
+                Login
+              </button>
+              <div className="acct-create">
+                No account?{" "}
+                <span className="acct-create-link">
+                  <Link to={"/new-account"}>Create one</Link>
+                </span>
+              </div>
+              <div className="error-wrapper">
+                <label className="error-label">{error}</label>
               </div>
             </form>
           </div>

@@ -60,6 +60,7 @@ security:
     - { path: ^/admin, roles: ROLE_ADMIN }
     #  ! API
     - { path: ^/api/(login|token/refresh|zones|centers), roles: PUBLIC_ACCESS }
+    - { path: ^/api/users, methods: POST, roles: PUBLIC_ACCESS }
     - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY }
     - { path: ^/api/reservations, roles: IS_AUTHENTICATED_FULLY }
 

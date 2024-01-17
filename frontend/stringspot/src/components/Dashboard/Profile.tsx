@@ -24,7 +24,7 @@ function Profile() {
   return (
     <div className="row dashboard-wrapper">
       <div className="row acct-info-wrapper">
-        <h4 className="h4-dark options-table-header">Account Information</h4>
+        <h4 className="h4-dark spacious-table-header">Account Information</h4>
         <table className="table table-hover acct-info-table-custom">
           <tbody>
             <tr>

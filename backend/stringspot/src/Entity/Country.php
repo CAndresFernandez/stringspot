@@ -33,7 +33,7 @@ class Country
     private ?string $name = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['countries'])]
+    #[Groups(['countries', 'centers'])]
     private ?string $abbr = null;
 
     #[ORM\Column(length: 64)]
