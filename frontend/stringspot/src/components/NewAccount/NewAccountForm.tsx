@@ -1,6 +1,4 @@
-import React, { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/redux";
+import React, { useState } from "react";
 import API from "../../api/axios";
 
 const NewAccountForm = () => {
@@ -15,13 +13,13 @@ const NewAccountForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [repeatPasswordError, setRepeatPasswordError] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleCreateNewAcct = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setError("");
+    setSuccessMessage("");
     setFirstNameError("");
     setLastNameError("");
     setEmailError("");
@@ -64,15 +62,30 @@ const NewAccountForm = () => {
     }
 
     try {
-      API.post(`/users`, {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        password: password,
-      });
+      const response = await API.post(
+        `/users`,
+        {
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password,
+        },
+        {
+          headers: { "Content-Type": "application/ld+json" },
+        }
+      );
+
+      if (response.status === 201) {
+        setEmail("");
+        setPassword("");
+        setFirstName("");
+        setLastName("");
+        setRepeatPassword("");
+        setSuccessMessage("Account created!");
+      }
     } catch (error) {
-      setError("Couldn't create account. Please try again");
       console.log(error);
+      setError("Couldn't create account. Please try again");
       setEmail("");
       setPassword("");
     }
@@ -95,8 +108,8 @@ const NewAccountForm = () => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
-            <div className="error-wrapper">
-              <label className="error-label">{firstNameError}</label>
+            <div className="form-input-error-wrapper">
+              <label className="form-input-error-label">{firstNameError}</label>
             </div>
           </div>
           <div className="form-input-container">
@@ -111,8 +124,8 @@ const NewAccountForm = () => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
-            <div className="error-wrapper">
-              <label className="error-label">{lastNameError}</label>
+            <div className="form-input-error-wrapper">
+              <label className="form-input-error-label">{lastNameError}</label>
             </div>
           </div>
           <div className="form-input-container">
@@ -125,10 +138,11 @@ const NewAccountForm = () => {
               className="form-input"
               placeholder="E-mail Address"
               value={email}
+              autoComplete="email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <div className="error-wrapper">
-              <label className="error-label">{emailError}</label>
+            <div className="form-input-error-wrapper">
+              <label className="form-input-error-label">{emailError}</label>
             </div>
           </div>
           <div className="form-input-container">
@@ -141,10 +155,11 @@ const NewAccountForm = () => {
               className="form-input"
               placeholder="Password"
               value={password}
+              autoComplete="new-password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="error-wrapper">
-              <label className="error-label">{passwordError}</label>
+            <div className="form-input-error-wrapper">
+              <label className="form-input-error-label">{passwordError}</label>
             </div>
           </div>
           <div className="form-input-container">
@@ -157,12 +172,16 @@ const NewAccountForm = () => {
               className="form-input"
               placeholder="Repeat password"
               value={repeatPassword}
+              autoComplete="repeat-new-password"
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
+            <div className="form-input-error-wrapper">
+              <label className="form-input-error-label">
+                {repeatPasswordError}
+              </label>
+            </div>
           </div>
-          <div className="error-wrapper">
-            <label className="error-label">{repeatPasswordError}</label>
-          </div>
+
           <button
             type="submit"
             className={"form-input-button button"}
@@ -170,6 +189,12 @@ const NewAccountForm = () => {
           >
             Create Account
           </button>
+          <div className="form-success-wrapper">
+            <label className="form-success-label">{successMessage}</label>
+          </div>
+          <div className="form-error-wrapper">
+            <label className="form-error-label">{error}</label>
+          </div>
         </form>
       </div>
     </>

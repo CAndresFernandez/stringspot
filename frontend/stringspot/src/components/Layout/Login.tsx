@@ -81,6 +81,7 @@ const Login = () => {
                   className="settings-input"
                   placeholder="E-mail address"
                   value={email}
+                  autoComplete="email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <div className="error-wrapper">
@@ -94,6 +95,7 @@ const Login = () => {
                   className="settings-input"
                   placeholder="Password"
                   value={password}
+                  autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="error-wrapper">
