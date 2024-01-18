@@ -31,7 +31,7 @@ class Court
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    #[Groups(['courts', 'reservations', 'users', 'centers'])]
+    #[Groups(['courts', 'reservations', 'user:read', 'centers'])]
     private ?string $number = null;
 
     #[ORM\Column(length: 64)]
