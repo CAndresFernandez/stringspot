@@ -5,20 +5,47 @@
 }
 
 .half-wrapper {
-    width: 50%;
+    /* width: 50%; */
     padding: .5rem;
 }
 
-.half-wrapper.left {}
+.left {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    width: 40%;
+}
+
+.date-select {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: 100%;
+    gap: 2px;
+    border-radius: 10px;
+}
+
+.date-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: .5rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.availabilities-wrapper {}
 
 .half-wrapper.right {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.res-block-header {
-    font-size: 1.5rem;
 }
 
 .content-box {

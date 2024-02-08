@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import { ICenter } from "../../@types/center";
 import "../../styles/center.css";
 import { IZone } from "../../@types/zone";
+import Availability from "./Availability";
 
 function CenterPage() {
-  const centerId = useParams().centerId;
   const [center, setCenter] = useState<ICenter>();
   const [zone, setZone] = useState<IZone>();
+  const [city, setCity] = useState<string>("");
+  const centerId = useParams().centerId;
 
   useEffect(() => {
     API.get(`centers/${centerId}`).then((res) => {
@@ -16,6 +18,7 @@ function CenterPage() {
       if (center === undefined && zone === undefined) {
         setCenter(responseCenter);
         setZone(responseCenter.zone);
+        setCity(responseCenter.zone.city);
       }
     });
   });
@@ -23,10 +26,10 @@ function CenterPage() {
   return (
     <>
       <div className="main-box">
-        <h4 className="h4-dark standard-table-header">{center?.name}</h4>
         <div className="center-wrapper">
           <div className="half-wrapper left">
-            <p className="res-block-header">Reserve</p>
+            <h4 className="h4-dark">{center?.name}</h4>
+            <Availability city={city} />
           </div>
           <div className="half-wrapper right">
             <div className="content-box img">
@@ -68,29 +71,6 @@ function CenterPage() {
                       # of Courts
                     </th>
                     <td className="td col-8">{center?.number_courts}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" className="col-4">
-                      Courts
-                    </th>
-                    <td>
-                      <table>
-                        <tbody>
-                          {center?.courts.map((court) => (
-                            <>
-                              <tr>
-                                <td className="td col-6">
-                                  Court {court.number}:
-                                </td>
-                                <td className="td col-6">
-                                  {court.type.toUpperCase()}
-                                </td>
-                              </tr>
-                            </>
-                          ))}
-                        </tbody>
-                      </table>
-                    </td>
                   </tr>
                 </tbody>
               </table>
