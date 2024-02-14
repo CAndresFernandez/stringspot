@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import CenterPage from "../components/Centers/CenterPage";
+import "../styles/center.css";
 
 export default function Center() {
-  useEffect;
-
   return (
     <>
       <div className="stringspot-layout">

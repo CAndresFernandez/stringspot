@@ -15,6 +15,7 @@ const Forecast: React.FC<{
   longitude: number;
 }> = ({ latitude, longitude }) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   useEffect(() => {
     const params = {
@@ -59,15 +60,31 @@ const Forecast: React.FC<{
     return Math.floor(temp);
   }
 
-  console.log(weatherData?.daily.time.length);
+  function handleClick(index: number) {
+    return (event: React.MouseEvent) => {
+      setActiveIndex(index);
+      event.preventDefault();
+    };
+  }
 
   return (
     <>
       {weatherData?.daily.time.slice(0, 7).map((day, index) => (
-        <div key={index} className="date-box">
-          <p>{convertDate(day)}</p>
-          <p>Min: {convertTemp(weatherData?.daily.temperatureMin[index])}</p>
-          <p>Max: {convertTemp(weatherData?.daily.temperatureMax[index])}</p>
+        <div
+          key={index}
+          className={`date-box${activeIndex === index ? ` selected` : ``}`}
+          onClick={handleClick(index)}
+        >
+          <div className="date-box-2">
+            <p className="date-box-header">{convertDate(day)}</p>
+            <p className="date-box-text">
+              Min {convertTemp(weatherData?.daily.temperatureMin[index])}&deg;C
+            </p>
+            <p className="date-box-text">
+              Max {convertTemp(weatherData?.daily.temperatureMax[index])}&deg;C
+            </p>
+            <i className="weather-icon fa-solid fa-cloud"></i>
+          </div>
         </div>
       ))}
     </>
@@ -75,3 +92,14 @@ const Forecast: React.FC<{
 };
 
 export default Forecast;
+
+/* weather icons
+cloudy > fa-solid fa-cloud
+sun > fa-solid fa-sun
+snow > fa-solid fa-snowflake
+very hot > fa-solid fa-temperature-full
+partly cloudy > fa-solid fa-cloud-sun
+rain > fa-solid fa-cloud-rain
+heavy rain > fa-solid fa-cloud-showers-heavy
+
+*/

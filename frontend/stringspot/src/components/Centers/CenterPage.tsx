@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import API from "../../api/axios";
 import { useParams } from "react-router-dom";
 import { ICenter } from "../../@types/center";
-import "../../styles/center.css";
 import { IZone } from "../../@types/zone";
 import Availability from "./Availability";
 

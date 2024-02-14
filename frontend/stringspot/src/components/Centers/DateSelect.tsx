@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Forecast from "./Forecast";
+import Forecast from "./DateBox";
 
 const londonCoordinates = [51.5, -0.12];
 const parisCoordinates = [48.86, 2.34];
