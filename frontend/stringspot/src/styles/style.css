@@ -164,6 +164,7 @@ input:focus {
     z-index: 0;
     margin-top: 5vh;
     margin-bottom: 5vh;
+    overflow: auto;
 }
 
 .main-box {
