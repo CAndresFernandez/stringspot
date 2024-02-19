@@ -31,7 +31,7 @@ function CenterPage() {
             <DateView city={city} />
           </div>
           <div className="half-wrapper right">
-            <div className="content-box img">
+            <div className="content-box">
               <img
                 src="../src/assets/tenniscourtimg.jpeg"
                 alt="center image"
@@ -39,7 +39,7 @@ function CenterPage() {
               />
             </div>
             <div className="content-box text">
-              <table className="table table-hover">
+              <table className="table">
                 <tbody>
                   <tr>
                     <th scope="row" className="col-4">

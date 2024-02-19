@@ -13,7 +13,11 @@ const Accordion: React.FC<{ title: string }> = ({ title }) => {
         <div>{title}</div>
         <div>{isActive ? "-" : "+"}</div>
       </div>
-      {isActive && <div className="accordion-content">content</div>}
+      <div
+        className={`accordion-content ${isActive ? "expanded" : "collapsed"}`}
+      >
+        <p>content</p>
+      </div>
     </div>
   );
 };

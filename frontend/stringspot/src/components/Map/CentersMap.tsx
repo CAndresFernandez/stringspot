@@ -125,8 +125,9 @@ const CentersMap = () => {
           zoom={12}
           ref={mapRef}
           style={{
-            height: "100%",
+            height: "90%",
             width: "100%",
+            margin: "auto 0",
             boxShadow:
               "0 8px 8px 0 rgba(0, 0, 0, .2), 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 36px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px #363333",
           }}
