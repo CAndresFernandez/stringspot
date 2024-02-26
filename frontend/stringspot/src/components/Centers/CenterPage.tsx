@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import API from "../../api/axios";
 import { useParams } from "react-router-dom";
 import { ICenter } from "../../@types/center";
-import "../../styles/center.css";
 import { IZone } from "../../@types/zone";
-import Availability from "./Availability";
+import DateView from "./DateView";
 
 function CenterPage() {
   const [center, setCenter] = useState<ICenter>();
@@ -29,10 +28,10 @@ function CenterPage() {
         <div className="center-wrapper">
           <div className="half-wrapper left">
             <h4 className="h4-dark">{center?.name}</h4>
-            <Availability city={city} />
+            <DateView city={city} />
           </div>
           <div className="half-wrapper right">
-            <div className="content-box img">
+            <div className="content-box">
               <img
                 src="../src/assets/tenniscourtimg.jpeg"
                 alt="center image"
@@ -40,7 +39,7 @@ function CenterPage() {
               />
             </div>
             <div className="content-box text">
-              <table className="table table-hover">
+              <table className="table">
                 <tbody>
                   <tr>
                     <th scope="row" className="col-4">

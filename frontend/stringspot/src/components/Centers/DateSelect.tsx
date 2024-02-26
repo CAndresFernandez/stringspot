@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Forecast from "./Forecast";
+import DateBox from "./DateBoxes";
 
 const londonCoordinates = [51.5, -0.12];
 const parisCoordinates = [48.86, 2.34];
@@ -23,9 +23,9 @@ const DateSelect: React.FC<{ city: string }> = ({ city }) => {
   }, [city]);
 
   return (
-    <div className="date-select">
-      <Forecast latitude={latitude} longitude={longitude} />
-    </div>
+    <>
+      <DateBox latitude={latitude} longitude={longitude} />
+    </>
   );
 };
 

@@ -78,15 +78,13 @@ button {
     align-items: center;
     border-radius: 55px;
     border: none;
+    line-height: 0;
     display: flex;
     gap: 8px;
     justify-content: center;
     position: relative;
-    transition-duration: .2s;
     box-shadow: inset 0 0 6px black;
-    -webkit-transition-property: all;
-    -webkit-transition-duration: .1s;
-    -webkit-transition-timing-function: ease;
+    transition: all .1s ease-in-out;
 }
 
 #map {
@@ -160,10 +158,10 @@ input:focus {
 .main-box-wrapper {
     position: relative;
     box-sizing: border-box;
-    height: 70vh;
+    height: 80vh;
     z-index: 0;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    overflow: auto;
+    scrollbar-gutter: stable;
 }
 
 .main-box {
@@ -171,7 +169,8 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 5%;
+    padding: 2rem;
+    padding-bottom: 0;
     height: 100%;
 }
 
@@ -184,7 +183,6 @@ input:focus {
     background-color: #363333;
     position: relative;
     width: 100%;
-    /* margin-top: 5vh; */
 }
 
 .footer-nav-links {
@@ -196,7 +194,7 @@ input:focus {
     flex-grow: 1;
     height: 10vh;
     position: relative;
-    gap: 1.25rem;
+    gap: .8rem;
     padding: 0 5%;
 }
 
@@ -211,24 +209,21 @@ input:focus {
 
 .social-icon {
     margin: 0 32px;
-    -webkit-transition-property: all;
-    -webkit-transition-duration: .3s;
-    -webkit-transition-timing-function: ease;
+    transition: all .1s ease-in-out;
 }
 
 .social-icon:hover {
-    transform: scale(2);
+    transform: scale(1.5);
 }
 
 .social-icon:active {
-    transform: scale(1.5);
+    transform: scale(1.25);
 }
 
 .button:hover {
     background-color: #dfff4f;
     color: black;
-    transform: scale(1.1);
-    /* box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); */
+    transform: scale(1.05);
     box-shadow: inset 0 0 10px black;
     cursor: pointer;
 }
