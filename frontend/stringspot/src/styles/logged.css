@@ -55,11 +55,7 @@
     border: .5px solid black;
     display: flex;
     position: relative;
-    transition-duration: .2s;
     box-shadow: inset 0 0 3px 1px black;
-    -webkit-transition-property: all;
-    -webkit-transition-duration: .1s;
-    -webkit-transition-timing-function: ease;
 }
 
 .acct-button-2 {
@@ -76,7 +72,7 @@
 }
 
 .acct-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 0 0 6px 2px white, inset 0 0 3px 1px black;
     cursor: pointer;
 }

@@ -99,23 +99,21 @@ const DateBoxes: React.FC<{
             className={`date-box${activeIndex === index ? ` selected` : ``}`}
             onClick={handleClick(index)}
           >
-            <div className="date-box-2">
-              <p className="date-box-header">{convertDate(day)}</p>
-              <p className="date-box-text">
-                Min {convertTemp(weatherData?.daily.temperatureMin[index])}
-                &deg;C
-              </p>
-              <p className="date-box-text">
-                Max {convertTemp(weatherData?.daily.temperatureMax[index])}
-                &deg;C
-              </p>
-              <i
-                className={`weather-icon ${weatherIcon(
-                  weatherData?.daily.weatherCode[index],
-                  weatherData?.daily.temperatureMax[index]
-                )}`}
-              ></i>
-            </div>
+            <p className="date-box-header">{convertDate(day)}</p>
+            <p className="date-box-text">
+              Min {convertTemp(weatherData?.daily.temperatureMin[index])}
+              &deg;C
+            </p>
+            <p className="date-box-text">
+              Max {convertTemp(weatherData?.daily.temperatureMax[index])}
+              &deg;C
+            </p>
+            <i
+              className={`weather-icon ${weatherIcon(
+                weatherData?.daily.weatherCode[index],
+                weatherData?.daily.temperatureMax[index]
+              )}`}
+            ></i>
           </div>
         ))}
       </div>
