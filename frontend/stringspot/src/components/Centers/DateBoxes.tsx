@@ -17,6 +17,7 @@ const DateBoxes: React.FC<{
 }> = ({ latitude, longitude }) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [timestamp, setTimestamp] = useState<number>(new Date().getTime());
 
   useEffect(() => {
     const params = {
@@ -61,9 +62,10 @@ const DateBoxes: React.FC<{
     return Math.floor(temp);
   }
 
-  function handleClick(index: number) {
+  function handleClick(index: number, timestamp: number) {
     return (event: React.MouseEvent) => {
       setActiveIndex(index);
+      setTimestamp(timestamp);
       event.preventDefault();
     };
   }
@@ -97,7 +99,7 @@ const DateBoxes: React.FC<{
           <div
             key={index}
             className={`date-box${activeIndex === index ? ` selected` : ``}`}
-            onClick={handleClick(index)}
+            onClick={handleClick(index, day.getTime())}
           >
             <p className="date-box-header">{convertDate(day)}</p>
             <p className="date-box-text">
@@ -118,7 +120,7 @@ const DateBoxes: React.FC<{
         ))}
       </div>
       <div className="availabilities-wrapper">
-        <Availabilities dateIndex={activeIndex} />
+        <Availabilities timestamp={timestamp} />
       </div>
     </>
   );

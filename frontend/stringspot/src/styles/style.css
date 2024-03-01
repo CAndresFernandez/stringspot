@@ -83,7 +83,7 @@ button {
     gap: 8px;
     justify-content: center;
     position: relative;
-    box-shadow: inset 0 0 6px black;
+    box-shadow: inset 0 0 6px #363333;
     transition: all .1s ease-in-out;
 }
 
@@ -222,9 +222,8 @@ input:focus {
 
 .button:hover {
     background-color: #dfff4f;
-    color: black;
+    color: #363333;
     transform: scale(1.05);
-    box-shadow: inset 0 0 10px black;
     cursor: pointer;
 }
 
@@ -234,7 +233,7 @@ input:focus {
 
 .button:active {
     background-color: #ffffff;
-    color: black;
+    color: #363333;
 }
 
 .standard-table-header {

@@ -99,7 +99,7 @@
 }
 
 .options-link {
-    color: black;
+    color: #363333;
 }
 
 .link-edit:hover {
@@ -111,11 +111,11 @@
 }
 
 .link-edit:active {
-    color: black;
+    color: #363333;
 }
 
 .link-delete:active {
-    color: black;
+    color: #363333;
 }
 
 .spacious-table-header {
@@ -139,7 +139,7 @@
 
 /* misc */
 .h4-dark {
-    color: black;
+    color: #363333;
 }
 
 .table-columns {
