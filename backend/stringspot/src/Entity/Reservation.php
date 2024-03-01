@@ -10,10 +10,12 @@ use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Repository\ReservationRepository;
+use App\State\ReservationStateProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 #[ApiResource(
+    provider: ReservationStateProvider::class,
     operations: [
         new Get,
         new GetCollection,

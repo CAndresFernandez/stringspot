@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Reservation;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @extends ServiceEntityRepository<Reservation>
@@ -37,6 +39,22 @@ class ReservationRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+
+/**
+ * @return Reservation[]
+ */
+    public function getReservationsByCenter(DateTime $startDate, int $centerId): array {
+
+        return $this->createQueryBuilder('r')
+        ->innerJoin('r.court', 'c')
+        ->andWhere('c.center = :centerId')
+        ->andWhere('r.start_time >= :startDate')
+        ->setParameter('centerId', $centerId)
+        ->setParameter('startDate', $startDate)
+        ->getQuery()
+        ->getResult();
     }
 
 //    /**
