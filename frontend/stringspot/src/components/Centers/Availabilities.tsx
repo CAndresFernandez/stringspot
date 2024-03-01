@@ -5,7 +5,7 @@ import { ICenter } from "../../@types/center";
 import { ICourt } from "../../@types/reservation";
 import Accordion from "./Accordion";
 
-const Availabilities: React.FC<{ dateIndex: number }> = ({ dateIndex }) => {
+const Availabilities: React.FC<{ timestamp: number }> = ({ timestamp }) => {
   const [center, setCenter] = useState<ICenter>();
   const centerId = useParams().centerId;
   const [courts, setCourts] = useState<ICourt[]>([]);
@@ -15,7 +15,8 @@ const Availabilities: React.FC<{ dateIndex: number }> = ({ dateIndex }) => {
       const responseCenter = res.data;
       if (center === undefined) {
         setCenter(responseCenter);
-        setCourts(responseCenter.courts);
+        const courts = responseCenter.courts;
+        setCourts(courts);
       }
     });
   });
@@ -23,7 +24,11 @@ const Availabilities: React.FC<{ dateIndex: number }> = ({ dateIndex }) => {
   return (
     <>
       {courts.map((court) => (
-        <Accordion title={court.number} />
+        <Accordion
+          court={court}
+          startDate={timestamp}
+          centerId={Number(centerId)}
+        />
       ))}
     </>
   );

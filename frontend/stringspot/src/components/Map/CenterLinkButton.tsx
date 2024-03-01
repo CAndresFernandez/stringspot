@@ -8,7 +8,7 @@ interface CenterLinkProps {
 const CenterLinkButton: React.FC<CenterLinkProps> = ({ centerId }) => {
   return (
     <Link to={`/centers/${centerId}`}>
-      <button className="popup-button button">Reserve</button>
+      <button className="reserve-button button">Reserve</button>
     </Link>
   );
 };

@@ -19,7 +19,7 @@
 }
 
 .textbox-title {
-    color: black;
+    color: #363333;
 }
 
 .map-button {
@@ -28,7 +28,7 @@
     height: 55px;
     width: 150px;
     min-width: fit-content;
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19), inset 0 0 6px black;
+    box-shadow: inset 0 0 6px #363333;
 }
 
 .map-button:last-of-type {
@@ -45,13 +45,12 @@
 
 }
 
-.popup-button {
+.reserve-button {
     font-size: .75rem;
-    color: black;
+    color: #363333;
     background-color: #ffffff;
     min-height: 25px;
-    min-width: fit-content;
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19), inset 0 0 6px black;
+    min-width: 75px;
 }
 
 .popup-title {
@@ -59,7 +58,7 @@
 }
 
 .leaflet-control span {
-    color: black;
+    color: #363333;
 }
 
 .leaflet-container {
@@ -91,7 +90,7 @@
 }
 
 .suggestions-wrapper {
-    border: 1px solid black;
+    border: 1px solid #363333;
     border-radius: 25px;
     background-color: white;
     min-height: 2rem;

@@ -6,6 +6,7 @@ export interface ICourt {
   number: string;
   type: string;
   center: ICenter;
+  reservations: IReservation[];
 }
 
 export interface IReservation {
