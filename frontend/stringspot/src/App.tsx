@@ -70,7 +70,7 @@ const App = () => {
         path="/dashboard"
         element={logged ? <Dashboard /> : <Navigate to="/" />}
       />
-      <Route path="/reservation" element={<Reservation />} />
+      <Route path="/new-reservation" element={<Reservation />} />
     </Routes>
   );
 };

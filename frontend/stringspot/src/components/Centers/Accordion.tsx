@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ICourt, IReservation } from "../../@types/reservation";
 import API from "axios";
 import { Link } from "react-router-dom";
+import ReserveButton from "./ReserveButton";
 
 interface TimeSlot {
   startTime: Date;
@@ -91,10 +92,12 @@ const Accordion: React.FC<{
           {availableSlots.map((slot, index) => (
             <li className="accordion-content-item" key={index}>
               <p>{slot.startTime.getHours()}h</p>
-              <Link to={`/reservation`}>
-                <button type="submit" className="reserve-button button">
-                  Reserve
-                </button>
+              <Link to={`/new-reservation`}>
+                <ReserveButton
+                  court={court}
+                  startTime={slot.startTime.toISOString()}
+                  endTime={slot.endTime.toISOString()}
+                />
               </Link>
             </li>
           ))}

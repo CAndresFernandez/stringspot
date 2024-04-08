@@ -9,10 +9,8 @@ export interface RootState {
   logged?: boolean;
   email?: string;
   refresh_token: null | string;
-  //   roles?: [];
   first_name: string;
   last_name: string;
-  //   pastRes: IPastRes[];
 }
 
 const storedUser = getFromLocalStorage("auth");
