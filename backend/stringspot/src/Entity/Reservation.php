@@ -41,13 +41,13 @@ class Reservation
     #[Groups(['courts', 'reservations', 'user:read'])]
     private ?\DateTimeImmutable $end_time = null;
 
-    #[ORM\Column(length: 64)]
-    #[Groups(['reservations'])]
-    private ?string $res_type = null;
+    // #[ORM\Column(length: 64)]
+    // #[Groups(['reservations'])]
+    // private ?string $res_type = null;
 
-    #[ORM\Column]
-    #[Groups(['reservations', 'user:read'])]
-    private ?bool $active = null;
+    // #[ORM\Column]
+    // #[Groups(['reservations', 'user:read'])]
+    // private ?bool $active = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -96,29 +96,29 @@ class Reservation
         return $this;
     }
 
-    public function getResType(): ?string
-    {
-        return $this->res_type;
-    }
+    // public function getResType(): ?string
+    // {
+    //     return $this->res_type;
+    // }
 
-    public function setResType(string $res_type): static
-    {
-        $this->res_type = $res_type;
+    // public function setResType(string $res_type): static
+    // {
+    //     $this->res_type = $res_type;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function isActive(): ?bool
-    {
-        return $this->active;
-    }
+    // public function isActive(): ?bool
+    // {
+    //     return $this->active;
+    // }
 
-    public function setActive(bool $active): static
-    {
-        $this->active = $active;
+    // public function setActive(bool $active): static
+    // {
+    //     $this->active = $active;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getCourt(): ?Court
     {

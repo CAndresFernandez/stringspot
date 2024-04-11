@@ -25,7 +25,7 @@ class Center
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['centers'])]
+    #[Groups(['centers', 'courts'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
