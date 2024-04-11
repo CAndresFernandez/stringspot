@@ -1,13 +1,5 @@
+import { ICourt } from "./court";
 import { IUser } from "./user";
-import { ICenter } from "./center";
-
-export interface ICourt {
-  id: number;
-  number: string;
-  type: string;
-  center: ICenter;
-  reservations: IReservation[];
-}
 
 export interface IReservation {
   id: number;

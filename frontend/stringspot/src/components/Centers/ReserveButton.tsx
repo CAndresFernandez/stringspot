@@ -1,26 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { ICourt } from "../../@types/reservation";
+import { ICourt } from "../../@types/court";
 import { useDispatch } from "react-redux";
 import { setReservation } from "../../store/reducers/reservationReducer";
+import { ICenter } from "../../@types/center";
 
 interface ReserveButtonProps {
   court: ICourt;
+  center: ICenter;
   startTime: string;
   endTime: string;
 }
 
 const ReserveButton: React.FC<ReserveButtonProps> = ({
   court,
+  center,
   startTime,
   endTime,
 }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    if (court && startTime && endTime) {
+    if (court && center && startTime && endTime) {
       dispatch(
-        setReservation({ court, start_time: startTime, end_time: endTime })
+        setReservation({
+          court,
+          center,
+          startTime: startTime,
+          endTime: endTime,
+        })
       );
     } else {
       console.log("Missing reservation data.");
@@ -28,11 +35,9 @@ const ReserveButton: React.FC<ReserveButtonProps> = ({
   };
 
   return (
-    <Link to={`/new-reservation`}>
-      <button className="reserve-button button" onClick={handleClick}>
-        Reserve
-      </button>
-    </Link>
+    <button className="reserve-button button" onClick={handleClick}>
+      Reserve
+    </button>
   );
 };
 

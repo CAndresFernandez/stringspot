@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ICourt, IReservation } from "../../@types/reservation";
+import { IReservation } from "../../@types/reservation";
 import API from "axios";
 import { Link } from "react-router-dom";
 import ReserveButton from "./ReserveButton";
+import { ICourt } from "../../@types/court";
+import { ICenter } from "../../@types/center";
 
 interface TimeSlot {
   startTime: Date;
@@ -16,10 +18,10 @@ const generateTimeSlots = (): TimeSlot[] => {
 
   for (let hour = startHour; hour <= endHour; hour++) {
     const startTime = new Date();
-    startTime.setHours(hour);
+    startTime.setHours(hour, 0, 0);
 
     const endTime = new Date();
-    endTime.setMinutes(59);
+    endTime.setHours(hour, 59, 59);
 
     timeSlots.push({
       startTime,
@@ -33,13 +35,14 @@ const generateTimeSlots = (): TimeSlot[] => {
 const Accordion: React.FC<{
   court: ICourt;
   startDate: number;
-  centerId: number;
-}> = ({ court, startDate, centerId }) => {
+  center: ICenter;
+}> = ({ court, startDate, center }) => {
   const [isActive, setIsActive] = useState(false);
   const [reservations, setReservations] = useState<IReservation[]>([]);
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
 
   useEffect(() => {
+    const centerId = center.id;
     const fetchReservations = async () => {
       try {
         const response = await API.get(`reservations`, {
@@ -67,13 +70,13 @@ const Accordion: React.FC<{
     setAvailableSlots(availableSlots);
   }, [reservations]);
 
-  const onClick = () => {
+  const onAccordionClick = () => {
     setIsActive(!isActive);
   };
 
   return (
     <div className="accordion-item">
-      <div className="accordion-title" onClick={onClick}>
+      <div className="accordion-title" onClick={onAccordionClick}>
         <div>
           Court {court.number} - {court.type.toUpperCase()}
         </div>
@@ -95,6 +98,7 @@ const Accordion: React.FC<{
               <Link to={`/new-reservation`}>
                 <ReserveButton
                   court={court}
+                  center={center}
                   startTime={slot.startTime.toISOString()}
                   endTime={slot.endTime.toISOString()}
                 />

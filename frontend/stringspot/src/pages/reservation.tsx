@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import NewReservation from "../components/Reservation/NewReservation";
-// import ReservationForm from "../components/Reservation/ReservationForm";
+import "../styles/res-confirm.css";
 
 export default function Reservation() {
   return (

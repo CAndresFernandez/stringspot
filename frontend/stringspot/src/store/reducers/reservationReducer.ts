@@ -1,22 +1,26 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { ICourt } from "../../@types/reservation";
+import { ICourt } from "../../@types/court";
+import { ICenter } from "../../@types/center";
 
 export interface ReservationRootState {
   court?: ICourt;
-  start_time?: string;
-  end_time?: string;
+  center?: ICenter;
+  startTime?: string;
+  endTime?: string;
 }
 
 export const initialState: ReservationRootState = {
   court: undefined,
-  start_time: undefined,
-  end_time: undefined,
+  center: undefined,
+  startTime: "",
+  endTime: "",
 };
 
 export const setReservation = createAction<{
   court: ICourt;
-  start_time: string;
-  end_time: string;
+  center: ICenter;
+  startTime: string;
+  endTime: string;
 }>("reservation");
 
 const reservationReducer = createReducer(initialState, (builder) => {
@@ -24,8 +28,9 @@ const reservationReducer = createReducer(initialState, (builder) => {
     return {
       ...state,
       court: action.payload.court,
-      start_time: action.payload.start_time,
-      end_time: action.payload.end_time,
+      center: action.payload.center,
+      startTime: action.payload.startTime,
+      endTime: action.payload.endTime,
     };
   });
 });

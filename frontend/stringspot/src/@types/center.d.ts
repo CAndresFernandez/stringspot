@@ -1,4 +1,4 @@
-import { ICourt } from "./reservation";
+import { ICourt } from "./court";
 import { IZone } from "./zone";
 
 export interface ICenter {

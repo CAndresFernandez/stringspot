@@ -1,0 +1,11 @@
+.res-conf {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+}
+
+.res-conf-button {
+    padding: 1rem;
+    width: fit-content;
+}
